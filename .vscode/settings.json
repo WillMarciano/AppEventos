@@ -1,0 +1,3 @@
+{
+    "dotnet.defaultSolution": "Back/src/appEventos.API/appEventos.API.sln"
+}
