@@ -6,7 +6,7 @@ namespace appEventos.API.Data
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options)
-            : base() { }
+            : base(options) { }
 
         public DbSet<Evento> Eventos { get; set; }
     }

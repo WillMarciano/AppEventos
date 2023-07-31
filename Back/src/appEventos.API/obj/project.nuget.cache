@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+dP1J6owV7gggJ2tS5rHrBccNGhqT0dl/6qLCZDew5pWUEi+WfYlW/ZwyDiPkVTJfBLe9SbCFoTHIRksEHLYdw==",
+  "dgSpecHash": "SqKu2imLwnPI/3+JEwK10UZpnO8ErVnlsHBaV1Cu3Q0Engv9dSc6ZSzE+hl1zkT+DSTueM3v2FoUqP6kK+UJfA==",
   "success": true,
-  "projectFilePath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+  "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\back\\src\\appEventos.API\\appEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\willi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
