@@ -1,7 +1,7 @@
 <h2>Eventos</h2>
- 
-<hr>
- 
+
+<hr />
+
 <form class="row row-cols-lg-auto g-3 align-items-center" action="">
   <div>
     <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
@@ -13,15 +13,16 @@
     <button type="submit" class="btn btn-outline-success">Buscar</button>
   </div>
 </form>
- 
-<hr>
- 
-<table class="table">
+
+<hr />
+
+<table class="table table-striped">
   <thead class="table-dark">
     <tr>
       <th class="text-center" scope="col">#</th>
       <th class="text-center" scope="col">Imagem</th>
       <th class="text-center" scope="col">Tema</th>
+      <th class="text-center" scope="col">Local</th>
       <th class="text-center" scope="col">Data</th>
       <th class="text-center" scope="col">Qtd Pessoas</th>
       <th class="text-center" scope="col">Lote</th>
@@ -29,14 +30,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th class="text-center" scope="row">1</th>
-      <td class="text-center">A</td>
-      <td class="text-center">B</td>
-      <td class="text-center">C</td>
-      <td class="text-center">D</td>
-      <td class="text-center">E</td>
-      <td class="text-center">F</td>
+    <tr *ngFor="let evento of eventos">
+      <th class="text-center">{{ evento.eventoId }}</th>
+      <td class="text-center">{{ evento.imagemUrl }}</td>
+      <td class="text-center">{{ evento.tema }}</td>
+      <td class="text-center">{{ evento.local }}</td>
+      <td class="text-center">{{ evento.dataEvento }}</td>
+      <td class="text-center">{{ evento.qtdPessoas }}</td>
+      <td class="text-center">{{ evento.lote }}</td>
+      <td class="text-center"></td>
     </tr>
   </tbody>
 </table>
