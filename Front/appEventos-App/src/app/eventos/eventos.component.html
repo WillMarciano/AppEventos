@@ -29,10 +29,11 @@
       <th class="text-center" scope="col">Opções</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventos">
       <th class="text-center">{{ evento.eventoId }}</th>
-      <td class="text-center">{{ evento.imagemUrl }}</td>
+      <td><img src="/assets/{{ evento.imagemUrl }}" [style.width.px]="widthImg" [style.margin.px]="marginImg"> </td>
+      <!-- <td class="text-center">{{ evento.imagemUrl }}</td> -->
       <td class="text-center">{{ evento.tema }}</td>
       <td class="text-center">{{ evento.local }}</td>
       <td class="text-center">{{ evento.dataEvento }}</td>
@@ -41,4 +42,11 @@
       <td class="text-center"></td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum Evento Encontrado</h4>
+      </td>
+    </tr>
+  </tfoot>
 </table>
