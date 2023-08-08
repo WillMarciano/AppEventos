@@ -11,6 +11,7 @@ export class EventosComponent implements OnInit {
   widthImg: number = 150;
   marginImg: number = 2;
   showImg: boolean = false;
+  fiterList: string = '';
 
   constructor(private http: HttpClient) {}
 

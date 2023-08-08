@@ -1,20 +1,23 @@
 <h2>Eventos</h2>
-
 <hr />
-
-<form class="row row-cols-lg-auto g-3 align-items-center" action="">
+<div class="row row-cols-lg-auto g-3 align-items-center">
   <div>
     <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="buscar" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="buscar"
+        [(ngModel)]="fiterList"
+      />
     </div>
   </div>
   <div>
     <button type="submit" class="btn btn-outline-success">Buscar</button>
   </div>
-</form>
+</div>
 
-<hr />
+<h3>Filtro: {{ fiterList }}</h3>
 
 <table class="table table-striped">
   <thead class="table-dark">
