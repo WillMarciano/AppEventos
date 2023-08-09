@@ -2,7 +2,11 @@
 <hr />
 <div class="row row-cols-lg-auto g-3 align-items-center">
   <div>
-    <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
+    <label><b>Filtro:</b></label>
+  </div>
+  <div>
+    <label class="visually-hidden" for="inlineFormInputGroupUsername">Filtro</label>
+
     <div class="input-group">
       <input
         type="text"
@@ -12,12 +16,9 @@
       />
     </div>
   </div>
-  <div>
-    <button type="submit" class="btn btn-outline-success">Buscar</button>
-  </div>
 </div>
 
-<h3>Filtro: {{ filterList }}</h3>
+<br>
 
 <table class="table table-striped">
   <thead class="table-dark">
@@ -53,7 +54,10 @@
       <td class="text-center">{{ evento.dataEvento }}</td>
       <td class="text-center">{{ evento.qtdPessoas }}</td>
       <td class="text-center">{{ evento.lote }}</td>
-      <td class="text-center"></td>
+      <td class="text-center">
+        <button type="button" class="btn btn-outline-primary btn-sm me-2">Editar</button>
+        <button type="button" class="btn btn-outline-danger btn-sm">cancelar</button>
+      </td>
     </tr>
   </tbody>
   <tfoot *ngIf="!events.length">
