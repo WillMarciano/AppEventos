@@ -1,4 +1,4 @@
-using appEventos.API.Models;
+using appEventos.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace appEventos.API.Data

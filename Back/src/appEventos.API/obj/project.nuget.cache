@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vxWsH0ne1M54at+Ktq5SPiMPeYi+fyER5QQINGD9Ymr45w1LtNgo9w63lC4aOboGgjQzZHSeSMPD13y5Qak58Q==",
+  "dgSpecHash": "R1xn5cgj8T4S7olOIzwREWeImY/6NLk04h+LHDPdGqdeCvbhm96h0M5CvlVIrge5ronK0i0KFWq/Ahb7aljpJA==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+  "projectFilePath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\willi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.20\\microsoft.data.sqlite.core.6.0.20.nupkg.sha512",
