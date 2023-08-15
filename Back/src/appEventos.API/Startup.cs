@@ -1,4 +1,4 @@
-using appEventos.API.Data;
+using appEventos.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -14,7 +14,7 @@ namespace appEventos.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DataContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<AppEventosContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors();
             services.AddSwaggerGen(c =>

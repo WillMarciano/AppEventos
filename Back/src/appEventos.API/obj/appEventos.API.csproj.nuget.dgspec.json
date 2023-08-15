@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj": {}
+    "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj": {}
   },
   "projects": {
-    "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj": {
+    "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+        "projectUniqueName": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
         "projectName": "appEventos.API",
-        "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+        "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\obj\\",
+        "outputPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj": {
-                "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj"
+              "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj": {
+                "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj"
               }
             }
           }
@@ -44,26 +44,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.20, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.20, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[6.0.20, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.20, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -92,14 +72,14 @@
         }
       }
     },
-    "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj": {
+    "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj",
+        "projectUniqueName": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj",
         "projectName": "appEventos.Application",
-        "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj",
+        "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\obj\\",
+        "outputPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -248,6 +228,28 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.20, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
