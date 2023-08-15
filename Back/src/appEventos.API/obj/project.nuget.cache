@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "F5GMxIDQSw4a6V7MlOILu8yMOhLeje8mpvqR5oO/l9QxinTxJAdtzeBopuqtvs6p9xhR+PmdL3kjHfpYsA16Bg==",
+  "dgSpecHash": "fdZNC/SOdDEX4TYbcGREVKywUEAbkIRDnES4KCZH05avjMtxC3HXFoOHVU5Zp7x8R0r6WLUZFVGcv4r/86zOtQ==",
   "success": true,
   "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.20\\microsoft.entityframeworkcore.relational.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\6.0.20\\microsoft.entityframeworkcore.sqlite.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\6.0.20\\microsoft.entityframeworkcore.sqlite.core.6.0.20.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.20\\microsoft.entityframeworkcore.tools.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",

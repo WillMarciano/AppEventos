@@ -104,6 +104,11 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.Tools/6.0.20": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "6.0.20"
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
       "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
         "dependencies": {
@@ -421,6 +426,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.20",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.20",
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.20",
           "appEventos.Domain": "1.0.0"
         },
         "runtime": {
@@ -497,6 +503,13 @@
       "sha512": "sha512-Demwm93dqVo0r9rFFrjZPNwnWjVFerp92IraGImsFGd8CH+zFhYaKa20Y1tPttDk3Bwj6CscIOWdAKB4Ei3tTQ==",
       "path": "microsoft.entityframeworkcore.sqlite.core/6.0.20",
       "hashPath": "microsoft.entityframeworkcore.sqlite.core.6.0.20.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/6.0.20": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xVoW+KIMXC/LTTkM1SG3Cqu3cqJn60vjAmTueEDB6dyZsykTVX09r7e5ggVc638vc18Cs07pjmIg2BPwhuRcLg==",
+      "path": "microsoft.entityframeworkcore.tools/6.0.20",
+      "hashPath": "microsoft.entityframeworkcore.tools.6.0.20.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",
