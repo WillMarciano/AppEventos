@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "4bogsoYvFzUxuzw5MsjEv/a5fvNFP2PIb2Sr06wZ2Oa3YIkeiktgjjGE5q/Du8iN7yoJ6iyGpjEl596fPILmUg==",
+  "dgSpecHash": "F5GMxIDQSw4a6V7MlOILu8yMOhLeje8mpvqR5oO/l9QxinTxJAdtzeBopuqtvs6p9xhR+PmdL3kjHfpYsA16Bg==",
   "success": true,
   "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\willi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.20\\microsoft.data.sqlite.core.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.20\\microsoft.entityframeworkcore.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.20\\microsoft.entityframeworkcore.abstractions.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.20\\microsoft.entityframeworkcore.analyzers.6.0.20.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.20\\microsoft.entityframeworkcore.design.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.20\\microsoft.entityframeworkcore.relational.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\6.0.20\\microsoft.entityframeworkcore.sqlite.6.0.20.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\6.0.20\\microsoft.entityframeworkcore.sqlite.core.6.0.20.nupkg.sha512",

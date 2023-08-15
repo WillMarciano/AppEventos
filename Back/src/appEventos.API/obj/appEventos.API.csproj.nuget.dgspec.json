@@ -44,6 +44,12 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -99,8 +105,8 @@
               "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Domain\\appEventos.Domain.csproj": {
                 "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Domain\\appEventos.Domain.csproj"
               },
-              "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj": {
-                "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj"
+              "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj": {
+                "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj"
               }
             }
           }
@@ -189,14 +195,14 @@
         }
       }
     },
-    "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj": {
+    "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj",
+        "projectUniqueName": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj",
         "projectName": "appEventos.Persistence",
-        "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj",
+        "projectPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\appEventos.Persistence.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\obj\\",
+        "outputPath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",

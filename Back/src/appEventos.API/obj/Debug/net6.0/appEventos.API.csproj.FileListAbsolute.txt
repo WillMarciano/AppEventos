@@ -65,3 +65,5 @@ C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\appEventos.Application.pdb
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\appEventos.Domain.pdb
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\appEventos.Persistence.pdb
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Humanizer.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

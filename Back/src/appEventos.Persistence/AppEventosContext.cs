@@ -13,10 +13,10 @@ namespace appEventos.Persistence
         public DbSet<PalestranteEvento> PalestrantesEventos { get; set; }
         public DbSet<RedeSocial> RedesSocials { get; set; }
 
-        protected override protected void OnModelCreating(ModelBuilder modelBuilder)
+        override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PalestranteEvento>()
-                .HasKey(pe => new { pe.EventoId, pe.PalestranteId })
+                .HasKey(pe => new { pe.EventoId, pe.PalestranteId });
 
         }
     }
