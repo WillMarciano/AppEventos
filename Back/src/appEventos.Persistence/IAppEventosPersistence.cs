@@ -1,8 +1,4 @@
-using System.Runtime.CompilerServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using appEventos.Domain.Models;
 
 namespace appEventos.Persistence
 {
