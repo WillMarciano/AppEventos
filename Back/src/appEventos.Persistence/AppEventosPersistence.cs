@@ -1,4 +1,5 @@
 using appEventos.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace appEventos.Persistence
 {
@@ -24,19 +25,29 @@ namespace appEventos.Persistence
         #endregion
 
         #region Evento
-        public Task<Evento[]> GetAllEventosAsync(bool includePalestrantes)
+        private IQueryable<Evento> BaseQueryEvento(bool includePalestrantes)
         {
-            throw new NotImplementedException();
+            IQueryable<Evento> query = _context.Eventos.Include(e => e.Lotes).Include(e => e.RedesSociais);
+
+            if (includePalestrantes)
+                query = query.Include(e => e.PalestrantesEventos).ThenInclude(pe => pe.Palestrante);
+
+            query = query.OrderBy(e => e.Id);
+            return query;
+        }
+        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
+        {
+            var query = BaseQueryEvento(includePalestrantes);
+            return await query.ToArrayAsync();
         }
 
-        public Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes)
+        public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
         {
-            throw new NotImplementedException();
+            var query = BaseQueryEvento(includePalestrantes).Where(e => e.Tema.ToLower().Contains(tema.ToLower()));
+            return await query.ToArrayAsync();
         }
-        public Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false) 
+            => await BaseQueryEvento(includePalestrantes).Where(e => e.Id == eventoId).FirstOrDefaultAsync();
         #endregion
 
         #region Palestrante
