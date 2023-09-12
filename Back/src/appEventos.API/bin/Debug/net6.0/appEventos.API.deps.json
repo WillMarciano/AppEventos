@@ -411,7 +411,7 @@
       "appEventos.Application/1.0.0": {
         "dependencies": {
           "appEventos.Domain": "1.0.0",
-          "appEventos.Persistence": "1.0.0"
+          "appEventos.Repository": "1.0.0"
         },
         "runtime": {
           "appEventos.Application.dll": {}
@@ -422,7 +422,7 @@
           "appEventos.Domain.dll": {}
         }
       },
-      "appEventos.Persistence/1.0.0": {
+      "appEventos.Repository/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.20",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.20",
@@ -430,7 +430,7 @@
           "appEventos.Domain": "1.0.0"
         },
         "runtime": {
-          "appEventos.Persistence.dll": {}
+          "appEventos.Repository.dll": {}
         }
       }
     }
@@ -710,7 +710,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "appEventos.Persistence/1.0.0": {
+    "appEventos.Repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

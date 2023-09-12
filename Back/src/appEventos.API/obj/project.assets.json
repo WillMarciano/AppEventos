@@ -686,7 +686,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "appEventos.Domain": "1.0.0",
-          "appEventos.Persistence": "1.0.0"
+          "appEventos.Repository": "1.0.0"
         },
         "compile": {
           "bin/placeholder/appEventos.Application.dll": {}
@@ -705,7 +705,7 @@
           "bin/placeholder/appEventos.Domain.dll": {}
         }
       },
-      "appEventos.Persistence/1.0.0": {
+      "appEventos.Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -715,10 +715,10 @@
           "appEventos.Domain": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/appEventos.Persistence.dll": {}
+          "bin/placeholder/appEventos.Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/appEventos.Persistence.dll": {}
+          "bin/placeholder/appEventos.Repository.dll": {}
         }
       }
     }
@@ -1557,10 +1557,10 @@
       "path": "../appEventos.Domain/appEventos.Domain.csproj",
       "msbuildProject": "../appEventos.Domain/appEventos.Domain.csproj"
     },
-    "appEventos.Persistence/1.0.0": {
+    "appEventos.Repository/1.0.0": {
       "type": "project",
-      "path": "../appEventos.Persistence/appEventos.Persistence.csproj",
-      "msbuildProject": "../appEventos.Persistence/appEventos.Persistence.csproj"
+      "path": "../appEventos.Persistence/appEventos.Repository.csproj",
+      "msbuildProject": "../appEventos.Persistence/appEventos.Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
