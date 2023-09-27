@@ -7,7 +7,7 @@ using appEventos.Persistence;
 
 #nullable disable
 
-namespace appEventos.Persistence.Migrations
+namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
     partial class AppEventosContextModelSnapshot : ModelSnapshot

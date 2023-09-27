@@ -8,10 +8,10 @@ using appEventos.Persistence;
 
 #nullable disable
 
-namespace appEventos.Persistence.Migrations
+namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20230815205627_Initial")]
+    [Migration("20230927221126_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
