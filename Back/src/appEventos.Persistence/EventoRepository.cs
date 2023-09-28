@@ -1,8 +1,8 @@
 using appEventos.Domain.Models;
-using appEventos.Persistence.Interfaces;
+using appEventos.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace appEventos.Persistence
+namespace appEventos.Repository
 {
     public class EventoRepository : IEventoRepository
     {

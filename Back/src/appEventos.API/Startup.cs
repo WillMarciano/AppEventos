@@ -1,4 +1,4 @@
-using appEventos.Persistence;
+using appEventos.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

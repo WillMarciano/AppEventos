@@ -1,6 +1,6 @@
 using appEventos.Domain.Models;
 
-namespace appEventos.Persistence.Interfaces
+namespace appEventos.Repository.Interfaces
 {
     public interface IEventoRepository
     {

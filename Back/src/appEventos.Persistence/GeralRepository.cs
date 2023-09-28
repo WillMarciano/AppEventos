@@ -1,6 +1,6 @@
-using appEventos.Persistence.Interfaces;
+using appEventos.Repository.Interfaces;
 
-namespace appEventos.Persistence
+namespace appEventos.Repository
 {
     public class GeralRepository : IGeralRepository
     {

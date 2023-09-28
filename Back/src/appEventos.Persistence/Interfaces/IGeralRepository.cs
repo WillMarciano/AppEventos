@@ -1,4 +1,4 @@
-namespace appEventos.Persistence.Interfaces
+namespace appEventos.Repository.Interfaces
 {
     public interface IGeralRepository
     {
