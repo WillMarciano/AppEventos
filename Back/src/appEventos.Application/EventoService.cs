@@ -1,7 +1,6 @@
 ﻿using appEventos.Application.Interfaces;
 using appEventos.Domain.Models;
 using appEventos.Repository.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace appEventos.Application
 {
@@ -47,21 +46,6 @@ namespace appEventos.Application
             }
         }
 
-        public Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Evento?> UpdateEvento(int eventoId, Evento model)
         {
             try
@@ -76,6 +60,51 @@ namespace appEventos.Application
                     return await _eventoRepository.GetEventoByIdAsync(model.Id, false);
 
                 return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
+        {
+            try
+            {
+                var eventos = await _eventoRepository.GetAllEventosAsync(includePalestrantes);
+                if (eventos == null) return null;
+
+                return eventos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
+        {
+            try
+            {
+                var eventos = await _eventoRepository.GetAllEventosByTemaAsync(tema, includePalestrantes);
+                if (eventos == null) return null;
+
+                return eventos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false)
+        {
+            try
+            {
+                var evento = await _eventoRepository.GetEventoByIdAsync(eventoId, includePalestrantes);
+                if (evento == null) return null;
+
+                return evento;
             }
             catch (Exception ex)
             {
