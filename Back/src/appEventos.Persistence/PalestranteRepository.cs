@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace appEventos.Repository
 {
-    public class PalestranteRepository : IPalestrantePersist
+    public class PalestranteRepository : IPalestranteRepository
     {
         public readonly AppEventosContext _context;
         public PalestranteRepository(AppEventosContext context) => _context = context;

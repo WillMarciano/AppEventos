@@ -11,7 +11,7 @@ using appEventos.Repository.Context;
 namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20230928194803_Initial")]
+    [Migration("20230928195411_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

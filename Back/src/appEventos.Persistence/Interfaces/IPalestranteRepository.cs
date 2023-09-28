@@ -2,7 +2,7 @@ using appEventos.Domain.Models;
 
 namespace appEventos.Repository.Interfaces
 {
-    public interface IPalestrantePersist
+    public interface IPalestranteRepository
     {
         Task<Palestrante[]> GetAllPalestrantesAsync(bool includeEventos = false);
         Task<Palestrante[]> GetAllPalestrantesByNomeAsync(string nome, bool includeEventos = false);
