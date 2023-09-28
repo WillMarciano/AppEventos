@@ -1,4 +1,5 @@
 using appEventos.Domain.Models;
+using appEventos.Repository.Context;
 using appEventos.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

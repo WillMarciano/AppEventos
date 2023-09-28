@@ -1,5 +1,5 @@
 using appEventos.Domain.Models;
-using appEventos.Repository;
+using appEventos.Repository.Context;
 using Microsoft.AspNetCore.Mvc;
 namespace appEventos.API.Controllers;
 

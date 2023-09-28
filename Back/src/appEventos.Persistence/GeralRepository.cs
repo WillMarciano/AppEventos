@@ -1,3 +1,4 @@
+using appEventos.Repository.Context;
 using appEventos.Repository.Interfaces;
 
 namespace appEventos.Repository

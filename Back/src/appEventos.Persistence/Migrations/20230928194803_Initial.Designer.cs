@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using appEventos.Repository;
+using appEventos.Repository.Context;
 
 #nullable disable
 
 namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20230928194204_Initial")]
+    [Migration("20230928194803_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
