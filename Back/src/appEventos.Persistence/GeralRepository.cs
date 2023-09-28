@@ -2,10 +2,10 @@ using appEventos.Persistence.Interfaces;
 
 namespace appEventos.Persistence
 {
-    public class GeralPersist : IGeralPersist
+    public class GeralRepository : IGeralRepository
     {
         public readonly AppEventosContext _context;
-        public GeralPersist(AppEventosContext context) => _context = context;
+        public GeralRepository(AppEventosContext context) => _context = context;
 
         public void Add<T>(T entity) where T : class => _context.Add(entity);
 

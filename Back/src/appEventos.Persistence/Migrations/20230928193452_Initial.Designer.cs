@@ -11,7 +11,7 @@ using appEventos.Persistence;
 namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20230927221126_Initial")]
+    [Migration("20230928193452_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

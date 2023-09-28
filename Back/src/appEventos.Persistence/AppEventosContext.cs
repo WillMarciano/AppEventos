@@ -6,7 +6,6 @@ namespace appEventos.Persistence
     public class AppEventosContext : DbContext
     {
         public AppEventosContext(DbContextOptions<AppEventosContext> options) : base(options) { }
-
         public DbSet<Evento> Eventos { get; set; }
         public DbSet<Lote> Lotes { get; set; }
         public DbSet<Palestrante> Palestrantes { get; set; }

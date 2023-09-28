@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace appEventos.Persistence
 {
-    public class AppEventosPersistence : IPalestrantePersist
+    public class PalestranteRepository : IPalestrantePersist
     {
         public readonly AppEventosContext _context;
-        public AppEventosPersistence(AppEventosContext context) => _context = context;
+        public PalestranteRepository(AppEventosContext context) => _context = context;
 
         private IQueryable<Palestrante> FilterQueryPalestrante(bool includeEventos)
         {

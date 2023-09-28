@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace appEventos.Persistence
 {
-    public class EventoPersist : IEventoPersist
+    public class EventoRepository : IEventoRepository
     {
         public readonly AppEventosContext _context;
-        public EventoPersist(AppEventosContext context) => _context = context;
-
+        public EventoRepository(AppEventosContext context) => _context = context;
         private IQueryable<Evento> FilterQueryEvento(bool includePalestrantes)
         {
             IQueryable<Evento> query = _context.Eventos.Include(e => e.Lotes).Include(e => e.RedesSociais);
@@ -24,7 +23,6 @@ namespace appEventos.Persistence
             var query = FilterQueryEvento(includePalestrantes);
             return await query.ToArrayAsync();
         }
-
         public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
         {
             var query = FilterQueryEvento(includePalestrantes).Where(e => e.Tema.ToLower().Contains(tema.ToLower()));
