@@ -1,4 +1,5 @@
 using appEventos.Application.Interfaces;
+using appEventos.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace appEventos.API.Controllers;
@@ -7,6 +8,8 @@ namespace appEventos.API.Controllers;
 [Route("api/[controller]")]
 public class EventosController : ControllerBase
 {
+    private const string notFoundString = "Nenhum Evento Encontrado";
+    private const string errorResponse = "Erro ao ao tentar * evento";
     private readonly IEventoService _eventoService;
 
     public EventosController(IEventoService eventoService) => _eventoService = eventoService;
@@ -17,11 +20,13 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync();
-            return !eventos.Any() ? NotFound("Nenhum Evento Encontrado") : Ok(eventos);
+            return eventos.Length > 1 ? 
+                Ok(eventos) : 
+                NotFound(notFoundString);
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
         }
     }
 
@@ -31,11 +36,13 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetEventoByIdAsync(id);
-            return evento == null ? NotFound($"Nenhum Evento Encontrado com id:{id}") : Ok(evento);
+            return evento != null ? 
+                Ok(evento) : 
+                NotFound($"{notFoundString} com id informado");
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar evento: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
         }
     }
 
@@ -45,11 +52,60 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetAllEventosByTemaAsync(tema);
-            return !evento.Any() ? NotFound($"Nenhum evento encontrado com o tema: {tema}") : Ok(evento);
+            return evento.Length >= 1 ? 
+                Ok(evento) : 
+                NotFound($"{notFoundString} com o tema informado");
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar evento com o tema: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Evento model)
+    {
+        try
+        {
+            var evento = await _eventoService.AddEventos(model);
+            return evento == null ? 
+                Ok(evento) : 
+                BadRequest(errorResponse.Replace("*", "adicionar"));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Evento model)
+    {
+        try
+        {
+            var evento = await _eventoService.UpdateEvento(id, model);
+            return evento == null ? 
+                Ok(evento) : 
+                BadRequest(errorResponse.Replace("*", "atualizar"));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        try
+        {
+            return await _eventoService.DeleteEvento(id) ? 
+                Ok("Evento Deletado") : 
+                BadRequest(errorResponse.Replace("*", "deletar"));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "deletar")} {ex.Message}");
         }
     }
 }
