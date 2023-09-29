@@ -20,7 +20,7 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync();
-            return eventos.Length > 1 ? 
+            return eventos.Any() ? 
                 Ok(eventos) : 
                 NotFound(notFoundString);
         }
@@ -38,7 +38,7 @@ public class EventosController : ControllerBase
             var evento = await _eventoService.GetEventoByIdAsync(id);
             return evento != null ? 
                 Ok(evento) : 
-                NotFound($"{notFoundString} com id informado");
+                NotFound($"{notFoundString}");
         }
         catch (Exception ex)
         {
@@ -52,9 +52,9 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetAllEventosByTemaAsync(tema);
-            return evento.Length >= 1 ? 
+            return evento.Any() ? 
                 Ok(evento) : 
-                NotFound($"{notFoundString} com o tema informado");
+                NotFound($"{notFoundString}");
         }
         catch (Exception ex)
         {
@@ -68,7 +68,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.AddEventos(model);
-            return evento == null ? 
+            return evento != null ? 
                 Ok(evento) : 
                 BadRequest(errorResponse.Replace("*", "adicionar"));
         }
@@ -84,7 +84,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.UpdateEvento(id, model);
-            return evento == null ? 
+            return evento != null ? 
                 Ok(evento) : 
                 BadRequest(errorResponse.Replace("*", "atualizar"));
         }

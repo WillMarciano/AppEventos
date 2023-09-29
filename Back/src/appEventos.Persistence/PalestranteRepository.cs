@@ -18,7 +18,7 @@ namespace appEventos.Repository
                 query = query.Include(p => p.PalestrantesEventos).ThenInclude(p => p.Evento);
 
             query = query.OrderBy(e => e.Id);
-            return query;
+            return query.AsNoTracking();
         }
         public async Task<Palestrante[]> GetAllPalestrantesAsync(bool includeEventos = false)
         {
