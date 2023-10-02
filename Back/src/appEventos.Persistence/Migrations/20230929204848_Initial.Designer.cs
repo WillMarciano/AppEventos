@@ -11,7 +11,7 @@ using appEventos.Repository.Context;
 namespace appEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20230928195411_Initial")]
+    [Migration("20230929204848_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,7 +150,7 @@ namespace appEventos.Repository.Migrations
                     b.Property<int?>("PalestranteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("url")
+                    b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

@@ -67,3 +67,7 @@ C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\obj\
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\obj\Debug\net6.0\appEventos.API.pdb
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\obj\Debug\net6.0\appEventos.API.genruntimeconfig.cache
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\obj\Debug\net6.0\ref\appEventos.API.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
