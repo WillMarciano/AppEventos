@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventoService } from '../services/evento.service';
+import { Evento } from '../models/Evento';
 
 @Component({
   selector: 'app-eventos',
@@ -8,11 +9,12 @@ import { EventoService } from '../services/evento.service';
   // providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
-  public events: any = [];
-  public filteredEvents: any = [];
-  widthImg: number = 150;
-  marginImg: number = 2;
-  showImg: boolean = true;
+  public events: Evento[] = [];
+  public filteredEvents: Evento[] = [];
+
+  public widthImg: number = 150;
+  public marginImg: number = 2;
+  public showImg: boolean = true;
   private _filterList: string = '';
 
   public get filterList(): string {
@@ -26,32 +28,32 @@ export class EventosComponent implements OnInit {
       : this.events;
   }
 
-  filterEvents(filterFor: string): any {
-    filterFor = filterFor.toLocaleLowerCase();
-    return this.events.filter(
-      (evento: { tema: string; local: string }) =>
-        evento.tema.toLocaleLowerCase().indexOf(filterFor) !== -1 ||
-        evento.local.toLocaleLowerCase().indexOf(filterFor) !== -1
-    );
-  }
-
   constructor(private eventoService: EventoService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getEventos();
   }
 
-  alterImage() {
+  public alterImage(): void {
     this.showImg = !this.showImg;
   }
 
   public getEventos(): void {
     this.eventoService.getEvento().subscribe(
-      response => {
-        this.events = response;
+      (_eventos: Evento[]) => {
+        this.events = _eventos;
         this.filteredEvents = this.events;
       },
       (error) => console.log(error)
+    );
+  }
+
+  public filterEvents(filterFor: string): Evento[] {
+    filterFor = filterFor.toLocaleLowerCase();
+    return this.events.filter(
+      (evento: { tema: string; local: string }) =>
+        evento.tema.toLocaleLowerCase().indexOf(filterFor) !== -1 ||
+        evento.local.toLocaleLowerCase().indexOf(filterFor) !== -1
     );
   }
 }
