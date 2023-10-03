@@ -39,13 +39,15 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): void {
-    this.eventoService.getEvento().subscribe(
-      (_eventos: Evento[]) => {
+    const observer = {
+      next: (_eventos: Evento[]) => {
         this.events = _eventos;
         this.filteredEvents = this.events;
       },
-      (error) => console.log(error)
-    );
+      erro: (error: any) => console.log(error),
+      complete: () => {},
+    };
+    this.eventoService.getEvento().subscribe(observer);
   }
 
   public filterEvents(filterFor: string): Evento[] {
