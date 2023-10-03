@@ -12,7 +12,7 @@
         type="text"
         class="form-control"
         placeholder="buscar"
-        [(ngModel)]="filterList"
+        [(ngModel)]="filtroLista"
       />
     </div>
   </div>
@@ -25,7 +25,7 @@
     <tr>
       <th>
         <button class="btn btn-outline-light btn-sm" (click)="alterImage()">
-          {{ !showImg ? "Exibir" : "Ocultar" }}
+          {{ !exibirImagem ? "Exibir" : "Ocultar" }}
         </button>
       </th>
       <th class="text-center" scope="col">#</th>
@@ -37,15 +37,15 @@
       <th class="text-center" scope="col">Opções</th>
     </tr>
   </thead>
-  <tbody *ngIf="events && events.length">
-    <tr *ngFor="let evento of filteredEvents">
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventosFiltrados">
       <td>
         <img
-          [collapse]="!showImg"
+          [collapse]="!exibirImagem"
           [isAnimated]="true"
           src="/assets/{{ evento.imagemUrl }}"
-          [style.width.px]="widthImg"
-          [style.margin.px]="marginImg"
+          [style.width.px]="larguraImagem"
+          [style.margin.px]="margemImagem"
         />
       </td>
       <th class="text-center">{{ evento.id }}</th>
@@ -60,7 +60,7 @@
       </td>
     </tr>
   </tbody>
-  <tfoot *ngIf="!events.length">
+  <tfoot *ngIf="!eventos.length">
     <tr>
       <td colspan="8" class="text-center">
         <h4>Nenhum Evento Encontrado</h4>

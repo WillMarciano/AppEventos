@@ -9,23 +9,32 @@ import { Evento } from '../models/Evento';
   // providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
-  public events: Evento[] = [];
-  public filteredEvents: Evento[] = [];
+  public eventos: Evento[] = [];
+  public eventosFiltrados: Evento[] = [];
 
-  public widthImg: number = 150;
-  public marginImg: number = 2;
-  public showImg: boolean = true;
-  private _filterList: string = '';
+  public larguraImagem = 150;
+  public margemImagem = 2;
+  public exibirImagem = true;
+  private filtroListado = '';
 
-  public get filterList(): string {
-    return this._filterList;
+  public get filtroLista(): string {
+    return this.filtroListado;
   }
 
-  public set filterList(value: string) {
-    this._filterList = value;
-    this.filteredEvents = this.filterList
-      ? this.filterEvents(this.filterList)
-      : this.events;
+  public set filtroLista(value: string) {
+    this.filtroListado = value;
+    this.eventosFiltrados = this.filtroLista
+      ? this.filtrarEventos(this.filtroLista)
+      : this.eventos;
+  }
+
+  public filtrarEventos(filtrarPor: string): Evento[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.eventos.filter(
+      (evento: { tema: string; local: string }) =>
+        evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
   }
 
   constructor(private eventoService: EventoService) {}
@@ -35,27 +44,18 @@ export class EventosComponent implements OnInit {
   }
 
   public alterImage(): void {
-    this.showImg = !this.showImg;
+    this.exibirImagem = !this.exibirImagem;
   }
 
   public getEventos(): void {
     const observer = {
       next: (_eventos: Evento[]) => {
-        this.events = _eventos;
-        this.filteredEvents = this.events;
+        this.eventos = _eventos;
+        this.eventosFiltrados = this.eventos;
       },
-      erro: (error: any) => console.log(error),
+      error: (error: any) => console.log(error),
       complete: () => {},
     };
     this.eventoService.getEvento().subscribe(observer);
-  }
-
-  public filterEvents(filterFor: string): Evento[] {
-    filterFor = filterFor.toLocaleLowerCase();
-    return this.events.filter(
-      (evento: { tema: string; local: string }) =>
-        evento.tema.toLocaleLowerCase().indexOf(filterFor) !== -1 ||
-        evento.local.toLocaleLowerCase().indexOf(filterFor) !== -1
-    );
   }
 }
