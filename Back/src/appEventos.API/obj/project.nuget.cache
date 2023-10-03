@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x3ByQfpRMFTCg7YBi7EuVCfzLMVhgfLPTyKXvoPBlOjrcESzzKDC+ZroCvZtGcsRJQix4oId9u53FWVOexqGNQ==",
+  "dgSpecHash": "FfvhvFW4BPQ4gJHJQz41JfDrk3qNnCzUC/+3NYw90y65Qu5qvMpRWJYxxRyWJCU7EH519aNkFOo5IXN6Si8I5Q==",
   "success": true,
-  "projectFilePath": "c:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+  "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\willi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
