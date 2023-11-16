@@ -25,6 +25,7 @@
     <tr>
       <th>
         <button class="btn btn-outline-light btn-sm" (click)="alterImage()">
+          <i class="{{!exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
           {{ !exibirImagem ? "Exibir" : "Ocultar" }}
         </button>
       </th>
@@ -53,10 +54,14 @@
       <td class="text-center">{{ evento.local }}</td>
       <td class="text-center">{{ evento.dataEvento }}</td>
       <td class="text-center">{{ evento.qtdPessoas }}</td>
-      <td class="text-center">{{ evento.lotes }}</td>
+      <td class="text-center">{{ evento.lotes[0].nome }}</td>
       <td class="text-center">
-        <button type="button" class="btn btn-outline-primary btn-sm me-2">Editar</button>
-        <button type="button" class="btn btn-outline-danger btn-sm">cancelar</button>
+        <button type="button" class="btn btn-outline-primary btn-sm me-2">
+          <i class="fa fa-edit"></i>
+          Editar</button>
+        <button type="button" class="btn btn-outline-danger btn-sm">
+          <i class="fa fa-trash"></i>
+          Cancelar</button>
       </td>
     </tr>
   </tbody>
