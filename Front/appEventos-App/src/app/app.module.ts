@@ -11,6 +11,7 @@ import { PalestrantesComponent } from './palestrantes/palestrantes.component';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { EventoService } from './services/evento.service';
+import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { EventoService } from './services/evento.service';
     EventosComponent,
     PalestrantesComponent,
     NavComponent,
+    DateTimeFormatPipe
   ],
   imports: [
     BrowserModule,

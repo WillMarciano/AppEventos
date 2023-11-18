@@ -52,7 +52,7 @@
       <th class="text-center">{{ evento.id }}</th>
       <td class="text-center">{{ evento.tema }}</td>
       <td class="text-center">{{ evento.local }}</td>
-      <td class="text-center">{{ evento.dataEvento }}</td>
+      <td class="text-center">{{ evento.dataEvento | DateTimeFormatPipe }}</td>
       <td class="text-center">{{ evento.qtdPessoas }}</td>
       <td class="text-center">{{ evento.lotes[0].nome }}</td>
       <td class="text-center">
