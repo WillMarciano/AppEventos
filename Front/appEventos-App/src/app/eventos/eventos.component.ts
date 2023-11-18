@@ -74,7 +74,6 @@ export class EventosComponent implements OnInit {
     };
     this.eventoService.getEvento().subscribe(observer);
   }
-
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
