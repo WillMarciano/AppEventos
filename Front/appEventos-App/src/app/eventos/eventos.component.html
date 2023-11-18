@@ -68,7 +68,7 @@
         <button
           type="button"
           class="btn btn-outline-danger btn-sm"
-          data-bs-toggle="tooltip" title="Excluir"
+          data-bs-toggle="tooltip" title="Excluir" (click)="openModal(template)"
         >
           <i class="fa fa-trash"></i>
         </button>
@@ -83,3 +83,11 @@
     </tr>
   </tfoot>
 </table>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar este evento?</p>
+    <button type="button" class="btn btn-outline-danger" (click)="confirm()" >Sim</button> &nbsp; 
+    <button type="button" class="btn btn-outline-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
