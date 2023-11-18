@@ -5,7 +5,9 @@
     <label><b>Filtro:</b></label>
   </div>
   <div>
-    <label class="visually-hidden" for="inlineFormInputGroupUsername">Filtro</label>
+    <label class="visually-hidden" for="inlineFormInputGroupUsername"
+      >Filtro</label
+    >
 
     <div class="input-group">
       <input
@@ -18,14 +20,14 @@
   </div>
 </div>
 
-<br>
+<br />
 
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
       <th>
         <button class="btn btn-outline-light btn-sm" (click)="alterImage()">
-          <i class="{{!exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+          <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
           {{ !exibirImagem ? "Exibir" : "Ocultar" }}
         </button>
       </th>
@@ -56,12 +58,20 @@
       <td class="text-center">{{ evento.qtdPessoas }}</td>
       <td class="text-center">{{ evento.lotes[0].nome }}</td>
       <td class="text-center">
-        <button type="button" class="btn btn-outline-primary btn-sm me-2">
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm me-2"
+          data-bs-toggle="tooltip" title="Editar"
+        >
           <i class="fa fa-edit"></i>
-          Editar</button>
-        <button type="button" class="btn btn-outline-danger btn-sm">
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger btn-sm"
+          data-bs-toggle="tooltip" title="Excluir"
+        >
           <i class="fa fa-trash"></i>
-          Cancelar</button>
+        </button>
       </td>
     </tr>
   </tbody>
