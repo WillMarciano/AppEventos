@@ -23,6 +23,7 @@ import { NavComponent } from './nav/nav.component';
 import { EventoService } from './services/evento.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { TituloComponent } from './shared/titulo/titulo.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     DashboardComponent,
     PerfilComponent,
     NavComponent,
+    TituloComponent,
     DateTimeFormatPipe
   ],
   imports: [
