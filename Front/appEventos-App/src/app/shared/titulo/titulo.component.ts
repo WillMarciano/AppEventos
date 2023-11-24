@@ -17,6 +17,6 @@ export class TituloComponent implements OnInit {
   ngOnInit(): void {}
 
   listar(): void {
-    this.router.navigate([`/${this.titulo.toLocaleLowerCase()}s/lista`]);
+    this.router.navigate([`/${this.titulo.toLocaleLowerCase()}/lista`]);
   }
 }
