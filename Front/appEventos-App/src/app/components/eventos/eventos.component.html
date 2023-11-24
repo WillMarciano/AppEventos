@@ -24,24 +24,24 @@
     <table class="table table-striped ">
       <thead class="table-dark ">
         <tr>
-          <th>
+          <th class="d-none d-md-table-cell">
             <button class="btn btn-outline-light btn-sm" (click)="alterImage()">
               <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
               {{ !exibirImagem ? "Exibir" : "Ocultar" }}
             </button>
           </th>
-          <th class="text-center" scope="col">#</th>
-          <th class="text-center" scope="col">Tema</th>
-          <th class="text-center" scope="col">Local</th>
-          <th class="text-center" scope="col">Data</th>
-          <th class="text-center" scope="col">Qtd Pessoas</th>
-          <th class="text-center" scope="col">Lote</th>
-          <th class="text-center" scope="col">Opções</th>
+          <th scope="col">#</th>
+          <th class="" scope="col">Tema</th>
+          <th class="d-none d-md-table-cell" scope="col">Local</th>
+          <th class=""scope="col">Data</th>
+          <th class="d-none d-md-table-cell" scope="col">Qtd Pessoas</th>
+          <th class="d-none d-md-table-cell" scope="col">Lote</th>
+          <th scope="col">Opções</th>
         </tr>
       </thead>
       <tbody *ngIf="eventos && eventos.length">
         <tr *ngFor="let evento of eventosFiltrados">
-          <td>
+          <td class="d-none d-md-table-cell">
             <img
               [collapse]="!exibirImagem"
               [isAnimated]="true"
@@ -50,24 +50,16 @@
               [style.margin.px]="margemImagem"
             />
           </td>
-          <th class="text-center">{{ evento.id }}</th>
-          <td class="text-center">{{ evento.tema }}</td>
-          <td class="text-center">{{ evento.local }}</td>
-          <td class="text-center">{{ evento.dataEvento | DateTimeFormatPipe }}</td>
-          <td class="text-center">{{ evento.qtdPessoas }}</td>
-          <td class="text-center">{{ evento.lotes[0].nome }}</td>
-          <td class="text-center">
+          <th>{{ evento.id }}</th>
+          <td class="">{{ evento.tema }}</td>
+          <td class="d-none d-md-table-cell">{{ evento.local }}</td>
+          <td class="">{{ evento.dataEvento | DateTimeFormatPipe }}</td>
+          <td class="d-none d-md-table-cell">{{ evento.qtdPessoas }}</td>
+          <td class="d-none d-md-table-cell">{{ evento.lotes[0].nome }}</td>
+          <td>
             <button
               type="button"
-              class="btn btn-outline-primary btn-sm me-2"
-              data-bs-toggle="tooltip"
-              title="Editar"
-            >
-              <i class="fa fa-edit"></i>
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-danger btn-sm"
+              class="btn btn-outline-danger btn-lg"
               data-bs-toggle="tooltip"
               title="Excluir"
               (click)="openModal(template)"
