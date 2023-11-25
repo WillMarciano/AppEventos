@@ -23,7 +23,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { RegistrarComponent } from './components/usuario/registrar/registrar.component';
 
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { NavComponent } from './shared/nav/nav.component';
 
 import { EventoService } from './services/evento.service';

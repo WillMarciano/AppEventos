@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { ContatosComponent } from './components/contatos/contatos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 import { EventosComponent } from './components/eventos/eventos.component';
 import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
-import { LoginComponent } from './components/usuario/login/login.component';
+
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
-import { RegistrarComponent } from './components/usuario/registrar/registrar.component';
+
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { LoginComponent } from './components/usuario/login/login.component';
+import { PerfilComponent } from './components/usuario/perfil/perfil.component';
+import { RegistrarComponent } from './components/usuario/registrar/registrar.component';
 
 
 const routes: Routes = [
@@ -26,13 +30,14 @@ const routes: Routes = [
     ],
   },
   { path: 'palestrantes', component: PalestrantesComponent },
-  { path: 'perfil', component: PerfilComponent },
+
+  { path: 'usuario/perfil', component: PerfilComponent },
   {
     path: 'usuario',
     component: UsuarioComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'registrar', component: RegistrarComponent },
+      { path: 'registrar', component: RegistrarComponent }     
     ],
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
