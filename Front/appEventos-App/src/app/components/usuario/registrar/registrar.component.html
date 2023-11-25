@@ -16,8 +16,8 @@
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
-      <div class="form-row">
-        <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
           <label>Primeiro Nome</label>
           <input
             type="text"
@@ -25,7 +25,7 @@
             placeholder="Insira o Primeiro nome"
           />
         </div>
-        <div class="form-group">
+        <div class="col-sm-6">
           <label>Último nome</label>
           <input
             type="text"
@@ -34,24 +34,20 @@
           />
         </div>
       </div>
-	  <div class="form-group">
+      <div id="emailUsuario">
         <label for="">Email:</label>
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Insira o E-mail"
-        />
+        <input class="form-control" type="text" placeholder="Insira o E-mail" />
       </div>
-	  <div class="form-group">
+      <div id="emailUsuario">
         <label for="">Usuario:</label>
         <input
           class="form-control"
           type="text"
-          placeholder="Insira o nome de Usuário"
+          placeholder="Insira o Usuário"
         />
       </div>
-      <div class="form-row">
-        <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
           <label for="">Senha:</label>
           <input
             class="form-control"
@@ -59,7 +55,7 @@
             placeholder="Digite uma Senha"
           />
         </div>
-        <div class="form-group">
+        <div class="col-sm-6">
           <label for="">Confirmar Senha:</label>
           <input
             class="form-control"
@@ -68,7 +64,7 @@
           />
         </div>
       </div>
-      <div class="form-row p-1" id="checkBox">
+      <div class="row p-1">
         <div class="custom-control custom-checkbox">
           <input
             type="checkbox"
@@ -80,18 +76,17 @@
           >
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <button class="btn btn-lg btn-success btn-block">
-            Registar
-          </button>
+      <div class="row p-1">
+        <div class="col-12">
+          <input type="submit" class="btnEntrar col-12" value="Entrar" />
+        </div>
+        <div class="row p-auto">
+          <a id="jaCadastrado" class="underlineHover" routerLink="/usuario/login">
+            Já sou Cadastrado
+          </a>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <a class="underlineHover" id="jaCadastrado" routerLink="/usuario/login"> Já sou Cadastrado </a>
-        </div>
-      </div>
+
     </form>
   </div>
 </div>

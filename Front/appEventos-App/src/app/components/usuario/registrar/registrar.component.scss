@@ -1,73 +1,85 @@
-  a {
-    color: #92badd;
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 400;
-  }
+a {
+  color: #92badd;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
 
-  .form-group {
-    width: 350px;
-    margin-bottom: 10px;
-  }
+.col-sm-6{
+  margin-bottom: 15px;
+}
 
-  label {
-    font-family: "Poppins", sans-serif;
-    margin-bottom: 0.2rem;
-  }
+#emailUsuario{
+  margin-bottom: 15px;
+}
 
-  #bodyForm {
-    font-family: "Poppins", sans-serif;
-    margin-bottom: 0.2rem;
-  }
+#bodyForm {
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 0.2rem;
+}
 
-  #checkBox {
-    margin-top: 15px;
-  }
+#checkBox {
+  margin-top: 15px;
+}
 
-  .custom-control-label {
-    margin-left: 8px;
-  }
+.custom-control-label {
+  margin-left: 8px;
+}
 
-  button {
-    background-color: #05973d;
-    border: none;
-    color: white;
-    padding: 15px 140px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    margin-top: 15px;
-    margin-bottom: 16px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
+input[type=button], input[type=submit], input[type=reset]  {
+  background-color: #12ce28;
+  border: none;
+  color: white;
+  padding: 15px;
+  margin-top: 2rem;  
+  margin-bottom: 2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 
-  .underlineHover:after {
-    display: block;
-    width: 0;
-    height: 2px;
-    background-color: #56baed;
-    content: "";
-    transition: width 0.2s;
-  }
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  background-color: #036f21;
+}
 
-  .underlineHover:hover {
-    color: #0d0d0d;
-  }
+input[class=btnEntrar]:active, input[type=submit]:active, input[type=reset]:active  {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
 
-  .underlineHover:hover:after {
-    width: 100%;
-  }
 
-  #jaCadastrado {
-    padding-left: 120px;
-  }
+.underlineHover:after {
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after {
+  width: 100%;
+  margin-left: 10px;
+}
+
+#jaCadastrado {
+  text-align: center;
+}
