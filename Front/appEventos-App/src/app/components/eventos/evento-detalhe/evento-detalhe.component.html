@@ -7,25 +7,25 @@
           type="text"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('tema')?.errors && form.get('tema')?.touched
+            'is-invalid': f.tema?.errors && f.tema?.touched
           }"
           formControlName="tema"
           placeholder="Insira o Tema"
         />
         <div
-          *ngIf="form.get('tema')?.hasError('required')"
+          *ngIf="f.tema?.hasError('required')"
           class="invalid-feedback"
         >
           Campo Tema é obrigatório
         </div>
         <div
-          *ngIf="form.get('tema')?.hasError('minlength')"
+          *ngIf="f.tema?.hasError('minlength')"
           class="invalid-feedback"
         >
           Campo Tema deve ter no mínimo 4 caracteres.
         </div>
         <div
-          *ngIf="form.get('tema')?.hasError('maxlength')"
+          *ngIf="f.tema?.hasError('maxlength')"
           class="invalid-feedback"
         >
           Campo Tema deve ter no máximo 50 caracteres.
@@ -39,7 +39,7 @@
           type="text"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('local')?.errors && form.get('local')?.touched
+            'is-invalid': f.local?.errors && f.local?.touched
           }"
           formControlName="local"
           placeholder=""
@@ -52,7 +52,7 @@
           type="datetime-local"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('dataEvento')?.errors && form.get('dataEvento')?.touched
+            'is-invalid': f.dataEvento?.errors && f.dataEvento?.touched
           }"
           formControlName="dataEvento"
           placeholder=""
@@ -67,19 +67,19 @@
           type="text"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('qtdPessoas')?.errors && form.get('qtdPessoas')?.touched
+            'is-invalid': f.qtdPessoas?.errors && f.qtdPessoas?.touched
           }"
           required
           formControlName="qtdPessoas"
         />
         <div
-          *ngIf="form.get('qtdPessoas')?.hasError('required')"
+          *ngIf="f.qtdPessoas?.hasError('required')"
           class="invalid-feedback"
         >
           Campo Qtd Pessoas é obrigatório
         </div>
         <div
-          *ngIf="form.get('qtdPessoas')?.hasError('max')"
+          *ngIf="f.qtdPessoas?.hasError('max')"
           class="invalid-feedback"
         >
           A quantidade máxima de pessoas é 120000
@@ -91,7 +91,7 @@
           type="text"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('telefone')?.errors && form.get('telefone')?.touched
+            'is-invalid': f.telefone?.errors && f.telefone?.touched
           }"
           formControlName="telefone"
           placeholder="(00) 90000-0000"
@@ -104,19 +104,19 @@
           type="email"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('email')?.errors && form.get('email')?.touched
+            'is-invalid': f.email?.errors && f.email?.touched
           }"
           formControlName="email"
           placeholder="e-mail"
         />
         <div
-          *ngIf="form.get('email')?.hasError('required')"
+          *ngIf="f.email?.hasError('required')"
           class="invalid-feedback"
         >
           Campo E-mail é obrigatório
         </div>
         <div
-          *ngIf="form.get('email')?.hasError('email')"
+          *ngIf="f.email?.hasError('email')"
           class="invalid-feedback"
         >
           Informe um e-mail válido.
@@ -128,7 +128,7 @@
           type="file"
           class="form-control"
           [ngClass]="{
-            'is-invalid': form.get('imagemUrl')?.errors && form.get('imagemUrl')?.touched
+            'is-invalid': f.imagemUrl?.errors && f.imagemUrl?.touched
           }"
           formControlName="imagemUrl"
         />
