@@ -25,9 +25,9 @@ a {
 
 .custom-control-label {
   margin-left: 8px;
-}
+};
 
-input[type=button], input[type=submit], input[type=reset]  {
+button{
   background-color: #12ce28;
   border: none;
   color: white;
@@ -36,9 +36,20 @@ input[type=button], input[type=submit], input[type=reset]  {
   margin-bottom: 2rem;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
+
+}
+
+button:hover  {
+  background-color: #036f21;
+}
+
+button:disabled  {
+  background-color: #c1c0c0;
+}
+
+button:enabled  {
   -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
@@ -48,18 +59,6 @@ input[type=button], input[type=submit], input[type=reset]  {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #036f21;
-}
-
-input[class=btnEntrar]:active, input[type=submit]:active, input[type=reset]:active  {
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
 }
 
 
