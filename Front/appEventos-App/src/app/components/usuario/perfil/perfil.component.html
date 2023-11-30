@@ -1,6 +1,6 @@
 <app-titulo [titulo]="'Perfil'"></app-titulo>
 <div class="card rounded shadow mb-3">
-  <form class="p-3">
+  <form [formGroup]="form" class="p-3">
     <div class="row">
       <div class="col text-center">
         <div class="card">
@@ -14,6 +14,7 @@
                 height="120"
                 class="rounded-circle"
                 id="profile"
+                alt="fotoPerfil"
               />
             </a>
             <h4 class="card-title">UserName</h4>
@@ -49,42 +50,87 @@
             <h3 class="border-bottom text-muted">Detalhe Perfil</h3>
           </div>
           <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
               <label>Título</label>
               <select class="form-select">
-                <option value=""></option>
-                <option value="0">Não Quero</option>
+                <option value="0" selected>Não Informado</option>
                 <option value="Senhorita">Tecnólogo(a)</option>
                 <option value="Senhorita">Bacharel</option>
                 <option value="Senhorita">Especialista</option>
                 <option value="Senhorita">Pós Graduado(a)</option>
                 <option value="Senhorita">Mestre</option>
                 <option value="Senhorita">Doutor(a)</option>
-                <option value="Senhorita">Pós Doc</option>
+                <option value="Senhorita">Pós Doutorado</option>
               </select>
             </div>
             <div class="col-sm">
-              <label>Primeiro Nome</label>
-              <input type="text" class="form-control" />
+              <label>Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.nome?.errors && f.nome?.touched
+                }"
+                formControlName="nome"
+                autocomplete="name"
+                placeholder="Insira o nome"
+              />
+              <div class="invalid-feedback">Campo Nome é obrigatório</div>
             </div>
             <div class="col-sm">
-              <label>Último nome</label>
-              <input type="text" class="form-control" />
+              <label>Sobrenome</label>
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.sobrenome?.errors && f.sobrenome?.touched
+                }"
+                formControlName="sobrenome"
+                autocomplete="additional-name"
+                placeholder="Insira o sobrenome"
+              />
+              <div class="invalid-feedback">Campo Sobrenome é obrigatório</div>
             </div>
           </div>
           <div class="row">
             <div class="col-sm">
               <label>E-mail</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.email?.errors && f.email?.touched
+                }"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="Insira o email"
+              />
+              <div
+                *ngIf="f.email?.hasError('required')"
+                class="invalid-feedback"
+              >
+                Campo E-mail é obrigatório
+              </div>
+              <div *ngIf="f.email?.hasError('email')" class="invalid-feedback">
+                Informe um E-mail válido.
+              </div>
             </div>
             <div class="col-sm-3">
               <label>Telefone</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.telefone?.errors && f.telefone?.touched
+                }"
+                formControlName="telefone"
+                placeholder="Insira o telefone"
+              />
+              <div class="invalid-feedback">Campo telefone é obrigatório</div>
             </div>
             <div class="col-sm-3">
               <label>Função</label>
               <select class="form-select">
-                <option value=""></option>
                 <option value="Participante">Participante</option>
                 <option value="Palestrante">Palestrante</option>
               </select>
@@ -93,7 +139,18 @@
           <div class="row">
             <div class="col-sm">
               <label>Descrição</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                autocomplete="off"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.descricao?.errors && f.descricao?.touched
+                }"
+                formControlName="descricao"
+                autocomplete="additional-name"
+                placeholder="Insira uma descricao"
+              />
+              <div class="invalid-feedback">Campo descricao é obrigatório</div>
             </div>
           </div>
           <div class="row">
@@ -105,11 +162,54 @@
           <div class="row">
             <div class="col">
               <label>Senha</label>
-              <input type="password" class="form-control" />
+              <input
+                type="password"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': f.senha?.errors && f.senha?.touched
+                }"
+                formControlName="senha"
+                autocomplete="new-password"
+                placeholder="Digite uma Senha"
+              />
+              <div
+                *ngIf="f.senha?.hasError('required')"
+                class="invalid-feedback"
+              >
+                Campo Senha é obrigatório
+              </div>
+              <div
+                *ngIf="f.senha?.hasError('minlength')"
+                class="invalid-feedback"
+              >
+                Campo Senha deve ter no mínimo 6 caracteres.
+              </div>
             </div>
             <div class="col">
               <label>Confirmar Senha</label>
-              <input type="password" class="form-control" />
+              <input
+                type="password"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid':
+                    f.confirmarSenha?.errors && f.confirmarSenha?.touched
+                }"
+                formControlName="confirmarSenha"
+                autocomplete="new-password"
+                placeholder="Confirme a Senha"
+              />
+              <div
+                *ngIf="f.confirmarSenha?.hasError('required')"
+                class="invalid-feedback"
+              >
+                Campo Confirmar Senha é obrigatório
+              </div>
+              <div
+                *ngIf="f.confirmarSenha?.hasError('MustMatch')"
+                class="invalid-feedback"
+              >
+                Confirmação de senha divergente.
+              </div>
             </div>
           </div>
         </div>
@@ -120,13 +220,16 @@
     <div class="col-lg-12">
       <div class="row">
         <div class="col">
-          <button class="btn btn-outline-secondary border">
+          <button
+            class="btn btn-outline-secondary border"
+            (click)="resetForm($event)"
+          >
             Cancelar Alteração
           </button>
         </div>
         <div class="col text-end">
           <button class="btn btn-success">
-            <span class="spinner-border spinner-border-sm"></span>
+            <!-- <span class="spinner-border spinner-border-sm"></span> -->
             Salvar Alteração
           </button>
         </div>
