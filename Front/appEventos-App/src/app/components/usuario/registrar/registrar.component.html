@@ -71,6 +71,7 @@
             'is-invalid': f.usuario?.errors && f.usuario?.touched
           }"
           formControlName="usuario"
+          autocomplete="username"
           placeholder="Insira o Usuário"
         />
         <div class="invalid-feedback">Campo Usuário é obrigatório</div>
@@ -85,9 +86,15 @@
               'is-invalid': f.senha?.errors && f.senha?.touched
             }"
             formControlName="senha"
+            autocomplete="new-password"
             placeholder="Digite uma Senha"
           />
-          <div class="invalid-feedback">Campo Senha é obrigatório</div>
+          <div *ngIf="f.senha?.hasError('required')" class="invalid-feedback">
+            Campo Senha é obrigatório
+          </div>
+          <div *ngIf="f.senha?.hasError('minlength')" class="invalid-feedback">
+            Campo Senha deve ter no mínimo 6 caracteres.
+          </div>
         </div>
         <div class="col-sm-6">
           <label for="">Confirmar Senha:</label>
@@ -99,10 +106,20 @@
                 f.confirmarSenha?.errors && f.confirmarSenha?.touched
             }"
             formControlName="confirmarSenha"
+            autocomplete="new-password"
             placeholder="Confirme a Senha"
           />
-          <div class="invalid-feedback">
+          <div
+            *ngIf="f.confirmarSenha?.hasError('required')"
+            class="invalid-feedback"
+          >
             Campo Confirmar Senha é obrigatório
+          </div>
+          <div
+          *ngIf="f.confirmarSenha?.hasError('MustMatch')"
+            class="invalid-feedback"
+          >
+            Confirmação de senha divergente.
           </div>
         </div>
       </div>
@@ -126,7 +143,11 @@
       </div>
       <div class="row p-1">
         <div class="col-12">
-          <button type="submit" class="btnEntrar col-12" [disabled]="!form.valid">
+          <button
+            type="submit"
+            class="btnEntrar col-12"
+            [disabled]="!form.valid"
+          >
             <!-- <span class="spinner-border spinner-border-sm"></span> -->
             Registrar
           </button>
@@ -136,7 +157,6 @@
             id="jaCadastrado"
             class="underlineHover"
             routerLink="/usuario/login"
-
           >
             Já sou Cadastrado
           </a>
