@@ -1,3 +1,4 @@
+using appEventos.API.Dtos;
 using appEventos.Application.Interfaces;
 using appEventos.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,8 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync();
+            var eventoRetorno = new List<EventoDto>();
+
             return eventos.Any() ? 
                 Ok(eventos) : 
                 NotFound(notFoundString);
