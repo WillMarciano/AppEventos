@@ -9,14 +9,14 @@ namespace appEventos.Application.Dtos
         public string? Local { get; set; }
         public string? DataEvento { get; set; }
 
-        [Required(ErrorMessage ="O campo {0} é obrigatório")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório"),
+            StringLength(50, MinimumLength = 3, ErrorMessage = "Intervalo permitido de 3 a 50 caracteres.")]
         public string? Tema { get; set; }
         public int QtdPessoas { get; set; }
         public string? ImagemUrl { get; set; }
         public string? Telefone { get; set; }
 
-        [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [EmailAddress(ErrorMessage = "{0} em formato inválido ")]
+        [EmailAddress(ErrorMessage = "O campo {0} precisa ser um e-mail válido ")]
         public string? Email { get; set; }
         public IEnumerable<LoteDto>? Lotes { get; set; }
         public IEnumerable<RedeSocialDto>? RedesSociais { get; set; }
