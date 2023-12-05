@@ -8,7 +8,6 @@ namespace appEventos.API.Controllers;
 [Route("api/[controller]")]
 public class EventosController : ControllerBase
 {
-    private const string notFoundString = "Nenhum Evento Encontrado";
     private const string errorResponse = "Erro ao ao tentar * evento";
     private readonly IEventoService _eventoService;
 
@@ -21,9 +20,7 @@ public class EventosController : ControllerBase
         {
             var eventos = await _eventoService.GetAllEventosAsync();
 
-            return eventos.Any() ? 
-                Ok(eventos) : 
-                NotFound(notFoundString);
+            return eventos == null ? NoContent() : Ok(eventos);
         }
         catch (Exception ex)
         {
@@ -37,9 +34,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetEventoByIdAsync(id);
-            return evento != null ? 
-                Ok(evento) : 
-                NotFound($"{notFoundString}");
+            return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
@@ -53,9 +48,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetAllEventosByTemaAsync(tema);
-            return evento.Any() ? 
-                Ok(evento) : 
-                NotFound($"{notFoundString}");
+            return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
@@ -69,9 +62,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.AddEventos(model);
-            return evento != null ? 
-                Ok(evento) : 
-                BadRequest(errorResponse.Replace("*", "adicionar"));
+            return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
@@ -85,9 +76,7 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.UpdateEvento(id, model);
-            return evento != null ? 
-                Ok(evento) : 
-                BadRequest(errorResponse.Replace("*", "atualizar"));
+            return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
@@ -100,8 +89,11 @@ public class EventosController : ControllerBase
     {
         try
         {
-            return await _eventoService.DeleteEvento(id) ? 
-                Ok("Evento Deletado") : 
+            var evento = await _eventoService.GetEventoByIdAsync(id);
+            if (evento == null) return NoContent();
+
+            return await _eventoService.DeleteEvento(id) ?
+                Ok("Evento Deletado") :
                 BadRequest(errorResponse.Replace("*", "deletar"));
         }
         catch (Exception ex)
