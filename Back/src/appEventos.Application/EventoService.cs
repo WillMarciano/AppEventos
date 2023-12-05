@@ -19,17 +19,15 @@ namespace appEventos.Application
             _mapper = mapper;
         }
 
-        public async Task<EventoDto> AddEventos(EventoDto model)
+        public async Task<EventoDto?> AddEventos(EventoDto model)
         {
             try
             {
-                var newModel = _mapper.Map<Evento>(model);
-                _geralRepository.Add<Evento>(newModel);
+                var evento = _mapper.Map<Evento>(model);
+                _geralRepository.Add<Evento>(evento);
                 if (await _geralRepository.SaveChangesAsync())
-                {
-                    var evento =  await _eventoRepository.GetEventoByIdAsync(model.Id, false);
-                    return _mapper.Map<EventoDto>(evento);
-                }
+                    return _mapper.Map<EventoDto>(await _eventoRepository.GetEventoByIdAsync(evento.Id, false));
+
                 return null;
             }
             catch (Exception ex)
@@ -109,7 +107,7 @@ namespace appEventos.Application
             try
             {
                 var evento = await _eventoRepository.GetEventoByIdAsync(eventoId, includePalestrantes);
-                return evento == null ? null : _mapper.Map<EventoDto?>(evento);                
+                return evento == null ? null : _mapper.Map<EventoDto?>(evento);
             }
             catch (Exception ex)
             {
