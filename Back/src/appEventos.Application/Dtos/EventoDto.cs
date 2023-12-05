@@ -1,4 +1,6 @@
-﻿namespace appEventos.Application.Dtos
+﻿using appEventos.Domain.Models;
+
+namespace appEventos.Application.Dtos
 {
     public class EventoDto
     {
@@ -10,5 +12,8 @@
         public string? ImagemUrl { get; set; }
         public string? Telefone { get; set; }
         public string? Email { get; set; }
+        public IEnumerable<LoteDto>? Lotes { get; set; }
+        public IEnumerable<RedeSocialDto>? RedesSociais { get; set; }
+        public IEnumerable<PalestranteDto>? Palestrantes { get; set; }
     }
 }
