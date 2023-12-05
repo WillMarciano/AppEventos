@@ -60,13 +60,10 @@ namespace appEventos.Application
                 if (evento == null) return null;
 
                 model.Id = evento.Id;
+                _geralRepository.Update<Evento>(_mapper.Map(model, evento));
 
-                _geralRepository.Update<EventoDto>(model);
                 if (await _geralRepository.SaveChangesAsync())
-                {
-                    var nEvento = await _eventoRepository.GetEventoByIdAsync(model.Id, false);
-                    return _mapper.Map<EventoDto>(nEvento);
-                }
+                    return _mapper.Map<EventoDto>(await _eventoRepository.GetEventoByIdAsync(evento.Id, false));
 
                 return null;
             }
