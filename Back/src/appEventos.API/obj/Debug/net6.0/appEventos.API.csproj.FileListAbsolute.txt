@@ -71,3 +71,5 @@ C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\AutoMapper.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\appEventos.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

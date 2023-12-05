@@ -1,6 +1,5 @@
-using appEventos.API.Dtos;
+using appEventos.Application.Dtos;
 using appEventos.Application.Interfaces;
-using appEventos.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace appEventos.API.Controllers;
@@ -21,7 +20,6 @@ public class EventosController : ControllerBase
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync();
-            var eventoRetorno = new List<EventoDto>();
 
             return eventos.Any() ? 
                 Ok(eventos) : 
@@ -66,7 +64,7 @@ public class EventosController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Evento model)
+    public async Task<IActionResult> Post(EventoDto model)
     {
         try
         {
@@ -82,7 +80,7 @@ public class EventosController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Evento model)
+    public async Task<IActionResult> Put(int id, EventoDto model)
     {
         try
         {
