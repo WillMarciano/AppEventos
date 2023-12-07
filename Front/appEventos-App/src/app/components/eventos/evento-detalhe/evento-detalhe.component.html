@@ -8,9 +8,7 @@
         <input
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.tema?.errors && f.tema?.touched
-          }"
+          [ngClass]="cssValidator(f.tema)"
           formControlName="tema"
           placeholder="Insira o Tema"
         />
@@ -31,9 +29,7 @@
         <input
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.local?.errors && f.local?.touched
-          }"
+          [ngClass]="cssValidator(f.local)"
           formControlName="local"
           placeholder=""
         />
@@ -44,9 +40,7 @@
         <input
           type="datetime-local"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.dataEvento?.errors && f.dataEvento?.touched
-          }"
+          [ngClass]="cssValidator(f.dataEvento)"
           formControlName="dataEvento"
           placeholder=""
         />
@@ -59,9 +53,7 @@
         <input
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.qtdPessoas?.errors && f.qtdPessoas?.touched
-          }"
+          [ngClass]="cssValidator(f.qtdPessoas)"
           required
           formControlName="qtdPessoas"
         />
@@ -80,9 +72,7 @@
         <input
           type="text"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.telefone?.errors && f.telefone?.touched
-          }"
+          [ngClass]="cssValidator(f.telefone)"
           formControlName="telefone"
           placeholder="(00) 90000-0000"
         />
@@ -111,9 +101,7 @@
         <input
           type="file"
           class="form-control"
-          [ngClass]="{
-            'is-invalid': f.imagemUrl?.errors && f.imagemUrl?.touched
-          }"
+          [ngClass]="cssValidator(f.imagemUrl)"
           formControlName="imagemUrl"
         />
         <div class="invalid-feedback">Campo Imagem é obrigatório</div>

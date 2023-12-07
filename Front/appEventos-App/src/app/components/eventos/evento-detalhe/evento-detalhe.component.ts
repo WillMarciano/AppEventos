@@ -42,7 +42,11 @@ export class EventoDetalheComponent {
     });
   }
 
-  resetForm():void{
+  public resetForm():void{
     this.form.reset();
+  }
+
+  public cssValidator(campoValidacao: FormControl): any{
+    return {'is-invalid': campoValidacao.errors && campoValidacao.touched}
   }
 }
