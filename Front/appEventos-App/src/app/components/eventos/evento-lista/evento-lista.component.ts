@@ -23,7 +23,7 @@ export class EventoListaComponent {
   public margemImagem = 2;
   public exibirImagem = true;
   private filtroListado = '';
-  
+
   public get filtroLista(): string {
     return this.filtroListado;
   }
@@ -84,35 +84,23 @@ export class EventoListaComponent {
     this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-
-  // confirm(): void {
-  //   this.modalRef?.hide();
-
-  // }
-
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
-    this.eventoService.deleteEvento(this.eventoId).subscribe({
-      next: (result: any) => {
-        if(result.message === 'Deletado'){
-          this.toastr.success('O Evento foi deletado com Sucesso.', 'Excluido!');
+    this.eventoService
+      .deleteEvento(this.eventoId)
+      .subscribe({
+        next: (result: any) => {
+          if (result.message === 'Deletado') {
+            this.toastr.success('O Evento foi deletado com Sucesso.','Excluido!');
+          }
+          this.carregarEventos();
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error(`Erro ao tentar deletar o evento ${this.eventoId}`,'Erro');
         }
-        this.spinner.hide();
-        this.carregarEventos();
-      },
-      error: (error: any) => {
-        console.error(error);
-        this.toastr.error(
-          `Erro ao tentar deletar o evento ${this.eventoId}`,
-          'Erro'
-        );
-        this.spinner.hide();
-      },
-      complete: () => {
-        this.spinner.hide();
-      },
-    });
+      }).add(() => this.spinner.hide());
   }
 
   decline(): void {
