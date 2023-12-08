@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Evento } from '@app/models/Evento';
 import { listLocales } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -19,8 +21,6 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 export class EventoDetalheComponent implements OnInit {
   evento!: Evento;
   form!: FormGroup;
-  locale = 'pt-br';
-  locales = listLocales();
 
   get f(): any {
     return this.form.controls;
@@ -40,7 +40,9 @@ export class EventoDetalheComponent implements OnInit {
     private fb: FormBuilder,
     private localeService: BsLocaleService,
     private router: ActivatedRoute,
-    private eventoService: EventoService
+    private eventoService: EventoService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService
   ) {
     this.localeService.use('pt-br');
   }
@@ -49,15 +51,20 @@ export class EventoDetalheComponent implements OnInit {
     const eventoIdParam = this.router.snapshot.paramMap.get('id');
 
     if (eventoIdParam != null) {
+      this.spinner.show();
       this.eventoService.getEventoById(+eventoIdParam).subscribe({
         next: (evento: Evento) => {
           this.evento = { ...evento };
           this.form.patchValue(this.evento);
         },
         error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao tentar carregar o evento.','Erro!')
           console.error(error);
         },
-        complete: () => {},
+        complete: () => {
+          this.spinner.hide();
+        },
       });
     }
   }
