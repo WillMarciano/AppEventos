@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Evento } from '@app/models/Evento';
+import { listLocales } from 'ngx-bootstrap/chronos';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -17,6 +19,8 @@ import { Evento } from '@app/models/Evento';
 export class EventoDetalheComponent implements OnInit {
   evento!: Evento;
   form!: FormGroup;
+  locale = 'pt-br';
+  locales = listLocales();
 
   get f(): any {
     return this.form.controls;
@@ -24,7 +28,7 @@ export class EventoDetalheComponent implements OnInit {
 
   get bsConfig(): any {
     return {
-      dateInputFormat: 'DD-MM-YYYY hh:mm',
+      dateInputFormat: 'DD-MM-YYYY hh:mm a',
       isAnimated: true,
       adaptivePosition: true,
       containerClass: 'theme-default',
@@ -34,9 +38,12 @@ export class EventoDetalheComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private localeService: BsLocaleService,
     private router: ActivatedRoute,
     private eventoService: EventoService
-  ) {}
+  ) {
+    this.localeService.use('pt-br');
+  }
 
   public carregarEvento(): void {
     const eventoIdParam = this.router.snapshot.paramMap.get('id');
