@@ -58,7 +58,7 @@ export class EventoDetalheComponent implements OnInit {
         },
         error: (error: any) => {
           this.spinner.hide();
-          this.toastr.error('Erro ao tentar carregar o evento.','Erro!')
+          this.toastr.error('Erro ao tentar carregar o evento.', 'Erro');
           console.error(error);
         },
         complete: () => {
@@ -98,5 +98,23 @@ export class EventoDetalheComponent implements OnInit {
 
   public cssValidator(campoValidacao: FormControl): any {
     return { 'is-invalid': campoValidacao.errors && campoValidacao.touched };
+  }
+
+  public salvarAlteracao(): void {
+    this.spinner.show();
+    if (this.form.valid) {
+      this.evento = { ...this.form.value };
+      this.eventoService.postEvento(this.evento).subscribe({
+        next: () => this.toastr.success('Evento salvo com Sucesso!', 'Sucesso'),
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Erro ao tentar salvar o evento.', 'Erro');
+          this.spinner.hide();
+        },
+        complete: () => {
+          this.spinner.hide();
+        },
+      });
+    }
   }
 }
