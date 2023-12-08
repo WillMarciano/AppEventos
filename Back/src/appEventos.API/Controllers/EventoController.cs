@@ -93,7 +93,7 @@ public class EventosController : ControllerBase
             if (evento == null) return NoContent();
 
             return await _eventoService.DeleteEvento(id) ?
-                Ok("Evento Deletado") :
+                Ok(new { message = "Deletado" }) :
                 BadRequest(errorResponse.Replace("*", "deletar"));
         }
         catch (Exception ex)
