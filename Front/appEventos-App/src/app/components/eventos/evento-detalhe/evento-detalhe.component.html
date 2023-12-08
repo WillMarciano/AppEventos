@@ -38,11 +38,13 @@
       <div class="col">
         <label>Data e Hora</label>
         <input
-          type="datetime-local"
+          type="text"
           class="form-control"
           [ngClass]="cssValidator(f.dataEvento)"
           formControlName="dataEvento"
           placeholder=""
+          bsDatepicker
+          [bsConfig]="bsConfig"
         />
         <div class="invalid-feedback">Campo Data e Hora é obrigatório</div>
       </div>
@@ -112,7 +114,10 @@
     <div class="col-lg-12">
       <div class="row">
         <div class="col">
-          <button class="btn btn-outline-secondary border" (click)="resetForm()">
+          <button
+            class="btn btn-outline-secondary border"
+            (click)="resetForm()"
+          >
             Cancelar Alteração
           </button>
         </div>
