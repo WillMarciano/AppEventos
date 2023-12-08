@@ -106,36 +106,23 @@ export class EventoDetalheComponent implements OnInit {
   public salvarAlteracao(): void {
     this.spinner.show();
     if (this.form.valid) {
+      this.evento =
+        this.modoSalvar === 'post'
+          ? { ...this.form.value }
+          : { id: this.evento.id, ...this.form.value };
 
-      if (this.modoSalvar === 'post') {
-        this.evento = { ...this.form.value };
-        this.eventoService.postEvento(this.evento).subscribe({
-          next: () =>
-            this.toastr.success('Evento salvo com Sucesso!', 'Sucesso'),
-          error: (error: any) => {
-            console.error(error);
-            this.toastr.error('Erro ao tentar salvar o evento.', 'Erro');
-            this.spinner.hide();
-          },
-          complete: () => {
-            this.spinner.hide();
-          },
-        });
-      } else {
-        this.evento = {id: this.evento.id, ...this.form.value };
-        this.eventoService.putEvento(this.evento.id, this.evento).subscribe({
-          next: () =>
-            this.toastr.success('Evento Atualizado com Sucesso!', 'Sucesso'),
-          error: (error: any) => {
-            console.error(error);
-            this.toastr.error('Erro ao tentar atualizar o evento.', 'Erro');
-            this.spinner.hide();
-          },
-          complete: () => {
-            this.spinner.hide();
-          },
-        });
-      }
+      this.eventoService[this.modoSalvar](this.evento).subscribe({
+        next: () =>
+          this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso'),
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Erro ao tentar Salvar o evento.', 'Erro');
+          this.spinner.hide();
+        },
+        complete: () => {
+          this.spinner.hide();
+        },
+      });
     }
   }
 }
