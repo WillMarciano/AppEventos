@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { EventoService } from '@app/services/evento.service';
 import { Evento } from '@app/models/Evento';
 import { Router } from '@angular/router';
+import { Lote } from '@app/models/Lote';
 
 @Component({
   selector: 'app-evento-lista',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class EventoListaComponent {
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
+  public lotes: Lote[] = [];
   public eventosFiltrados: Evento[] = [];
   public eventoId = 0;
 
@@ -21,7 +23,7 @@ export class EventoListaComponent {
   public margemImagem = 2;
   public exibirImagem = true;
   private filtroListado = '';
-
+  
   public get filtroLista(): string {
     return this.filtroListado;
   }
@@ -92,19 +94,19 @@ export class EventoListaComponent {
     this.modalRef?.hide();
     this.spinner.show();
     this.eventoService.deleteEvento(this.eventoId).subscribe({
-      next: (result: string) => {
-        if (result === 'Deletado') {
-          this.toastr.success(
-            'O Evento foi excluido com Sucesso.',
-            'Excluido!'
-          );
-          this.spinner.hide();
-          this.carregarEventos();
+      next: (result: any) => {
+        if(result.message === 'Deletado'){
+          this.toastr.success('O Evento foi deletado com Sucesso.', 'Excluido!');
         }
+        this.spinner.hide();
+        this.carregarEventos();
       },
       error: (error: any) => {
         console.error(error);
-        this.toastr.error(`Erro ao tentar deletar o evento ${this.eventoId}`, 'Erro');
+        this.toastr.error(
+          `Erro ao tentar deletar o evento ${this.eventoId}`,
+          'Erro'
+        );
         this.spinner.hide();
       },
       complete: () => {
