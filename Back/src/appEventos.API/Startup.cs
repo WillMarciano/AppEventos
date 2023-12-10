@@ -25,6 +25,8 @@ namespace appEventos.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<ILoteService, LoteService>();
+            services.AddScoped<ILoteRepository, LoteRepository>();
             services.AddScoped<IGeralRepository, GeralRepository>();
             services.AddScoped<IPalestranteRepository, PalestranteRepository>();
 
