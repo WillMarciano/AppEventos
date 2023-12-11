@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "appEventos.API": {
+    "AppEventos.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

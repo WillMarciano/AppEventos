@@ -1,11 +1,11 @@
-﻿using appEventos.Application.Dtos;
-using appEventos.Application.Interfaces;
-using appEventos.Domain.Models;
-using appEventos.Repository.Interfaces;
+﻿using AppEventos.Application.Dtos;
+using AppEventos.Application.Interfaces;
+using AppEventos.Domain.Models;
+using AppEventos.Repository.Interfaces;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 
-namespace appEventos.Application
+namespace AppEventos.Application
 {
     public class LoteService : ILoteService
     {

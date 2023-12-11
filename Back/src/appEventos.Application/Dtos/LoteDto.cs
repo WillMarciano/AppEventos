@@ -1,4 +1,4 @@
-﻿namespace appEventos.Application.Dtos
+﻿namespace AppEventos.Application.Dtos
 {
     public class LoteDto
     {

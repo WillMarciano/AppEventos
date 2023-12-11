@@ -1,7 +1,7 @@
-﻿using appEventos.Domain.Models;
+﻿using AppEventos.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace appEventos.Application.Dtos
+namespace AppEventos.Application.Dtos
 {
     public class EventoDto
     {

@@ -1,7 +1,7 @@
-using appEventos.Domain.Models;
+using AppEventos.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace appEventos.Repository.Context
+namespace AppEventos.Repository.Context
 {
     public class AppEventosContext : DbContext
     {

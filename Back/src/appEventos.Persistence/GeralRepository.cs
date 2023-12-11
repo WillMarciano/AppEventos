@@ -1,7 +1,7 @@
-using appEventos.Repository.Context;
-using appEventos.Repository.Interfaces;
+using AppEventos.Repository.Context;
+using AppEventos.Repository.Interfaces;
 
-namespace appEventos.Repository
+namespace AppEventos.Repository
 {
     public class GeralRepository : IGeralRepository
     {

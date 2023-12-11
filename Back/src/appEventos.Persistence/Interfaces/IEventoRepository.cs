@@ -1,6 +1,6 @@
-using appEventos.Domain.Models;
+using AppEventos.Domain.Models;
 
-namespace appEventos.Repository.Interfaces
+namespace AppEventos.Repository.Interfaces
 {
     public interface IEventoRepository
     {

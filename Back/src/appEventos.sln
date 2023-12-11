@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appEventos.Application", "appEventos.Application\appEventos.Application.csproj", "{8AB1E294-A8E0-4FA3-8F48-4B840076121D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppEventos.Application", "AppEventos.Application\AppEventos.Application.csproj", "{8AB1E294-A8E0-4FA3-8F48-4B840076121D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appEventos.Repository", "appEventos.Persistence\appEventos.Repository.csproj", "{703AD9C3-7511-4F59-B22F-7EF25A292554}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppEventos.Repository", "AppEventos.Persistence\AppEventos.Repository.csproj", "{703AD9C3-7511-4F59-B22F-7EF25A292554}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appEventos.Domain", "appEventos.Domain\appEventos.Domain.csproj", "{F017C26E-E808-480C-AFDD-9B27B1BEB713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppEventos.Domain", "AppEventos.Domain\AppEventos.Domain.csproj", "{F017C26E-E808-480C-AFDD-9B27B1BEB713}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appEventos.API", "appEventos.API\appEventos.API.csproj", "{7D294F49-1CCB-4A70-8AAE-30F55E186A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppEventos.API", "AppEventos.API\AppEventos.API.csproj", "{7D294F49-1CCB-4A70-8AAE-30F55E186A2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

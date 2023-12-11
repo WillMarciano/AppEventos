@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace appEventos.Domain.Models
+namespace AppEventos.Domain.Models
 {
     public class PalestranteEvento
     {

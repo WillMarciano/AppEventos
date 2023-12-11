@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appEventos.API", "appEventos.API.csproj", "{6250C4E8-026F-4BC5-BE6B-7A7670A66885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppEventos.API", "AppEventos.API.csproj", "{6250C4E8-026F-4BC5-BE6B-7A7670A66885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

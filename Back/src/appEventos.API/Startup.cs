@@ -1,13 +1,13 @@
-using appEventos.Application;
-using appEventos.Application.Interfaces;
-using appEventos.Repository;
-using appEventos.Repository.Context;
-using appEventos.Repository.Interfaces;
+using AppEventos.Application.Interfaces;
+using AppEventos.Repository;
+using AppEventos.Repository.Context;
+using AppEventos.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using AppEventos.Application;
 
-namespace appEventos.API
+namespace AppEventos.API
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace appEventos.API
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "appEventos.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppEventos.API", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -49,7 +49,7 @@ namespace appEventos.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "appEventos.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AppEventos.API v1"));
             }
 
             app.UseHttpsRedirection();

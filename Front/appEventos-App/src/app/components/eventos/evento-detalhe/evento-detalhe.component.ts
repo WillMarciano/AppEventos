@@ -28,7 +28,7 @@ export class EventoDetalheComponent implements OnInit {
 
   get bsConfig(): any {
     return {
-      dateInputFormat: 'DD-MM-YYYY hh:mm a',
+      dateInputFormat: 'DD-MM-YYYY hh:mm A',
       isAnimated: true,
       adaptivePosition: true,
       containerClass: 'theme-default',

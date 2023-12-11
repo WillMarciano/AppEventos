@@ -1,6 +1,6 @@
-﻿using appEventos.Application.Dtos;
+﻿using AppEventos.Application.Dtos;
 
-namespace appEventos.Application.Interfaces
+namespace AppEventos.Application.Interfaces
 {
     public interface ILoteService
     {

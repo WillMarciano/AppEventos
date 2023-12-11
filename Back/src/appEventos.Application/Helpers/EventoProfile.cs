@@ -1,8 +1,8 @@
-﻿using appEventos.Application.Dtos;
-using appEventos.Domain.Models;
+﻿using AppEventos.Application.Dtos;
+using AppEventos.Domain.Models;
 using AutoMapper;
 
-namespace appEventos.Application.Helpers
+namespace AppEventos.Application.Helpers
 {
     public class EventoProfile : Profile
     {

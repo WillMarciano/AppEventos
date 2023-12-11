@@ -1,9 +1,9 @@
-﻿using appEventos.Application;
-using appEventos.Application.Dtos;
-using appEventos.Application.Interfaces;
+﻿using AppEventos.Application;
+using AppEventos.Application.Dtos;
+using AppEventos.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace appEventos.API.Controllers
+namespace AppEventos.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

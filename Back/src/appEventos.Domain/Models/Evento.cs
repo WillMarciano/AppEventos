@@ -1,4 +1,4 @@
-namespace appEventos.Domain.Models
+namespace AppEventos.Domain.Models
 {
     public class Evento
     {

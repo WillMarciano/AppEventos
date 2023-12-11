@@ -1,9 +1,9 @@
-﻿using appEventos.Domain.Models;
-using appEventos.Repository.Context;
-using appEventos.Repository.Interfaces;
+﻿using AppEventos.Domain.Models;
+using AppEventos.Repository.Context;
+using AppEventos.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace appEventos.Repository
+namespace AppEventos.Repository
 {
     public class LoteRepository : ILoteRepository
     {

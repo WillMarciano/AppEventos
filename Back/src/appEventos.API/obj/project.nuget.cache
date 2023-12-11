@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v9DKJ0h5k5Vi+ieeqW6wGJwMO+O3kQtOk7EGAngx98eNvDqJrCqmUynjrJwQBGRXSDm691G1iYdc0HnqIOiMqg==",
+  "dgSpecHash": "vRjiS68ZDYHsQJfpMBdjjPgT+BD6JGy86Zyj+X0sHA0Vet3/vSXWI6BpY9twD7qKCQiODsdvDIetjmDkDmXbCQ==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+  "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.API\\AppEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\willi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

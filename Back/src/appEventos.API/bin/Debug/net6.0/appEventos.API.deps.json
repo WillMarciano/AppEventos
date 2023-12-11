@@ -6,18 +6,18 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "appEventos.API/1.0.0": {
+      "AppEventos.API/1.0.0": {
         "dependencies": {
+          "AppEventos.Application": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.25",
           "Microsoft.EntityFrameworkCore": "6.0.25",
           "Microsoft.EntityFrameworkCore.Design": "6.0.25",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.25",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.25",
-          "Swashbuckle.AspNetCore": "6.2.3",
-          "appEventos.Application": "1.0.0"
+          "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
-          "appEventos.API.dll": {}
+          "AppEventos.API.dll": {}
         }
       },
       "AutoMapper/12.0.1": {
@@ -480,35 +480,35 @@
           "System.Text.Encodings.Web": "6.0.0"
         }
       },
-      "appEventos.Application/1.0.0": {
+      "AppEventos.Application/1.0.0": {
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "appEventos.Domain": "1.0.0",
-          "appEventos.Repository": "1.0.0"
+          "AppEventos.Domain": "1.0.0",
+          "AppEventos.Repository": "1.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1"
         },
         "runtime": {
-          "appEventos.Application.dll": {}
+          "AppEventos.Application.dll": {}
         }
       },
-      "appEventos.Domain/1.0.0": {
+      "AppEventos.Domain/1.0.0": {
         "runtime": {
-          "appEventos.Domain.dll": {}
+          "AppEventos.Domain.dll": {}
         }
       },
-      "appEventos.Repository/1.0.0": {
+      "AppEventos.Repository/1.0.0": {
         "dependencies": {
+          "AppEventos.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.25",
-          "Microsoft.EntityFrameworkCore.Tools": "6.0.25",
-          "appEventos.Domain": "1.0.0"
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.25"
         },
         "runtime": {
-          "appEventos.Repository.dll": {}
+          "AppEventos.Repository.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "appEventos.API/1.0.0": {
+    "AppEventos.API/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -821,17 +821,17 @@
       "path": "system.text.json/6.0.0",
       "hashPath": "system.text.json.6.0.0.nupkg.sha512"
     },
-    "appEventos.Application/1.0.0": {
+    "AppEventos.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "appEventos.Domain/1.0.0": {
+    "AppEventos.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "appEventos.Repository/1.0.0": {
+    "AppEventos.Repository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

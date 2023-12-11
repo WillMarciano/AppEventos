@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\appEventos.Domain\appEventos.Domain.csproj" />
-    <ProjectReference Include="..\appEventos.Persistence\appEventos.Repository.csproj" />
+    <ProjectReference Include="..\AppEventos.Domain\AppEventos.Domain.csproj" />
+    <ProjectReference Include="..\AppEventos.Persistence\AppEventos.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using appEventos.Repository.Context;
+using AppEventos.Repository.Context;
 
 #nullable disable
 
-namespace appEventos.Repository.Migrations
+namespace AppEventos.Repository.Migrations
 {
     [DbContext(typeof(AppEventosContext))]
     [Migration("20230929204848_Initial")]
@@ -19,7 +19,7 @@ namespace appEventos.Repository.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.20");
 
-            modelBuilder.Entity("appEventos.Domain.Models.Evento", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Evento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace appEventos.Repository.Migrations
                     b.ToTable("Eventos");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.Lote", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Lote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,7 +88,7 @@ namespace appEventos.Repository.Migrations
                     b.ToTable("Lotes");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.Palestrante", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Palestrante", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +119,7 @@ namespace appEventos.Repository.Migrations
                     b.ToTable("Palestrantes");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.PalestranteEvento", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.PalestranteEvento", b =>
                 {
                     b.Property<int>("EventoId")
                         .HasColumnType("INTEGER");
@@ -134,7 +134,7 @@ namespace appEventos.Repository.Migrations
                     b.ToTable("PalestrantesEventos");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.RedeSocial", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.RedeSocial", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,9 +163,9 @@ namespace appEventos.Repository.Migrations
                     b.ToTable("RedesSocials");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.Lote", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Lote", b =>
                 {
-                    b.HasOne("appEventos.Domain.Models.Evento", "Evento")
+                    b.HasOne("AppEventos.Domain.Models.Evento", "Evento")
                         .WithMany("Lotes")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -174,15 +174,15 @@ namespace appEventos.Repository.Migrations
                     b.Navigation("Evento");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.PalestranteEvento", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.PalestranteEvento", b =>
                 {
-                    b.HasOne("appEventos.Domain.Models.Evento", "Evento")
+                    b.HasOne("AppEventos.Domain.Models.Evento", "Evento")
                         .WithMany("PalestrantesEventos")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("appEventos.Domain.Models.Palestrante", "Palestrante")
+                    b.HasOne("AppEventos.Domain.Models.Palestrante", "Palestrante")
                         .WithMany("PalestrantesEventos")
                         .HasForeignKey("PalestranteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -193,13 +193,13 @@ namespace appEventos.Repository.Migrations
                     b.Navigation("Palestrante");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.RedeSocial", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.RedeSocial", b =>
                 {
-                    b.HasOne("appEventos.Domain.Models.Evento", "Evento")
+                    b.HasOne("AppEventos.Domain.Models.Evento", "Evento")
                         .WithMany("RedesSociais")
                         .HasForeignKey("EventoId");
 
-                    b.HasOne("appEventos.Domain.Models.Palestrante", "Palestrante")
+                    b.HasOne("AppEventos.Domain.Models.Palestrante", "Palestrante")
                         .WithMany("RedesSociais")
                         .HasForeignKey("PalestranteId");
 
@@ -208,7 +208,7 @@ namespace appEventos.Repository.Migrations
                     b.Navigation("Palestrante");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.Evento", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Evento", b =>
                 {
                     b.Navigation("Lotes");
 
@@ -217,7 +217,7 @@ namespace appEventos.Repository.Migrations
                     b.Navigation("RedesSociais");
                 });
 
-            modelBuilder.Entity("appEventos.Domain.Models.Palestrante", b =>
+            modelBuilder.Entity("AppEventos.Domain.Models.Palestrante", b =>
                 {
                     b.Navigation("PalestrantesEventos");
 

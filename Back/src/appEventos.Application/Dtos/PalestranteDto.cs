@@ -1,6 +1,6 @@
-﻿using appEventos.Domain.Models;
+﻿using AppEventos.Domain.Models;
 
-namespace appEventos.Application.Dtos
+namespace AppEventos.Application.Dtos
 {
     public class PalestranteDto
     {

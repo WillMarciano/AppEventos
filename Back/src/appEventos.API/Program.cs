@@ -1,4 +1,4 @@
-namespace appEventos.API
+namespace AppEventos.API
 {
     public class Program
     {

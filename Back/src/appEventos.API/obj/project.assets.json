@@ -786,44 +786,44 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "appEventos.Application/1.0.0": {
+      "AppEventos.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
-          "appEventos.Domain": "1.0.0",
-          "appEventos.Repository": "1.0.0"
+          "AppEventos.Domain": "1.0.0",
+          "AppEventos.Repository": "1.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1"
         },
         "compile": {
-          "bin/placeholder/appEventos.Application.dll": {}
+          "bin/placeholder/AppEventos.Application.dll": {}
         },
         "runtime": {
-          "bin/placeholder/appEventos.Application.dll": {}
+          "bin/placeholder/AppEventos.Application.dll": {}
         }
       },
-      "appEventos.Domain/1.0.0": {
+      "AppEventos.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/appEventos.Domain.dll": {}
+          "bin/placeholder/AppEventos.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/appEventos.Domain.dll": {}
+          "bin/placeholder/AppEventos.Domain.dll": {}
         }
       },
-      "appEventos.Repository/1.0.0": {
+      "AppEventos.Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "AppEventos.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.20",
-          "Microsoft.EntityFrameworkCore.Tools": "6.0.20",
-          "appEventos.Domain": "1.0.0"
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.20"
         },
         "compile": {
-          "bin/placeholder/appEventos.Repository.dll": {}
+          "bin/placeholder/AppEventos.Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/appEventos.Repository.dll": {}
+          "bin/placeholder/AppEventos.Repository.dll": {}
         }
       }
     }
@@ -1832,31 +1832,31 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "appEventos.Application/1.0.0": {
+    "AppEventos.Application/1.0.0": {
       "type": "project",
-      "path": "../appEventos.Application/appEventos.Application.csproj",
-      "msbuildProject": "../appEventos.Application/appEventos.Application.csproj"
+      "path": "../AppEventos.Application/AppEventos.Application.csproj",
+      "msbuildProject": "../AppEventos.Application/AppEventos.Application.csproj"
     },
-    "appEventos.Domain/1.0.0": {
+    "AppEventos.Domain/1.0.0": {
       "type": "project",
-      "path": "../appEventos.Domain/appEventos.Domain.csproj",
-      "msbuildProject": "../appEventos.Domain/appEventos.Domain.csproj"
+      "path": "../AppEventos.Domain/AppEventos.Domain.csproj",
+      "msbuildProject": "../AppEventos.Domain/AppEventos.Domain.csproj"
     },
-    "appEventos.Repository/1.0.0": {
+    "AppEventos.Repository/1.0.0": {
       "type": "project",
-      "path": "../appEventos.Persistence/appEventos.Repository.csproj",
-      "msbuildProject": "../appEventos.Persistence/appEventos.Repository.csproj"
+      "path": "../AppEventos.Persistence/AppEventos.Repository.csproj",
+      "msbuildProject": "../AppEventos.Persistence/AppEventos.Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AppEventos.Application >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.25",
       "Microsoft.EntityFrameworkCore >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.25",
-      "Swashbuckle.AspNetCore >= 6.2.3",
-      "appEventos.Application >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
   "packageFolders": {
@@ -1865,11 +1865,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
-      "projectName": "appEventos.API",
-      "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\appEventos.API.csproj",
+      "projectUniqueName": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.API\\AppEventos.API.csproj",
+      "projectName": "AppEventos.API",
+      "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.API\\AppEventos.API.csproj",
       "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.API\\obj\\",
+      "outputPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1886,8 +1886,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj": {
-              "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\appEventos.Application\\appEventos.Application.csproj"
+            "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.Application\\AppEventos.Application.csproj": {
+              "projectPath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.Application\\AppEventos.Application.csproj"
             }
           }
         }

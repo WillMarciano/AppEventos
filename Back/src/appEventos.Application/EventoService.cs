@@ -1,10 +1,10 @@
-﻿using appEventos.Application.Dtos;
-using appEventos.Application.Interfaces;
-using appEventos.Domain.Models;
-using appEventos.Repository.Interfaces;
+﻿using AppEventos.Application.Dtos;
+using AppEventos.Application.Interfaces;
+using AppEventos.Domain.Models;
+using AppEventos.Repository.Interfaces;
 using AutoMapper;
 
-namespace appEventos.Application
+namespace AppEventos.Application
 {
     public class EventoService : IEventoService
     {

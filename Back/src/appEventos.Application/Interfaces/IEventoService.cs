@@ -1,7 +1,7 @@
-﻿using appEventos.Application.Dtos;
-using appEventos.Domain.Models;
+﻿using AppEventos.Application.Dtos;
+using AppEventos.Domain.Models;
 
-namespace appEventos.Application.Interfaces
+namespace AppEventos.Application.Interfaces
 {
     public interface IEventoService
     {
