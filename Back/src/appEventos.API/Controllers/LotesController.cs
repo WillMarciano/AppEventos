@@ -7,12 +7,12 @@ namespace AppEventos.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoteController : ControllerBase
+    public class LotesController : ControllerBase
     {
         private const string errorResponse = "Erro ao ao tentar * lote(s)";
         private readonly ILoteService _loteService;
 
-        public LoteController(ILoteService loteService) => _loteService = loteService;
+        public LotesController(ILoteService loteService) => _loteService = loteService;
 
         /// <summary>
         /// Buscar lotes pelo EventoId
