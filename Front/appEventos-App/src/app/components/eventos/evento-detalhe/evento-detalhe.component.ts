@@ -1,6 +1,7 @@
 import { EventoService } from '@app/services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -11,6 +12,7 @@ import { Evento } from '@app/models/Evento';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Lote } from '@app/models/Lote';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -20,7 +22,12 @@ import { ToastrService } from 'ngx-toastr';
 export class EventoDetalheComponent implements OnInit {
   evento!: Evento;
   form!: FormGroup;
+
   modoSalvar = 'post';
+
+  get lotes():FormArray{
+    return this.form.get('lotes') as FormArray
+  }
 
   get f(): any {
     return this.form.controls;
@@ -92,6 +99,22 @@ export class EventoDetalheComponent implements OnInit {
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       imagemUrl: ['', [Validators.required]],
+      lotes: this.fb.array([]),
+    });
+  }
+
+  public adicionarLote(): void {
+    this.lotes.push(this.criarLote({id: 0} as Lote));
+  }
+
+  criarLote(lote: Lote): FormGroup {
+    return this.fb.group({
+      id: [lote.id],
+      nome: [lote.nome, Validators.required],
+      quantidade: [lote.quantidade, Validators.required],
+      preco: [lote.preco, Validators.required],
+      dataInicio: [lote.dataInicio],
+      dataFim: [lote.dataFim],
     });
   }
 
@@ -112,8 +135,7 @@ export class EventoDetalheComponent implements OnInit {
           : { id: this.evento.id, ...this.form.value };
 
       this.eventoService[this.modoSalvar](this.evento).subscribe({
-        next: () =>
-          this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso'),
+        next: () => this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso'),
         error: (error: any) => {
           console.error(error);
           this.toastr.error('Erro ao tentar Salvar o evento.', 'Erro');
