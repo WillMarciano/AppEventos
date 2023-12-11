@@ -13,6 +13,10 @@ public class EventosController : ControllerBase
 
     public EventosController(IEventoService eventoService) => _eventoService = eventoService;
 
+    /// <summary>
+    /// Retona Todos Eventos
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -28,6 +32,11 @@ public class EventosController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Retorna Evento por Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -42,6 +51,11 @@ public class EventosController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Retorna Evento por Tema
+    /// </summary>
+    /// <param name="tema"></param>
+    /// <returns></returns>
     [HttpGet("tema/{tema}")]
     public async Task<IActionResult> GetByTema(string tema)
     {
@@ -56,6 +70,11 @@ public class EventosController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Salva Evento
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Post(EventoDto model)
     {
@@ -70,6 +89,12 @@ public class EventosController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Atualiza Evento
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, EventoDto model)
     {
@@ -84,6 +109,11 @@ public class EventosController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Deleta Evento
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
