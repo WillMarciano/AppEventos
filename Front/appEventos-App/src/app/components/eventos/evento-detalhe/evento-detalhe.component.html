@@ -38,13 +38,13 @@
       <div class="col">
         <label>Data e Hora</label>
         <input
-          type="text"
+          type="datetime"
           class="form-control"
           [ngClass]="cssValidator(f.dataEvento)"
-          formControlName="dataEvento"
-          placeholder=""
           bsDatepicker
           [bsConfig]="bsConfig"
+          formControlName="dataEvento"
+          placeholder=""
         />
         <div class="invalid-feedback">Campo Data e Hora é obrigatório</div>
       </div>
@@ -136,7 +136,7 @@
   </div>
 </div>
 <div class="card rounded shadow mb-3" *ngIf="modoEditar">
-    <!-- <p>Form value: {{form.controls['lotes'].value| json}}</p>
+  <!-- <p>Form value: {{form.controls['lotes'].value| json}}</p>
     <p>Form valid: {{form.controls['lotes'].status | json}}</p> -->
   <div class="p-3">
     <div class="d-flex border-bottom">
@@ -155,7 +155,7 @@
           <fieldset [formGroupName]="i" class="form-group">
             <legend class="d-flex justify-content-between capitalize">
               <button
-              (click)="removerLote(template, i)"
+                (click)="removerLote(template, i)"
                 class="p-2 btn btn-sm btn-outline-danger mb-3 d-flex"
                 tooltip="Excluir Lote"
                 [adaptivePosition]="false"
@@ -201,21 +201,23 @@
               <div class="form-group col-md-4">
                 <label>Data Início</label>
                 <input
-                  type="text"
+                  type="datetime"
                   class="form-control"
                   formControlName="dataInicio"
+                  bsDatepicker
+                  [bsConfig]="bsConfigLote"
                   [ngClass]="cssValidator(lotes.get(i + '.dataInicio'))"
-                  placeholder="01/01/2023"
                 />
               </div>
               <div class="form-group col-md-4">
                 <label>Data Fim</label>
                 <input
-                  type="text"
+                  type="datetime"
                   class="form-control"
                   formControlName="dataFim"
+                  bsDatepicker
+                  [bsConfig]="bsConfigLote"
                   [ngClass]="cssValidator(lotes.get(i + '.dataFim'))"
-                  placeholder="01/01/2023"
                 />
               </div>
             </div>
@@ -262,11 +264,19 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Tem certeza que quer deletar o Lote {{ this.loteAtual.nome }}</p>
-    <button type="button" class="btn btn-outline-danger" (click)="confirmDeleteLote()">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="confirmDeleteLote()"
+    >
       Sim
     </button>
     &nbsp;
-    <button type="button" class="btn btn-outline-primary" (click)="declineDeleteLote()">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="declineDeleteLote()"
+    >
       Não
     </button>
   </div>

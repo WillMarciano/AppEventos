@@ -16,19 +16,25 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-evento-detalhe',
   templateUrl: './evento-detalhe.component.html',
   styleUrls: ['./evento-detalhe.component.scss'],
+  providers: [DatePipe],
 })
 export class EventoDetalheComponent implements OnInit {
   modalRef: BsModalRef;
-  evento = {} as Evento;
-  loteAtual = { id: 0, nome: '', indice: 0 };
-  form!: FormGroup;
   eventoId: number;
+  evento = {} as Evento;
+  form: FormGroup;
   modoSalvar = 'post';
+  loteAtual = { id: 0, nome: '', indice: 0 };
+
+  get modoEditar(): boolean {
+    return this.modoSalvar === 'put';
+  }
 
   get lotes(): FormArray {
     return this.form.get('lotes') as FormArray;
@@ -38,16 +44,22 @@ export class EventoDetalheComponent implements OnInit {
     return this.form.controls;
   }
 
-  get modoEditar(): boolean {
-    return this.modoSalvar === 'put';
-  }
-
   get bsConfig(): any {
     return {
-      dateInputFormat: 'DD-MM-YYYY hh:mm A',
-      isAnimated: true,
       adaptivePosition: true,
+      dateInputFormat: 'DD-MM-YYYY hh:mm A',
       containerClass: 'theme-default',
+      isAnimated: true,
+      showWeekNumbers: false,
+    };
+  }
+
+  get bsConfigLote(): any {
+    return {
+      adaptivePosition: true,
+      dateInputFormat: 'DD-MM-YYYY',
+      containerClass: 'theme-default',
+      isAnimated: true,
       showWeekNumbers: false,
     };
   }
@@ -61,7 +73,8 @@ export class EventoDetalheComponent implements OnInit {
     private lotesService: LoteService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private datePipe: DatePipe
   ) {
     this.localeService.use('pt-br');
   }
@@ -97,6 +110,10 @@ export class EventoDetalheComponent implements OnInit {
 
   public resetForm(): void {
     this.form.reset();
+  }
+
+  public mudarValorData(value: Date, indice: number, campo: string): void {
+    this.lotes.value[indice][campo] = value;
   }
 
   public carregarEvento(): void {
@@ -161,9 +178,10 @@ export class EventoDetalheComponent implements OnInit {
       .getLotesByEventoId(this.eventoId)
       .subscribe({
         next: (lotesRetorno: Lote[]) => {
-          lotesRetorno.forEach((lote) => {
-            this.lotes.push(this.criarLote(lote));
-          });
+          if (lotesRetorno !== null)
+            lotesRetorno.forEach((lote) => {
+              this.lotes.push(this.criarLote(lote));
+            });
         },
         error: (error: any) => {
           this.toastr.error('Erro ao tentar carregar lotes', 'Erro');
@@ -183,8 +201,8 @@ export class EventoDetalheComponent implements OnInit {
       nome: [lote.nome, Validators.required],
       quantidade: [lote.quantidade, Validators.required],
       preco: [lote.preco, Validators.required],
-      dataInicio: [lote.dataInicio],
-      dataFim: [lote.dataFim],
+      dataInicio: [lote.dataInicio, Validators.required],
+      dataFim: [lote.dataFim, Validators.required],
     });
   }
 
@@ -223,11 +241,8 @@ export class EventoDetalheComponent implements OnInit {
       .deleteLote(this.eventoId, this.loteAtual.id)
       .subscribe({
         next: () => {
-            this.toastr.success(
-              'O Lote foi deletado com Sucesso.',
-              'Deletado'
-            );
-            this.lotes.removeAt(this.loteAtual.indice);
+          this.toastr.success('O Lote foi deletado com Sucesso.', 'Deletado');
+          this.lotes.removeAt(this.loteAtual.indice);
         },
         error: (error: any) => {
           console.error(error);
