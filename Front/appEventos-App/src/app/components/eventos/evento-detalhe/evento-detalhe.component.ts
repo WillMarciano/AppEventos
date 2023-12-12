@@ -157,9 +157,9 @@ export class EventoDetalheComponent implements OnInit {
           : { id: this.evento.id, ...this.form.value };
 
       this.eventoService[this.modoSalvar](this.evento).subscribe({
-        next: () => {
+        next: (eventoRetorno: Evento) => {
           this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso');
-          this.modoSalvar = 'put';
+          this.router.navigate([`eventos/detalhe/${eventoRetorno.id}`]);
         },
         error: (error: any) => {
           console.error(error);
