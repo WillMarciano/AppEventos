@@ -67,6 +67,34 @@ export class EventoDetalheComponent implements OnInit {
     this.validation();
   }
 
+  public validation(): void {
+    this.form = this.fb.group({
+      tema: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(50),
+        ],
+      ],
+      local: ['', [Validators.required]],
+      dataEvento: ['', [Validators.required]],
+      qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
+      telefone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      imagemUrl: ['', [Validators.required]],
+      lotes: this.fb.array([]),
+    });
+  }
+
+  public cssValidator(campoValidacao: FormControl | AbstractControl): any {
+    return { 'is-invalid': campoValidacao.errors && campoValidacao.touched };
+  }
+
+  public resetForm(): void {
+    this.form.reset();
+  }
+
   public carregarEvento(): void {
     this.eventoId = +this.activatedRouter.snapshot.paramMap.get('id');
 
@@ -96,67 +124,7 @@ export class EventoDetalheComponent implements OnInit {
     }
   }
 
-  public carregarLotes(): void {
-    this.lotesService
-      .getLotesByEventoId(this.eventoId)
-      .subscribe({
-        next: (lotesRetorno: Lote[]) => {
-          lotesRetorno.forEach((lote) => {
-            this.lotes.push(this.criarLote(lote));
-          });
-        },
-        error: (error: any) => {
-          this.toastr.error('Erro ao tentar carregar lotes', 'Erro');
-          console.error(error);
-        },
-      })
-      .add(() => this.spinner.hide());
-  }
-
-  public validation(): void {
-    this.form = this.fb.group({
-      tema: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(50),
-        ],
-      ],
-      local: ['', [Validators.required]],
-      dataEvento: ['', [Validators.required]],
-      qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
-      telefone: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      imagemUrl: ['', [Validators.required]],
-      lotes: this.fb.array([]),
-    });
-  }
-
-  public adicionarLote(): void {
-    this.lotes.push(this.criarLote({ id: 0 } as Lote));
-  }
-
-  criarLote(lote: Lote): FormGroup {
-    return this.fb.group({
-      id: [lote.id],
-      nome: [lote.nome, Validators.required],
-      quantidade: [lote.quantidade, Validators.required],
-      preco: [lote.preco, Validators.required],
-      dataInicio: [lote.dataInicio],
-      dataFim: [lote.dataFim],
-    });
-  }
-
-  public resetForm(): void {
-    this.form.reset();
-  }
-
-  public cssValidator(campoValidacao: FormControl | AbstractControl): any {
-    return { 'is-invalid': campoValidacao.errors && campoValidacao.touched };
-  }
-
-  public salvarAlteracao(): void {
+  public salvarEvento(): void {
     this.spinner.show();
     if (this.form.valid) {
       this.evento =
@@ -178,6 +146,56 @@ export class EventoDetalheComponent implements OnInit {
           this.spinner.hide();
         },
       });
+    }
+  }
+
+  public carregarLotes(): void {
+    this.lotesService
+      .getLotesByEventoId(this.eventoId)
+      .subscribe({
+        next: (lotesRetorno: Lote[]) => {
+          lotesRetorno.forEach((lote) => {
+            this.lotes.push(this.criarLote(lote));
+          });
+        },
+        error: (error: any) => {
+          this.toastr.error('Erro ao tentar carregar lotes', 'Erro');
+          console.error(error);
+        },
+      })
+      .add(() => this.spinner.hide());
+  }
+
+  public adicionarLote(): void {
+    this.lotes.push(this.criarLote({ id: 0 } as Lote));
+  }
+
+  criarLote(lote: Lote): FormGroup {
+    return this.fb.group({
+      id: [lote.id],
+      nome: [lote.nome, Validators.required],
+      quantidade: [lote.quantidade, Validators.required],
+      preco: [lote.preco, Validators.required],
+      dataInicio: [lote.dataInicio],
+      dataFim: [lote.dataFim],
+    });
+  }
+
+  public salvarLotes(): void {
+    if (this.form.controls['lotes'].valid) {
+      this.spinner.show();
+      this.lotesService
+        .saveLote(this.eventoId, this.form.value.lotes)
+        .subscribe({
+          next: () => {
+            this.toastr.success('Lotes Salvos com Sucesso!', 'Sucesso');
+          },
+          error: (error: any) => {
+            console.error(error);
+            this.toastr.error('Erro ao tentar Salvar os lotes', 'Erro');
+          },
+        })
+        .add(() => this.spinner.hide());
     }
   }
 }

@@ -9,17 +9,20 @@ namespace AppEventos.Application
 {
     public class LoteService : ILoteService
     {
+        private readonly IEventoService _eventoService;
         private readonly IGeralRepository _geralRepository;
         private readonly ILoteRepository _loteRepository;
         private readonly IMapper _mapper;
 
         public LoteService(IGeralRepository geralRepository,
                            ILoteRepository loteRepository,
-                           IMapper mapper)
+                           IMapper mapper,
+                           IEventoService eventoService)
         {
             _geralRepository = geralRepository;
             _loteRepository = loteRepository;
             _mapper = mapper;
+            _eventoService = eventoService;
         }
 
         public async Task<bool> DeleteLoteAsync(int eventoId, int id)
@@ -69,8 +72,10 @@ namespace AppEventos.Application
         {
             try
             {
-                var lotes = await _loteRepository.GetLotesByEventoId(eventoId);
-                if (lotes == null) return null;
+                var evento = await _eventoService.GetEventoByIdAsync(eventoId);               
+
+                if (evento == null) 
+                    throw new Exception($"Não foi encontrado lote id:{eventoId} para atualização do Evento.");
 
                 foreach (var model in models)
                 {
@@ -81,12 +86,8 @@ namespace AppEventos.Application
                     }
                     else
                     {
-                        var lote = lotes.FirstOrDefault(l => l.Id == model.Id);
-                        if (lote == null) throw new Exception($"Não foi encontrado lote id:{model.Id} para atualização do Evento.");
-
                         model.EventoId = eventoId;
-                        _geralRepository.Update<Lote>(_mapper.Map(model, lote));
-
+                        _geralRepository.Update<Lote>(_mapper.Map(model, new Lote()));
                     }
                 }
 

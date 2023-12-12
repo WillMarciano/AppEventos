@@ -125,7 +125,7 @@
           <button
             class="btn btn-success"
             [disabled]="!form.valid"
-            (click)="salvarAlteracao()"
+            (click)="salvarEvento()"
           >
             <!-- <span class="spinner-border spinner-border-sm"></span> -->
             Salvar Evento
@@ -136,7 +136,8 @@
   </div>
 </div>
 <div class="card rounded shadow mb-3" *ngIf="modoEditar">
-  <!-- <form [formGroup]="formLote" class="p-3"> -->
+    <!-- <p>Form value: {{form.controls['lotes'].value| json}}</p>
+    <p>Form valid: {{form.controls['lotes'].status | json}}</p> -->
   <div class="p-3">
     <div class="d-flex border-bottom">
       <h3 class="me-auto">Lotes do Evento</h3>
@@ -244,7 +245,13 @@
           </button>
         </div>
         <div class="col text-end">
-          <button class="btn btn-success text-end">Salvar Lotes</button>
+          <button
+            class="btn btn-success text-end"
+            [disabled]="!form.valid"
+            (click)="salvarLotes()"
+          >
+            Salvar Lotes
+          </button>
         </div>
       </div>
     </div>

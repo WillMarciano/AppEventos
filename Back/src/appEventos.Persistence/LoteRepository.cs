@@ -12,6 +12,7 @@ namespace AppEventos.Repository
         public LoteRepository(AppEventosContext context) => _context = context;
         private IQueryable<Lote> FilterQuery(int eventoId)
         {
+            IQueryable<Lote> teste = _context.Lotes;
             IQueryable<Lote> query = _context.Lotes.Where(l => l.EventoId == eventoId);
 
             query = query.OrderBy(e => e.Id);
