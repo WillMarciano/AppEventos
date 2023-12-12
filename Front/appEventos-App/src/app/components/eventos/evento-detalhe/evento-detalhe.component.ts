@@ -1,3 +1,5 @@
+import { Lote } from './../../../models/Lote';
+import { LoteService } from './../../../services/lote.service';
 import { EventoService } from '@app/services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -8,12 +10,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Evento } from '@app/models/Evento';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Lote } from '@app/models/Lote';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -21,17 +22,21 @@ import { Lote } from '@app/models/Lote';
   styleUrls: ['./evento-detalhe.component.scss'],
 })
 export class EventoDetalheComponent implements OnInit {
-  evento!: Evento;
+  evento = {} as Evento;
   form!: FormGroup;
-
+  eventoId: number;
   modoSalvar = 'post';
 
-  get lotes():FormArray{
-    return this.form.get('lotes') as FormArray
+  get lotes(): FormArray {
+    return this.form.get('lotes') as FormArray;
   }
 
   get f(): any {
     return this.form.controls;
+  }
+
+  get modoEditar(): boolean {
+    return this.modoSalvar === 'put';
   }
 
   get bsConfig(): any {
@@ -47,25 +52,37 @@ export class EventoDetalheComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private localeService: BsLocaleService,
-    private router: ActivatedRoute,
+    private activatedRouter: ActivatedRoute,
+    private router: Router,
     private eventoService: EventoService,
+    private lotesService: LoteService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) {
     this.localeService.use('pt-br');
   }
 
-  public carregarEvento(): void {
-    const eventoIdParam = this.router.snapshot.paramMap.get('id');
+  ngOnInit(): void {
+    this.carregarEvento();
+    this.validation();
+  }
 
-    if (eventoIdParam != null) {
+  public carregarEvento(): void {
+    this.eventoId = +this.activatedRouter.snapshot.paramMap.get('id');
+
+    if (this.eventoId !== null && this.eventoId !== 0) {
       this.spinner.show();
+
       this.modoSalvar = 'put';
 
-      this.eventoService.getEventoById(+eventoIdParam).subscribe({
+      this.eventoService.getEventoById(this.eventoId).subscribe({
         next: (evento: Evento) => {
           this.evento = { ...evento };
           this.form.patchValue(this.evento);
+          // if (this.evento.imagemUrl !== '') {
+          //   this.imagemUrl = environment.apiURL + 'resources/images/' + this.evento.imagemUrl;
+          // }
+          this.carregarLotes();
         },
         error: (error: any) => {
           this.spinner.hide();
@@ -79,9 +96,21 @@ export class EventoDetalheComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.validation();
-    this.carregarEvento();
+  public carregarLotes(): void {
+    this.lotesService
+      .getLotesByEventoId(this.eventoId)
+      .subscribe({
+        next: (lotesRetorno: Lote[]) => {
+          lotesRetorno.forEach((lote) => {
+            this.lotes.push(this.criarLote(lote));
+          });
+        },
+        error: (error: any) => {
+          this.toastr.error('Erro ao tentar carregar lotes', 'Erro');
+          console.error(error);
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   public validation(): void {
@@ -105,7 +134,7 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public adicionarLote(): void {
-    this.lotes.push(this.criarLote({id: 0} as Lote));
+    this.lotes.push(this.criarLote({ id: 0 } as Lote));
   }
 
   criarLote(lote: Lote): FormGroup {
@@ -136,7 +165,10 @@ export class EventoDetalheComponent implements OnInit {
           : { id: this.evento.id, ...this.form.value };
 
       this.eventoService[this.modoSalvar](this.evento).subscribe({
-        next: () => this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso'),
+        next: () => {
+          this.toastr.success('Evento Salvo com Sucesso!', 'Sucesso');
+          this.modoSalvar = 'put';
+        },
         error: (error: any) => {
           console.error(error);
           this.toastr.error('Erro ao tentar Salvar o evento.', 'Erro');
