@@ -15,7 +15,7 @@ namespace AppEventos.API.Controllers
         public LotesController(ILoteService loteService) => _loteService = loteService;
 
         /// <summary>
-        /// Buscar lotes pelo EventoId
+        /// Retorna Evento por ID
         /// </summary>
         /// <param name="eventoId"></param>
         /// <returns></returns>
