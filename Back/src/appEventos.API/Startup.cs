@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using AppEventos.Application;
+using Microsoft.Extensions.FileProviders;
 
 namespace AppEventos.API
 {
@@ -59,6 +60,12 @@ namespace AppEventos.API
             app.UseAuthorization();
 
             app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+                RequestPath = new PathString("/Resources")
+            });
 
             app.UseEndpoints(endpoints =>
             {
