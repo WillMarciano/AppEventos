@@ -10,8 +10,12 @@ public class EventosController : ControllerBase
 {
     private const string errorResponse = "Erro ao ao tentar * evento";
     private readonly IEventoService _eventoService;
-
-    public EventosController(IEventoService eventoService) => _eventoService = eventoService;
+    private readonly IWebHostEnvironment _hostEnvironment;
+    public EventosController(IEventoService eventoService, IWebHostEnvironment hostEnvironment)
+    {
+        _eventoService = eventoService;
+        _hostEnvironment = hostEnvironment;
+    }
 
     /// <summary>
     /// Retona Todos Eventos
@@ -87,6 +91,37 @@ public class EventosController : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
         }
+    }
+
+    [HttpPost("upload-image/{eventoId")]
+    public async Task<IActionResult> UploadImage(int eventoId)
+    {
+        try
+        {
+            var evento = await _eventoService.GetEventoByIdAsync(eventoId);
+            if (evento == null) return NoContent();
+            var file = Request.Form.Files[0];
+            if (file.Length > 0 && evento.ImagemUrl != null)
+            {
+                DeleteImage(evento.ImagemUrl);
+                //evento.ImagemUrl = SaveImage(file);
+            }
+            var EventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
+            return EventoRetorno == null ? NoContent() : Ok(evento);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
+        }
+    }
+
+    [NonAction]
+    private void DeleteImage(string imageName)
+    {
+        var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
+        if (System.IO.File.Exists(imagePath))
+            System.IO.File.Delete(imagePath);
+
     }
 
     /// <summary>
