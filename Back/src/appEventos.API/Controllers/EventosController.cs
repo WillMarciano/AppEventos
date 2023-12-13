@@ -9,12 +9,14 @@ namespace AppEventos.API.Controllers;
 public class EventosController : ControllerBase
 {
     private const string errorResponse = "Erro ao ao tentar * evento";
+    private string pathFile = "";
     private readonly IEventoService _eventoService;
     private readonly IWebHostEnvironment _hostEnvironment;
     public EventosController(IEventoService eventoService, IWebHostEnvironment hostEnvironment)
     {
         _eventoService = eventoService;
         _hostEnvironment = hostEnvironment;
+        pathFile = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images");
     }
 
     /// <summary>
@@ -110,7 +112,7 @@ public class EventosController : ControllerBase
             if (file.Length > 0 && evento.ImagemUrl != null)
             {
                 DeleteImage(evento.ImagemUrl);
-                //evento.ImagemUrl = SaveImage(file);
+                evento.ImagemUrl = await SaveImage(file);
             }
             var eventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
             return eventoRetorno == null ? NoContent() : Ok(evento);
@@ -127,6 +129,25 @@ public class EventosController : ControllerBase
         var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
         if (System.IO.File.Exists(imagePath))
             System.IO.File.Delete(imagePath);
+
+    }
+
+    [NonAction]
+    private async Task<string> SaveImage(IFormFile imageFile)
+    {
+        var imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName)
+                                    .Take(10)
+                                    .ToArray())
+                                    .Replace(' ', '-');
+
+        imageName = $"{imageName}{DateTime.UtcNow.ToString("yymssfff")}{Path.GetExtension(imageFile.FileName)}";
+        var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
+
+        using (var fileStream = new FileStream(imagePath, FileMode.Create))
+        {
+            await imageFile.CopyToAsync(fileStream);
+        }
+        return imageName;
 
     }
 
