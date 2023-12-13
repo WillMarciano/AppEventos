@@ -14,6 +14,7 @@ import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +54,7 @@ defineLocale('pt-br', ptBrLocale);
     EventoListaComponent,
     UsuarioComponent,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +74,9 @@ defineLocale('pt-br', ptBrLocale);
       preventDuplicates: true,
       progressBar: true
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxCurrencyDirective
+    
   ],
   providers: [EventoService, LoteService],
   bootstrap: [AppComponent],

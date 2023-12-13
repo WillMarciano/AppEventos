@@ -258,4 +258,8 @@ export class EventoDetalheComponent implements OnInit {
   public declineDeleteLote(): void {
     this.modalRef.hide();
   }
+
+  public retornaTituloLote(nome: string): string {
+    return nome === null || nome === '' ? 'Nome do lote' : nome;
+  }
 }

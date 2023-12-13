@@ -154,6 +154,7 @@
         >
           <fieldset [formGroupName]="i" class="form-group">
             <legend class="d-flex justify-content-between capitalize">
+              {{ retornaTituloLote(lotes.get(i + ".nome").value) }}
               <button
                 (click)="removerLote(template, i)"
                 class="p-2 btn btn-sm btn-outline-danger mb-3 d-flex"
@@ -176,27 +177,37 @@
                   [ngClass]="cssValidator(lotes.get(i + '.nome'))"
                   placeholder="Lote"
                 />
+                <div *ngIf="lotes.get(i + '.nome').hasError('required')" class="invalid-feedback">
+                  Campo Nome é obrigatório
+                </div>
               </div>
               <div class="form-group col-md-4">
                 <label>Quantidade</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   formControlName="quantidade"
                   [ngClass]="cssValidator(lotes.get(i + '.quantidade'))"
                   placeholder="000"
                 />
+                <div *ngIf="lotes.get(i + '.quantidade').hasError('required')" class="invalid-feedback">
+                  Campo Quantidade é obrigatório
+                </div>
               </div>
               <div class="form-group col-md-4">
                 <label>Preço</label>
                 <input
                   type="text"
                   currencyMask
+                  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
                   class="form-control"
                   formControlName="preco"
                   [ngClass]="cssValidator(lotes.get(i + '.preco'))"
                   placeholder="R$ 0,00"
                 />
+                <div *ngIf="lotes.get(i + '.preco').hasError('required')" class="invalid-feedback">
+                  Campo Preço é obrigatório
+                </div>
               </div>
               <div class="form-group col-md-4">
                 <label>Data Início</label>
@@ -208,6 +219,9 @@
                   [bsConfig]="bsConfigLote"
                   [ngClass]="cssValidator(lotes.get(i + '.dataInicio'))"
                 />
+                <div *ngIf="lotes.get(i + '.dataInicio').hasError('required')" class="invalid-feedback">
+                  Campo Data Início é obrigatório
+                </div>
               </div>
               <div class="form-group col-md-4">
                 <label>Data Fim</label>
@@ -219,6 +233,9 @@
                   [bsConfig]="bsConfigLote"
                   [ngClass]="cssValidator(lotes.get(i + '.dataFim'))"
                 />
+                <div *ngIf="lotes.get(i + '.dataFim').hasError('required')" class="invalid-feedback">
+                  Campo Data Fim é obrigatório
+                </div>
               </div>
             </div>
             <br />
@@ -250,7 +267,7 @@
         <div class="col text-end">
           <button
             class="btn btn-success text-end"
-            [disabled]="!form.valid"
+            [disabled]="!form.controls['lotes'].valid"
             (click)="salvarLotes()"
           >
             Salvar Lotes
