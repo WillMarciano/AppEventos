@@ -93,21 +93,27 @@ public class EventosController : ControllerBase
         }
     }
 
-    [HttpPost("upload-image/{eventoId")]
+    /// <summary>
+    /// Salva Imagem do Evento
+    /// </summary>
+    /// <param name="eventoId"></param>
+    /// <returns></returns>
+    [HttpPost("upload-image/{eventoId}")]
     public async Task<IActionResult> UploadImage(int eventoId)
     {
         try
         {
             var evento = await _eventoService.GetEventoByIdAsync(eventoId);
             if (evento == null) return NoContent();
+
             var file = Request.Form.Files[0];
             if (file.Length > 0 && evento.ImagemUrl != null)
             {
                 DeleteImage(evento.ImagemUrl);
                 //evento.ImagemUrl = SaveImage(file);
             }
-            var EventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
-            return EventoRetorno == null ? NoContent() : Ok(evento);
+            var eventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
+            return eventoRetorno == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
