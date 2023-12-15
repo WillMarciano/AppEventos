@@ -6,6 +6,7 @@ import { EventoService } from '@app/services/evento.service';
 import { Evento } from '@app/models/Evento';
 import { Router } from '@angular/router';
 import { Lote } from '@app/models/Lote';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-evento-lista',
@@ -65,6 +66,10 @@ export class EventoListaComponent {
     this.exibirImagem = !this.exibirImagem;
   }
 
+  public mostraImagem(imagemUrl: string): string {
+    return (imagemUrl !== '' ) ? `${environment.apiURL}resources/images/${imagemUrl}` : 'assets/img/semImagem.png'
+  }
+
   public carregarEventos(): void {
     const observer = {
       next: (_eventos: Evento[]) => {
@@ -92,15 +97,22 @@ export class EventoListaComponent {
       .subscribe({
         next: (result: any) => {
           if (result.message === 'Deletado') {
-            this.toastr.success('O Evento foi deletado com Sucesso.','Excluido!');
+            this.toastr.success(
+              'O Evento foi deletado com Sucesso.',
+              'Excluido!'
+            );
           }
           this.carregarEventos();
         },
         error: (error: any) => {
           console.error(error);
-          this.toastr.error(`Erro ao tentar deletar o evento ${this.eventoId}`,'Erro');
-        }
-      }).add(() => this.spinner.hide());
+          this.toastr.error(
+            `Erro ao tentar deletar o evento ${this.eventoId}`,
+            'Erro'
+          );
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   decline(): void {

@@ -69,7 +69,7 @@
               A quantidade máxima de pessoas é 120000
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <label>Telefone</label>
             <input
               type="text"
@@ -80,7 +80,7 @@
             />
             <div class="invalid-feedback">Campo Telefone é obrigatório</div>
           </div>
-          <div class="col">
+          <div class="col md-6">
             <label>E-mail</label>
             <input
               type="email"
@@ -97,16 +97,6 @@
             <div *ngIf="f.email?.hasError('email')" class="invalid-feedback">
               Informe um e-mail válido.
             </div>
-          </div>
-          <div class="col">
-            <label>Imagem</label>
-            <input
-              type="text"
-              class="form-control"
-              [ngClass]="cssValidator(f.imagemUrl)"
-              formControlName="imagemUrl"
-            />
-            <div class="invalid-feedback">Campo Imagem é obrigatório</div>
           </div>
         </div>
       </form>
@@ -318,7 +308,7 @@
             class="img-fluid"
             (click)="file.click()"
             alt="Card image cap"
-            tooltip="Uplaod de Nova Imagem"
+            tooltip="Upload de Nova Imagem"
             [adaptivePosition]="false"
             placement="bottom"
           />

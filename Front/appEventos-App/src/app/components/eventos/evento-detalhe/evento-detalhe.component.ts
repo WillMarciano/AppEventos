@@ -17,6 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -101,7 +102,7 @@ export class EventoDetalheComponent implements OnInit {
       qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      imagemUrl: ['', [Validators.required]],
+      imagemUrl: [''],
       lotes: this.fb.array([]),
     });
   }
@@ -133,9 +134,9 @@ export class EventoDetalheComponent implements OnInit {
           // this.evento.lotes.forEach(lote =>{
           //   this.lotes.push(this.criarLote(lote));
           // })
-          // if (this.evento.imagemUrl !== '') {
-          //   this.imagemUrl = environment.apiURL + 'resources/images/' + this.evento.imagemUrl;
-          // }
+          if (this.evento.imagemUrl !== '') {
+            this.imagemUrl = environment.apiURL + 'resources/images/' + this.evento.imagemUrl;
+          }
           this.carregarLotes();
         },
         error: (error: any) => {
@@ -268,7 +269,7 @@ export class EventoDetalheComponent implements OnInit {
   public onFileChange(ev: any): void {
     const reader = new FileReader();
 
-    reader.onload = (event: any) => (this.imagemUrl = event.target.result);
+    reader.onload = (event: any) => this.imagemUrl = event.target.result;
 
     this.file = ev.target.files;
     reader.readAsDataURL(this.file[0]);
