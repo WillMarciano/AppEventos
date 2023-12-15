@@ -31,6 +31,7 @@ export class EventoDetalheComponent implements OnInit {
   form: FormGroup;
   modoSalvar = 'post';
   loteAtual = { id: 0, nome: '', indice: 0 };
+  imagemUrl = 'assets/img/upload.png'
 
   get modoEditar(): boolean {
     return this.modoSalvar === 'put';
