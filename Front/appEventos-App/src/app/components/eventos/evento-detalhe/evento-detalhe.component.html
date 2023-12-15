@@ -304,9 +304,8 @@
           <input
             type="file"
             #file
+            (change)="onFileChange($event)"
             class="form-control is-invalid"
-            placeholder=""
-            style="display: none"
           />
         </div>
       </div>

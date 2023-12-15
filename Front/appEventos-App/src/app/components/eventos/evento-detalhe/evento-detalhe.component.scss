@@ -30,12 +30,15 @@ label {
 .card-evento-view {
     position: sticky;
     top: 10px;
+    .form-group{
+        display: none;
+    }
 }
 
 .card-img-block{
     img{
         cursor: pointer;
         border-radius: 3px 3px 0 0;
-        width: 50%;
+        width: 80%;
     }
 }

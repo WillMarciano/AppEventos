@@ -31,7 +31,8 @@ export class EventoDetalheComponent implements OnInit {
   form: FormGroup;
   modoSalvar = 'post';
   loteAtual = { id: 0, nome: '', indice: 0 };
-  imagemUrl = 'assets/img/upload.png'
+  imagemUrl = 'assets/img/upload.png';
+  file: File;
 
   get modoEditar(): boolean {
     return this.modoSalvar === 'put';
@@ -262,5 +263,14 @@ export class EventoDetalheComponent implements OnInit {
 
   public retornaTituloLote(nome: string): string {
     return nome === null || nome === '' ? 'Nome do lote' : nome;
+  }
+
+  public onFileChange(ev: any): void {
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => (this.imagemUrl = event.target.result);
+
+    this.file = ev.target.files;
+    reader.readAsDataURL(this.file[0]);
   }
 }
