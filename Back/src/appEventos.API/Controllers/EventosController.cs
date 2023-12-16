@@ -184,9 +184,14 @@ public class EventosController : ControllerBase
             var evento = await _eventoService.GetEventoByIdAsync(id);
             if (evento == null) return NoContent();
 
-            return await _eventoService.DeleteEvento(id) ?
-                Ok(new { message = "Deletado" }) :
-                BadRequest(errorResponse.Replace("*", "deletar"));
+            if (await _eventoService.DeleteEvento(id))
+            {
+                if (evento.ImagemUrl != null)
+                    DeleteImage(evento.ImagemUrl);
+                return Ok(new { message = "Deletado" });
+            }
+            else
+                return BadRequest(errorResponse.Replace("*", "deletar"));
         }
         catch (Exception ex)
         {
