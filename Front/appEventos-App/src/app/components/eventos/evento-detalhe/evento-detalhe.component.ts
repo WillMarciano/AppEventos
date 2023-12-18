@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DatePipe } from '@angular/common';
 import { environment } from '@environments/environment';
+import { DateTimeFormatPipe } from '@app/helpers/DateTimeFormat.pipe';
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -66,6 +67,7 @@ export class EventoDetalheComponent implements OnInit {
       showWeekNumbers: false,
     };
   }
+
 
   constructor(
     private fb: FormBuilder,
@@ -135,7 +137,8 @@ export class EventoDetalheComponent implements OnInit {
           //   this.lotes.push(this.criarLote(lote));
           // })
           if (this.evento.imagemUrl !== '') {
-            this.imagemUrl = environment.apiURL + 'resources/images/' + this.evento.imagemUrl;
+            this.imagemUrl =
+              environment.apiURL + 'resources/images/' + this.evento.imagemUrl;
           }
           this.carregarLotes();
         },
@@ -269,7 +272,7 @@ export class EventoDetalheComponent implements OnInit {
   public onFileChange(ev: any): void {
     const reader = new FileReader();
 
-    reader.onload = (event: any) => this.imagemUrl = event.target.result;
+    reader.onload = (event: any) => (this.imagemUrl = event.target.result);
 
     this.file = ev.target.files;
     reader.readAsDataURL(this.file[0]);

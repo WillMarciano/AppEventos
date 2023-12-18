@@ -4,6 +4,7 @@
       <form [formGroup]="form" class="p-3">
         <div class="row">
           <div class="col">
+            <!-- {{ form.value | json }} -->
             <label>Tema</label>
             <input
               type="text"
@@ -41,8 +42,9 @@
               type="datetime"
               class="form-control"
               [ngClass]="cssValidator(f.dataEvento)"
-              bsDatepicker
               [bsConfig]="bsConfig"
+              value="{{ evento.dataEvento | DateTimeFormatPipe }}"
+              bsDatepicker
               formControlName="dataEvento"
               placeholder=""
             />
@@ -315,29 +317,32 @@
         </div>
 
         <div class="card-body pt-3">
-          <h4>{{ evento.tema }}</h4>
+          <h4>{{ form.controls["tema"].value }}</h4>
 
           <p class="card-text">
-            <b>Local:</b> {{ evento.local }}
+            <b>Local:</b> {{ form.controls["local"].value }}
 
             <br />
 
-            <b>Data:</b> {{ evento.dataEvento | DateTimeFormatPipe }}
+            <b>Data:</b>
+            {{ form.controls["dataEvento"].value | DateTimeFormatPipe }}
           </p>
 
           <hr />
 
           <p class="card-text">
             <b>Contatos</b><br />
-            <small class="text-muted">Telefone: {{ evento.telefone }}</small>
+            <small class="text-muted"
+              >Telefone: {{ form.controls["telefone"].value }}</small
+            >
             <br />
-            <small class="text-muted">e-mail: {{ evento.email }}</small>
+            <small class="text-muted">e-mail: {{ form.controls["email"].value }}</small>
           </p>
 
           <p class="card-text">
             Capacidade:
 
-            <small class="text-muted">{{ evento.qtdPessoas }}</small>
+            <small class="text-muted">{{ form.controls["qtdPessoas"].value }}</small>
           </p>
 
           <div class="row">
