@@ -75,3 +75,9 @@ C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\AppEventos.API.pdb
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\AppEventos.API.genruntimeconfig.cache
 C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\ref\AppEventos.API.dll
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\AppEventos.API.sourcelink.json
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\staticwebassets\msbuild.AppEventos.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\staticwebassets\msbuild.build.AppEventos.API.props
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.AppEventos.API.props
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.AppEventos.API.props
+C:\Dev\Udemy\Fullstack - Angular, Csharp\AppEventos\Back\src\AppEventos.API\obj\Debug\net6.0\staticwebassets.pack.json
