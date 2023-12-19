@@ -19,17 +19,13 @@ namespace AppEventos.Repository
             query = query.OrderBy(e => e.Id);
             return query.AsNoTracking();
         }
-        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
-        {
-            var query = FilterQueryEvento(includePalestrantes);
-            return await query.ToArrayAsync();
-        }
-        public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
-        {
-            var query = FilterQueryEvento(includePalestrantes).Where(e => e.Tema.ToLower().Contains(tema.ToLower()));
-            return await query.ToArrayAsync();
-        }
-        public async Task<Evento> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false)
-            => await FilterQueryEvento(includePalestrantes).Where(e => e.Id == eventoId).FirstOrDefaultAsync();
+        public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false) 
+            => await FilterQueryEvento(includePalestrantes).ToArrayAsync();
+
+        public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false) 
+            => await FilterQueryEvento(includePalestrantes).Where(e => e.Tema.ToLower().Contains(tema.ToLower())).ToArrayAsync();
+
+        public async Task<Evento?> GetEventoByIdAsync(int eventoId, bool includePalestrantes = false) 
+            => await FilterQueryEvento(includePalestrantes).Where(e => e.Id == eventoId).FirstOrDefaultAsync() ?? null;
     }
 }

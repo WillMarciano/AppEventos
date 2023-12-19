@@ -19,7 +19,7 @@ namespace AppEventos.Repository
             return query.AsNoTracking();
         }
 
-        public async Task<Lote[]?> GetLotesByEventoId(int eventoId)
+        public async Task<Lote[]?> GetLotesByEventoIdAsync(int eventoId)
         {
             var lotes = await FilterQuery(eventoId).ToArrayAsync();
             if (lotes.Count() > 0)
@@ -27,7 +27,7 @@ namespace AppEventos.Repository
             return null;
         }
 
-        public async Task<Lote?> GetLoteById(int eventoId, int id)
+        public async Task<Lote?> GetLoteByIdAsync(int eventoId, int id)
         {
             var lote = await FilterQuery(eventoId).Where(l => l.Id == id).FirstOrDefaultAsync() ?? null;
             return lote;

@@ -15,24 +15,25 @@ namespace AppEventos.Repository
             IQueryable<Palestrante> query = _context.Palestrantes.Include(p => p.RedesSociais);
 
             if (includeEventos)
-                query = query.Include(p => p.PalestrantesEventos).ThenInclude(p => p.Evento);
+                query = query.Include(p => p.PalestrantesEventos)
+                             .ThenInclude(p => p.Evento);
 
             query = query.OrderBy(e => e.Id);
             return query.AsNoTracking();
         }
-        public async Task<Palestrante[]> GetAllPalestrantesAsync(bool includeEventos = false)
+        public async Task<Palestrante[]?> GetAllPalestrantesAsync(bool includeEventos = false)
         {
             var query = FilterQueryPalestrante(includeEventos);
             return await query.ToArrayAsync();
         }
 
-        public async Task<Palestrante[]> GetAllPalestrantesByNomeAsync(string nome, bool includeEventos = false)
+        public async Task<Palestrante[]?> GetAllPalestrantesByNomeAsync(string nome, bool includeEventos = false)
         {
             var query = FilterQueryPalestrante(includeEventos).Where(e => e.Nome.ToLower().Contains(nome.ToLower()));
             return await query.ToArrayAsync();
         }
 
-        public async Task<Palestrante> GetPalestranteByIdAsync(int palestranteId, bool includeEventos = false)
+        public async Task<Palestrante?> GetPalestranteByIdAsync(int palestranteId, bool includeEventos = false)
             => await FilterQueryPalestrante(includeEventos).Where(e => e.Id == palestranteId).FirstOrDefaultAsync();
 
     }

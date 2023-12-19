@@ -4,7 +4,7 @@ namespace AppEventos.Repository.Interfaces
 {
     public interface ILoteRepository
     {
-        Task<Lote[]?> GetLotesByEventoId(int eventoId);
-        Task<Lote?> GetLoteById(int eventoId, int id);
+        Task<Lote[]?> GetLotesByEventoIdAsync(int eventoId);
+        Task<Lote?> GetLoteByIdAsync(int eventoId, int id);
     }
 }

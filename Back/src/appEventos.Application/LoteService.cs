@@ -29,7 +29,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var lote = await _loteRepository.GetLoteById(eventoId, id);
+                var lote = await _loteRepository.GetLoteByIdAsync(eventoId, id);
 
                 if (lote == null) throw new Exception("Não foi possível encontrar lote para remoção.");
 
@@ -46,7 +46,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var lote = await _loteRepository.GetLoteById(eventoId, loteId);
+                var lote = await _loteRepository.GetLoteByIdAsync(eventoId, loteId);
                 return lote == null ? null : _mapper.Map<LoteDto>(lote);
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var lote = await _loteRepository.GetLotesByEventoId(eventoId);
+                var lote = await _loteRepository.GetLotesByEventoIdAsync(eventoId);
                 return lote == null ? null : _mapper.Map<LoteDto[]>(lote);
             }
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace AppEventos.Application
                 }
 
                 if (await _geralRepository.SaveChangesAsync())
-                    return _mapper.Map<LoteDto[]>(await _loteRepository.GetLotesByEventoId(eventoId));
+                    return _mapper.Map<LoteDto[]>(await _loteRepository.GetLotesByEventoIdAsync(eventoId));
 
                 return null;
             }
