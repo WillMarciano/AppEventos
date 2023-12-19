@@ -29,8 +29,9 @@ namespace AppEventos.Repository
 
         public async Task<Palestrante[]?> GetAllPalestrantesByNomeAsync(string nome, bool includeEventos = false)
         {
-            var query = FilterQueryPalestrante(includeEventos).Where(e => e.Nome.ToLower().Contains(nome.ToLower()));
-            return await query.ToArrayAsync();
+            return await FilterQueryPalestrante(includeEventos)
+                .Include(e => e.User)
+                .Where(e => e.User!.Nome.ToLower().Contains(nome.ToLower())).ToArrayAsync();
         }
 
         public async Task<Palestrante?> GetPalestranteByIdAsync(int palestranteId, bool includeEventos = false)

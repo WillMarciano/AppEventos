@@ -1,13 +1,9 @@
 ﻿using AppEventos.Domain.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace AppEventos.Domain.Identity
 {
-    public class User
+    public class User : IdentityUser<int>
     {
         public required string Nome { get; set; }
         public required string Sobrenome { get; set; }
