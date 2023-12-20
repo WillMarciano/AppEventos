@@ -1,9 +1,17 @@
+using AppEventos.Domain.Identity;
 using AppEventos.Domain.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppEventos.Repository.Context
 {
-    public class AppEventosContext : DbContext
+    public class AppEventosContext : IdentityDbContext<User, Role, int,
+                                                       IdentityUserClaim<int>,
+                                                       IdentityUserRole<int>,
+                                                       IdentityUserLogin<int>,
+                                                       IdentityRoleClaim<int>,
+                                                       IdentityUserToken<int>>
     {
         public AppEventosContext(DbContextOptions<AppEventosContext> options) : base(options) { }
         public DbSet<Evento> Eventos { get; set; }
@@ -14,6 +22,15 @@ namespace AppEventos.Repository.Context
 
         override protected void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<UserRole>(userRole =>
+            {
+                userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
+                userRole.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(r => r.RoleId).IsRequired();
+                userRole.HasOne(ur => ur.User).WithMany(r => r.UserRoles).HasForeignKey(r => r.UserId).IsRequired();
+            });
+
             modelBuilder.Entity<PalestranteEvento>()
                 .HasKey(pe => new { pe.EventoId, pe.PalestranteId });
 

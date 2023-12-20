@@ -31,7 +31,9 @@ namespace AppEventos.Repository
         {
             return await FilterQueryPalestrante(includeEventos)
                 .Include(e => e.User)
-                .Where(e => e.User!.Nome.ToLower().Contains(nome.ToLower())).ToArrayAsync();
+                .Where(e => e.User!.Nome.ToLower().Contains(nome.ToLower()) || 
+                            e.User!.Sobrenome.ToLower().Contains(nome.ToLower())
+                ).ToArrayAsync();
         }
 
         public async Task<Palestrante?> GetPalestranteByIdAsync(int palestranteId, bool includeEventos = false)
