@@ -7,6 +7,10 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using AppEventos.Application;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
+using System.Text.Json.Serialization;
+using AppEventos.Domain.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace AppEventos.API
 {
@@ -21,16 +25,40 @@ namespace AppEventos.API
         {
 
             services.AddDbContext<AppEventosContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
-            services.AddControllers()
-                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddIdentityCore<User>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+            })
+            .AddRoles<Role>()
+            .AddRoleManager<RoleManager<Role>>()
+            .AddSignInManager<SignInManager<User>>()
+            .AddRoleValidator<RoleValidator<Role>>()
+            .AddEntityFrameworkStores<AppEventosContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+            //.AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IEventoService, EventoService>();
-            services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<ILoteService, LoteService>();
-            services.AddScoped<ILoteRepository, LoteRepository>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IAccountService, AccountService>();
+
             services.AddScoped<IGeralRepository, GeralRepository>();
+            services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<ILoteRepository, LoteRepository>();
             services.AddScoped<IPalestranteRepository, PalestranteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddCors();
             services.AddSwaggerGen(c =>
