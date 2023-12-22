@@ -2,10 +2,10 @@
 {
     public class UserDto
     {
-        public string? Username { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public string? Nome { get; set; }
-        public string? Sobrenome { get; set; }
+        public required string Username { get; set; }
+        public required string Email { get; set; }
+        public required string Password { get; set; }
+        public required string Nome { get; set; }
+        public required string Sobrenome { get; set; }
     }
 }

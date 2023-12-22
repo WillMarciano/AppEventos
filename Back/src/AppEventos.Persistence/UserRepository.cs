@@ -9,16 +9,19 @@ namespace AppEventos.Repository
     {
         private new readonly AppEventosContext _context;
 
-        public UserRepository(AppEventosContext context) : base(context) 
+        public UserRepository(AppEventosContext context) : base(context)
             => _context = context;
 
-        public async Task<User?> GetUserbyIdAsync(int id) 
+        public async Task<User> GetUserbyIdAsync(int id)
             => await _context.Users.FindAsync(id);
 
-        public async Task<User?> GetUserByUsernameAsync(string username) 
-            => await _context.Users.SingleOrDefaultAsync(x => x.UserName == username.ToLower());
+        public async Task<User> GetUserByUserNameAsync(string username)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == username.ToLower()) ?? null;
+            return user!;
+        }
 
-        public async Task<IEnumerable<User>> GetUsersAsync() 
+        public async Task<IEnumerable<User>> GetUsersAsync()
             => await _context.Users.ToListAsync();
     }
 }
