@@ -7,10 +7,12 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using AppEventos.Application;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
 using AppEventos.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace AppEventos.API
 {
@@ -41,6 +43,18 @@ namespace AppEventos.API
             .AddEntityFrameworkStores<AppEventosContext>()
             .AddDefaultTokenProviders();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
+
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -59,6 +73,7 @@ namespace AppEventos.API
             services.AddScoped<ILoteRepository, LoteRepository>();
             services.AddScoped<IPalestranteRepository, PalestranteRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
 
             services.AddCors();
             services.AddSwaggerGen(c =>
@@ -84,6 +99,8 @@ namespace AppEventos.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
