@@ -5,7 +5,7 @@ namespace AppEventos.Repository.Interfaces
     public interface IUserRepository : IGeralRepository
     {
         Task<IEnumerable<User>> GetUsersAsync();
-        Task<User> GetUserbyIdAsync(int id);
+        Task<User?> GetUserbyIdAsync(int id);
         Task<User> GetUserByUserNameAsync(string username);
     }
 }

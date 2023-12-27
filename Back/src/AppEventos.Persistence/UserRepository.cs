@@ -12,7 +12,7 @@ namespace AppEventos.Repository
         public UserRepository(AppEventosContext context) : base(context)
             => _context = context;
 
-        public async Task<User> GetUserbyIdAsync(int id)
+        public async Task<User?> GetUserbyIdAsync(int id)
             => await _context.Users.FindAsync(id);
 
         public async Task<User> GetUserByUserNameAsync(string username)
