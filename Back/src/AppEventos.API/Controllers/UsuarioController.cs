@@ -1,7 +1,9 @@
-﻿using AppEventos.Application.Dtos;
+﻿using AppEventos.API.Extensions;
+using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AppEventos.API.Controllers
 {
@@ -20,12 +22,12 @@ namespace AppEventos.API.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet("GetUser/{nomeUsuario}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetUser(string nomeUsuario)
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> GetUser()
         {
             try
             {
+                var nomeUsuario = User.GetUserName();
                 var user = await _accountService.GetUserByUserNameAsync(nomeUsuario);
                 return Ok(user);
             }
@@ -53,7 +55,7 @@ namespace AppEventos.API.Controllers
                 {
                     username = user.UserName,
                     Nome = user.Nome,
-                    token = _tokenService.CreateToken(user).Result,  
+                    token = _tokenService.CreateToken(user).Result,
                 });
             }
             catch (Exception ex)
