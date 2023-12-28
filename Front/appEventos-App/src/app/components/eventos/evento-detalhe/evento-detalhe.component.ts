@@ -290,7 +290,7 @@ export class EventoDetalheComponent implements OnInit {
           this.toastr.success('Imagem atualizada com sucesso', 'Sucesso');
         },
         error: (error: any) => {
-          this.toastr.success('Erro ao fazer Upload de imagem', 'Erro');
+          this.toastr.error('Erro ao fazer Upload de imagem', 'Erro');
           console.log(error);
         },
       })
