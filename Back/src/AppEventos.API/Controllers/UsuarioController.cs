@@ -36,6 +36,33 @@ namespace AppEventos.API.Controllers
             }
         }
 
+        [HttpPost("Login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(UserLoginDto userLogin)
+        {
+            try
+            {
+                var user = await _accountService.GetUserByUserNameAsync(userLogin.UserName);
+                if (user == null) return Unauthorized("Usuário ou Senha inválidos");
+
+                var result = await _accountService.CheckUserPasswordAsync(user, userLogin.Password);
+                if (!result.Succeeded)
+                    return Unauthorized("Usuário ou Senha inválidos");
+
+                return Ok(new
+                {
+                    username = user.UserName,
+                    Nome = user.Nome,
+                    token = _tokenService.CreateToken(user).Result,  
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
+            }
+        }
+
         [HttpPost("Registrar")]
         [AllowAnonymous]
         public async Task<IActionResult> Registrar(UserDto usuario)

@@ -30,7 +30,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var user = _userManager.Users.SingleOrDefaultAsync(x => x.UserName == userUpdateDto.Username.ToLower()).Result ?? null;
+                var user = _userManager.Users.SingleOrDefaultAsync(x => x.UserName == userUpdateDto.UserName.ToLower()).Result ?? null;
                 if (user != null)
                     return await _signInManager.CheckPasswordSignInAsync(user, password, false);
                 throw new InvalidOperationException("Erro ao Consultar usuário");
@@ -67,7 +67,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var user = await _userRepository.GetUserByUserNameAsync(userName);
+                var user = await _userRepository.GetUserByUserNameAsync(userName.ToLower());
                 if (user == null) return null;
                 return _mapper.Map<UserUpdateDto?>(user!);
             }
@@ -81,7 +81,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var user = await _userRepository.GetUserByUserNameAsync(userUpdateDto.Username);
+                var user = await _userRepository.GetUserByUserNameAsync(userUpdateDto.UserName);
                 if (user == null) return null;
 
                 _mapper.Map(userUpdateDto, user);

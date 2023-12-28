@@ -4,7 +4,7 @@
     {
         public required int Id { get; set; }
         public required string Titulo { get; set; }
-        public required string Username { get; set; }
+        public required string UserName { get; set; }
         public required string Nome { get; set; }
         public required string Sobrenome { get; set; }
         public required string Email { get; set; }

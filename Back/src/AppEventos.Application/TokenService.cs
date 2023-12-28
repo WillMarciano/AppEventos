@@ -23,7 +23,7 @@ namespace AppEventos.Application
             _configuration = configuration;
             _userManager = userManager;
             _mapper = mapper;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]!));
         }
 
         public async Task<string> CreateToken(UserUpdateDto userUpdateDto)
@@ -37,7 +37,7 @@ namespace AppEventos.Application
 
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescription = new SecurityTokenDescriptor
             {
