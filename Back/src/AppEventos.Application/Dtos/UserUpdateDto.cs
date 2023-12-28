@@ -2,16 +2,16 @@
 {
     public class UserUpdateDto
     {
-        public required int Id { get; set; }
-        public required string Titulo { get; set; }
-        public required string UserName { get; set; }
-        public required string Nome { get; set; }
-        public required string Sobrenome { get; set; }
-        public required string Email { get; set; }
-        public required string Telefone { get; set; }
-        public required string Funcao { get; set; }
-        public required string Descricao { get; set; }
-        public required string Password { get; set; }
-        public required string Token { get; set; }
+        public int Id { get; set; }
+        public string? Titulo { get; set; }
+        public string? UserName { get; set; }
+        public string? Nome { get; set; }
+        public string? Sobrenome { get; set; }
+        public string? Email { get; set; }
+        public string? Telefone { get; set; }
+        public string? Funcao { get; set; }
+        public string? Descricao { get; set; }
+        public string? Password { get; set; }
+        public string? Token { get; set; }
     }
 }

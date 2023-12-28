@@ -22,8 +22,12 @@ namespace AppEventos.API.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet("GetUser")]
-        public async Task<IActionResult> GetUser()
+        /// <summary>
+        /// Busca usuário
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Buscar")]
+        public async Task<IActionResult> BuscarUsuario()
         {
             try
             {
@@ -38,6 +42,11 @@ namespace AppEventos.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Efetua Login
+        /// </summary>
+        /// <param name="userLogin"></param>
+        /// <returns></returns>
         [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLogin)
@@ -61,10 +70,15 @@ namespace AppEventos.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
+                    $"{errorResponse.Replace("*", "realizar login")}: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Registra usuário
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         [HttpPost("Registrar")]
         [AllowAnonymous]
         public async Task<IActionResult> Registrar(UserDto usuario)
@@ -84,6 +98,33 @@ namespace AppEventos.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     $"{errorResponse.Replace("*", "registrar")}: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Atualizar Usuário
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        [HttpPut("Atualizar")]
+        public async Task<IActionResult> AtualizarUsuario(UserUpdateDto usuario)
+        {
+            try
+            {
+                var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
+                if (user == null) return Unauthorized("Usuário inválido");
+
+
+                var userReturn = await _accountService.UpdateAccount(usuario);
+                if (userReturn == null) return NoContent();
+
+                return Ok(userReturn);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
             }
         }
     }
