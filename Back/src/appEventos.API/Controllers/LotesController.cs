@@ -1,4 +1,5 @@
-﻿using AppEventos.Application;
+﻿using AppEventos.API.Extensions;
+using AppEventos.Application;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace AppEventos.API.Controllers
         {
             try
             {
-                var evento = await _loteService.SaveLotesAsync(eventoId, models);
+                var evento = await _loteService.SaveLotesAsync(User.GetUserId(),eventoId, models);
                 return evento == null ? NoContent() : Ok(evento);
             }
             catch (Exception ex)

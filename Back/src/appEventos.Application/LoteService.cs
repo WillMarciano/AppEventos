@@ -68,11 +68,11 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<LoteDto[]?> SaveLotesAsync(int eventoId, LoteDto[] models)
+        public async Task<LoteDto[]?> SaveLotesAsync(int userId, int eventoId, LoteDto[] models)
         {
             try
             {
-                var evento = await _eventoService.GetEventoByIdAsync(eventoId);               
+                var evento = await _eventoService.GetEventoByIdAsync(userId, eventoId);               
 
                 if (evento == null) 
                     throw new Exception($"Não foi encontrado lote id:{eventoId} para atualização do Evento.");

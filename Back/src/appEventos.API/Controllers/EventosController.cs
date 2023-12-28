@@ -1,9 +1,12 @@
+using AppEventos.API.Extensions;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppEventos.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class EventosController : ControllerBase
@@ -12,11 +15,15 @@ public class EventosController : ControllerBase
     private string pathFile = "";
     private readonly IEventoService _eventoService;
     private readonly IWebHostEnvironment _hostEnvironment;
-    public EventosController(IEventoService eventoService, IWebHostEnvironment hostEnvironment)
+    private readonly IAccountService _accountService;
+    public EventosController(IEventoService eventoService, 
+                             IWebHostEnvironment hostEnvironment, 
+                             IAccountService accountService)
     {
         _eventoService = eventoService;
         _hostEnvironment = hostEnvironment;
         pathFile = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images");
+        _accountService = accountService;
     }
 
     /// <summary>
@@ -24,11 +31,12 @@ public class EventosController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
+
     public async Task<IActionResult> Get()
     {
         try
         {
-            var eventos = await _eventoService.GetAllEventosAsync();
+            var eventos = await _eventoService.GetAllEventosAsync(User.GetUserId());
 
             return eventos == null ? NoContent() : Ok(eventos);
         }
@@ -48,7 +56,7 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.GetEventoByIdAsync(id);
+            var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), id);
             return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
@@ -67,7 +75,7 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.GetAllEventosByTemaAsync(tema);
+            var evento = await _eventoService.GetAllEventosByTemaAsync(User.GetUserId(), tema);
             return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
@@ -86,7 +94,7 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.AddEventos(model);
+            var evento = await _eventoService.AddEventos(User.GetUserId(), model);
             return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
@@ -105,7 +113,7 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.GetEventoByIdAsync(eventoId);
+            var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), eventoId);
             if (evento == null) return NoContent();
 
             var file = Request.Form.Files[0];
@@ -114,7 +122,7 @@ public class EventosController : ControllerBase
                 DeleteImage(evento.ImagemUrl);
                 evento.ImagemUrl = await SaveImage(file);
             }
-            var eventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
+            var eventoRetorno = await _eventoService.UpdateEvento(User.GetUserId(), eventoId, evento);
             return eventoRetorno == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
@@ -162,7 +170,7 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.UpdateEvento(id, model);
+            var evento = await _eventoService.UpdateEvento(User.GetUserId(), id, model);
             return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
@@ -181,10 +189,10 @@ public class EventosController : ControllerBase
     {
         try
         {
-            var evento = await _eventoService.GetEventoByIdAsync(id);
+            var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), id);
             if (evento == null) return NoContent();
 
-            if (await _eventoService.DeleteEvento(id))
+            if (await _eventoService.DeleteEvento(User.GetUserId(), id))
             {
                 if (evento.ImagemUrl != null)
                     DeleteImage(evento.ImagemUrl);
