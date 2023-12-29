@@ -9,8 +9,7 @@ import { environment } from '@environments/environment';
 export class EventoService {
   baseUrl = environment.apiURL + 'api/eventos';
   tokenHeader = new HttpHeaders({
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIzIiwidW5pcXVlX25hbWUiOiJ3aWxsaWFuIiwibmJmIjoxNzAzNzgzNzkwLCJleHAiOjE3MDM4NzAxOTAsImlhdCI6MTcwMzc4Mzc5MH0.OnWcoR1kAViGe9K90Fos7KJXJIEq0qeK0vbuhsKVe6E',
+    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
   });
 
   constructor(private http: HttpClient) {}
@@ -23,26 +22,36 @@ export class EventoService {
 
   public getEventoByTema(tema: string): Observable<Evento[]> {
     return this.http
-      .get<Evento[]>(`${this.baseUrl}/tema/${tema}`, { headers: this.tokenHeader })
+      .get<Evento[]>(`${this.baseUrl}/tema/${tema}`, {
+        headers: this.tokenHeader,
+      })
       .pipe(take(1));
   }
 
   public getEventoById(id: number): Observable<Evento> {
-    return this.http.get<Evento>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader }).pipe(take(1));
+    return this.http
+      .get<Evento>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader })
+      .pipe(take(1));
   }
 
   public post(evento: Evento): Observable<Evento> {
-    return this.http.post<Evento>(this.baseUrl, evento, { headers: this.tokenHeader }).pipe(take(1));
+    return this.http
+      .post<Evento>(this.baseUrl, evento, { headers: this.tokenHeader })
+      .pipe(take(1));
   }
 
   public put(evento: Evento): Observable<Evento> {
     return this.http
-      .put<Evento>(`${this.baseUrl}/${evento.id}`, evento, { headers: this.tokenHeader })
+      .put<Evento>(`${this.baseUrl}/${evento.id}`, evento, {
+        headers: this.tokenHeader,
+      })
       .pipe(take(1));
   }
 
   public deleteEvento(id: number): Observable<any> {
-    return this.http.delete<string>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader }).pipe(take(1));
+    return this.http
+      .delete<string>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader })
+      .pipe(take(1));
   }
 
   postUpload(eventoId: number, file: File): Observable<Evento> {

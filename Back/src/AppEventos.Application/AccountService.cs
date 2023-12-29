@@ -42,7 +42,7 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<UserDto?> CreateAccountAsync(UserDto userDto)
+        public async Task<UserUpdateDto?> CreateAccountAsync(UserDto userDto)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace AppEventos.Application
 
                     var result = await _userManager.CreateAsync(user, userDto.Password);
                     if (result.Succeeded)
-                        return _mapper.Map<UserDto?>(user);
+                        return _mapper.Map<UserUpdateDto?>(user);
                 }
                 return null;
             }

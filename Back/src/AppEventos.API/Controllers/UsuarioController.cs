@@ -1,6 +1,7 @@
 ﻿using AppEventos.API.Extensions;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
+using AppEventos.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -85,11 +86,18 @@ namespace AppEventos.API.Controllers
         {
             try
             {
-                if (await _accountService.UserExists(usuario.Username.ToLower()))
+                if (await _accountService.UserExists(usuario.UserName.ToLower()))
                     return BadRequest("Usuário já existe");
 
-                if (await _accountService.CreateAccountAsync(usuario) != null)
-                    return Ok(usuario);
+                var user = await _accountService.CreateAccountAsync(usuario);
+                if (user != null)
+                    //return Ok(usuario);
+                    return Ok(new
+                    {
+                        username = user.UserName,
+                        Nome = user.Nome,
+                        token = _tokenService.CreateToken(user).Result,
+                    });
 
                 return BadRequest("Usuário não criado, tente novamente mais tarde!");
 
