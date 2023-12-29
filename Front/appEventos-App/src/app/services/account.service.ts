@@ -44,7 +44,7 @@ export class AccountService {
     // this.currentUserSource.complete();
   }
 
-  private setCurrentUser(user: User): void {
+  public setCurrentUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
