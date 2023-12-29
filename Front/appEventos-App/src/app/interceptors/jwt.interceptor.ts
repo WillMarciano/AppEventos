@@ -19,16 +19,17 @@ export class JwtInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     let currentUser: User;
     this.accountService.currentUser$.pipe(take(1)).subscribe({
-      next: (user) => (currentUser = user),
-    });
-
-    if (currentUser) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`,
+      next: (user: User) => {
+        currentUser = user;
+        if (currentUser) {
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${currentUser.token}`,
+            },
+          });
         }
-      });
-    }
+      },
+    });
 
     return next.handle(request);
   }

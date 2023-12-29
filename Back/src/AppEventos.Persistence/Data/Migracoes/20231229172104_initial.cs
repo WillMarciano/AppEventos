@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace appEventos.Repository.Data.Migracoes
 {
     /// <inheritdoc />
-    public partial class UpdateIdentity : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -176,7 +176,7 @@ namespace appEventos.Repository.Data.Migracoes
                     QtdPessoas = table.Column<int>(type: "INTEGER", nullable: false),
                     ImagemUrl = table.Column<string>(type: "TEXT", nullable: true),
                     Telefone = table.Column<string>(type: "TEXT", nullable: true),
-                    UserRoles = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

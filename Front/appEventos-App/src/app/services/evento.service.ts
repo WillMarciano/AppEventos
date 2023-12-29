@@ -8,49 +8,42 @@ import { environment } from '@environments/environment';
 // {  providedIn: 'root'}
 export class EventoService {
   baseUrl = environment.apiURL + 'api/eventos';
-  tokenHeader = new HttpHeaders({
-    Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-  });
 
   constructor(private http: HttpClient) {}
 
   public getEvento(): Observable<Evento[]> {
     return this.http
-      .get<Evento[]>(this.baseUrl, { headers: this.tokenHeader })
+      .get<Evento[]>(this.baseUrl)
       .pipe(take(1));
   }
 
   public getEventoByTema(tema: string): Observable<Evento[]> {
     return this.http
-      .get<Evento[]>(`${this.baseUrl}/tema/${tema}`, {
-        headers: this.tokenHeader,
-      })
+      .get<Evento[]>(`${this.baseUrl}/tema/${tema}`)
       .pipe(take(1));
   }
 
   public getEventoById(id: number): Observable<Evento> {
     return this.http
-      .get<Evento>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader })
+      .get<Evento>(`${this.baseUrl}/${id}`)
       .pipe(take(1));
   }
 
   public post(evento: Evento): Observable<Evento> {
     return this.http
-      .post<Evento>(this.baseUrl, evento, { headers: this.tokenHeader })
+      .post<Evento>(this.baseUrl, evento)
       .pipe(take(1));
   }
 
   public put(evento: Evento): Observable<Evento> {
     return this.http
-      .put<Evento>(`${this.baseUrl}/${evento.id}`, evento, {
-        headers: this.tokenHeader,
-      })
+      .put<Evento>(`${this.baseUrl}/${evento.id}`, evento, )
       .pipe(take(1));
   }
 
   public deleteEvento(id: number): Observable<any> {
     return this.http
-      .delete<string>(`${this.baseUrl}/${id}`, { headers: this.tokenHeader })
+      .delete<string>(`${this.baseUrl}/${id}`)
       .pipe(take(1));
   }
 

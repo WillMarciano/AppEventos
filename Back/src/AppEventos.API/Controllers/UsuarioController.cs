@@ -91,7 +91,6 @@ namespace AppEventos.API.Controllers
 
                 var user = await _accountService.CreateAccountAsync(usuario);
                 if (user != null)
-                    //return Ok(usuario);
                     return Ok(new
                     {
                         username = user.UserName,

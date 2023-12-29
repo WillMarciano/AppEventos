@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace appEventos.Repository.Data.Migracoes
 {
     [DbContext(typeof(AppEventosContext))]
-    [Migration("20231220202151_UpdateIdentity")]
-    partial class UpdateIdentity
+    [Migration("20231229172104_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,6 +156,9 @@ namespace appEventos.Repository.Data.Migracoes
                     b.Property<DateTime?>("DataEvento")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImagemUrl")
                         .HasColumnType("TEXT");
 
@@ -173,9 +176,6 @@ namespace appEventos.Repository.Data.Migracoes
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserRoles")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

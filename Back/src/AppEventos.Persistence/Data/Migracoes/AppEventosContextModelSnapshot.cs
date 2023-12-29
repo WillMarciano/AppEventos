@@ -153,6 +153,9 @@ namespace appEventos.Repository.Data.Migracoes
                     b.Property<DateTime?>("DataEvento")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImagemUrl")
                         .HasColumnType("TEXT");
 
@@ -170,9 +173,6 @@ namespace appEventos.Repository.Data.Migracoes
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserRoles")
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

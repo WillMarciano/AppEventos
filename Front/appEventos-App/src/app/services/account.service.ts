@@ -4,9 +4,7 @@ import { User } from '@app/models/identity/User';
 import { environment } from '@environments/environment';
 import { Observable, ReplaySubject, map, take } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   //Quando usuario sofrer alteração o token da reflesh para a aplicação que a utiliza
