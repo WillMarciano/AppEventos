@@ -14,34 +14,43 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { RegistrarComponent } from './components/usuario/registrar/registrar.component';
-
+import { authGuard } from './guard/auth.guard';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: 'contatos', component: ContatosComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'eventos', redirectTo: 'eventos/lista' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'eventos',
-    component: EventosComponent,
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [authGuard],
     children: [
-      { path: 'detalhe/:id', component: EventoDetalheComponent },
-      { path: 'detalhe', component: EventoDetalheComponent },
-      { path: 'lista', component: EventoListaComponent },
+      { path: 'usuario', redirectTo: 'usuario/perfil' },
+      { path: 'usuario/perfil', component: PerfilComponent },
+      { path: 'eventos', redirectTo: 'eventos/lista' },
+      {
+        path: 'eventos',
+        component: EventosComponent,
+        children: [
+          { path: 'detalhe/:id', component: EventoDetalheComponent },
+          { path: 'detalhe', component: EventoDetalheComponent },
+          { path: 'lista', component: EventoListaComponent },
+        ],
+      },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'palestrantes', component: PalestrantesComponent },
+      { path: 'contatos', component: ContatosComponent },
     ],
   },
-  { path: 'palestrantes', component: PalestrantesComponent },
-
-  { path: 'usuario/perfil', component: PerfilComponent },
   {
     path: 'usuario',
     component: UsuarioComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'registrar', component: RegistrarComponent }     
+      { path: 'registrar', component: RegistrarComponent },
     ],
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

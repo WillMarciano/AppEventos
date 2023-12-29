@@ -39,6 +39,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { HomeComponent } from './components/home/home.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -54,6 +55,7 @@ defineLocale('pt-br', ptBrLocale);
     DateTimeFormatPipe,
     EventoDetalheComponent,
     EventoListaComponent,
+    HomeComponent,
     UsuarioComponent,
     LoginComponent,
     RegistrarComponent,
