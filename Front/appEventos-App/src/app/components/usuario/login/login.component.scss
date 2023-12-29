@@ -2,6 +2,7 @@
 /* BASIC */
 i {
   padding: 15px;
+  margin-top: 20px;
   font-size: 2rem;
 }
 html {
@@ -29,8 +30,6 @@ h2 {
   margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
-
-
 
 /* STRUCTURE */
 
@@ -68,10 +67,7 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
-
-
 /* TABS */
-
 h2.inactive {
   color: #cccccc;
 }
@@ -81,11 +77,41 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
+button{
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 
+button:disabled  {
+  background-color: #c1c0c0;
+}
+
+button:enabled  {
+  background-color: #56baed; 
+}
+
+button:enabled:hover  {
+  background-color: #0890cf; 
+}
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=submit], input[type=reset] button {
   background-color: #56baed;
   border: none;
   color: white;
