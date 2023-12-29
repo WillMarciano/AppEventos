@@ -10,7 +10,10 @@ import { AccountService } from '@app/services/account.service';
 export class NavComponent implements OnInit {
   isCollapsed = true;
 
-  constructor(private router: Router, private accountService: AccountService) {}
+  constructor(
+    public accountService: AccountService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 

@@ -25,20 +25,37 @@
       [isAnimated]="true"
     >
       <ul class="navbar-nav me-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" routerLink="eventos/lista"
-            >Eventos</a
-          >
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="palestrantes">Palestrantes</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="contatos">Contatos</a>
-        </li>
+        <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" aria-current="page" routerLink="eventos/lista"
+              >Eventos</a
+            >
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="palestrantes">Palestrantes</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="contatos">Contatos</a>
+          </li>
+          </ng-container
+        >
       </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown" dropdown>
+      <div
+        *ngIf="(accountService.currentUser$ | async) === null"
+        class="navbar-nav mr-3 d-xs-none d-none d-md-block"
+      >
+        <a class="btn btn-light me-2 border" routerLink="/usuario/login"
+          >Entrar</a
+        >
+        <a class="btn btn-warning" routerLink="/usuario/registrar"
+          >Me Cadastrar</a
+        >
+      </div>
+      <ul
+        *ngIf="(accountService.currentUser$ | async) !== null"
+        class="navbar-nav"
+      >
+        <li class="nav-item dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
           <a
             dropdownToggle
             class="nav-link dropdown-toggle"
@@ -48,7 +65,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Usuário
+            Olá {{user.nome | titlecase}}
           </a>
           <div
             *dropdownMenu
@@ -57,11 +74,7 @@
           >
             <a class="dropdown-item" routerLink="/usuario/perfil"> Perfil </a>
             <div role="separator" class="divider"></div>
-            <a
-              class="dropdown-item"
-              style="cursor: pointer;"
-              (click)="logout()"
-            >
+            <a class="dropdown-item" style="cursor: pointer" (click)="logout()">
               Sair
             </a>
           </div>
