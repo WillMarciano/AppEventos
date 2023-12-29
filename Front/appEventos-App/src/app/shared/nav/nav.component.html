@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-secondary-subtle shadow-sm" *ngIf="showMenu()">
+<nav
+  class="navbar navbar-expand-lg bg-secondary-subtle shadow-sm"
+  *ngIf="showMenu()"
+>
   <div class="container-sm">
     <a class="navbar-brand" routerLink="\dashboard">
       <i class="fa fa-users fa-lg mb-1"></i>
@@ -23,7 +26,9 @@
     >
       <ul class="navbar-nav me-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" routerLink="eventos/lista">Eventos</a>
+          <a class="nav-link" aria-current="page" routerLink="eventos/lista"
+            >Eventos</a
+          >
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="palestrantes">Palestrantes</a>
@@ -37,7 +42,7 @@
           <a
             dropdownToggle
             class="nav-link dropdown-toggle"
-            style="cursor: pointer;"
+            style="cursor: pointer"
             id="navbarDropdownMenuLink"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -52,7 +57,13 @@
           >
             <a class="dropdown-item" routerLink="/usuario/perfil"> Perfil </a>
             <div role="separator" class="divider"></div>
-            <a class="dropdown-item" routerLink="/usuario/login"> Sair </a>
+            <a
+              class="dropdown-item"
+              style="cursor: pointer;"
+              (click)="logout()"
+            >
+              Sair
+            </a>
           </div>
         </li>
       </ul>

@@ -38,10 +38,10 @@ export class AccountService {
     );
   }
 
-  logout():void{
+  logout(): void {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
-    this.currentUserSource.complete();
+    // this.currentUserSource.complete();
   }
 
   private setCurrentUser(user: User): void {
