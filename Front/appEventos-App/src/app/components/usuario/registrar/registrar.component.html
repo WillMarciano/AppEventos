@@ -12,7 +12,7 @@
   </div>
 
   <div class="col-md-6">
-    <form [formGroup]="form" class="p-1">
+    <form [formGroup]="form" class="p-1" (ngSubmit)="register()">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
@@ -68,9 +68,9 @@
           type="text"
           class="form-control"
           [ngClass]="{
-            'is-invalid': f.usuario?.errors && f.usuario?.touched
+            'is-invalid': f.username?.errors && f.username?.touched
           }"
-          formControlName="usuario"
+          formControlName="username"
           autocomplete="username"
           placeholder="Insira o Usuário"
         />
@@ -83,16 +83,16 @@
             type="password"
             class="form-control"
             [ngClass]="{
-              'is-invalid': f.senha?.errors && f.senha?.touched
+              'is-invalid': f.password?.errors && f.password?.touched
             }"
-            formControlName="senha"
+            formControlName="password"
             autocomplete="new-password"
             placeholder="Digite uma Senha"
           />
-          <div *ngIf="f.senha?.hasError('required')" class="invalid-feedback">
+          <div *ngIf="f.password?.hasError('required')" class="invalid-feedback">
             Campo Senha é obrigatório
           </div>
-          <div *ngIf="f.senha?.hasError('minlength')" class="invalid-feedback">
+          <div *ngIf="f.password?.hasError('minlength')" class="invalid-feedback">
             Campo Senha deve ter no mínimo 6 caracteres.
           </div>
         </div>
@@ -103,23 +103,23 @@
             class="form-control"
             [ngClass]="{
               'is-invalid':
-                f.confirmarSenha?.errors && f.confirmarSenha?.touched
+                f.confirmarPassword?.errors && f.confirmarPassword?.touched
             }"
-            formControlName="confirmarSenha"
+            formControlName="confirmarPassword"
             autocomplete="new-password"
             placeholder="Confirme a Senha"
           />
           <div
-            *ngIf="f.confirmarSenha?.hasError('required')"
+            *ngIf="f.confirmarPassword?.hasError('required')"
             class="invalid-feedback"
           >
-            Campo Confirmar Senha é obrigatório
+            Campo Confirmar Password é obrigatório
           </div>
           <div
-          *ngIf="f.confirmarSenha?.hasError('MustMatch')"
+          *ngIf="f.confirmarPassword?.hasError('MustMatch')"
             class="invalid-feedback"
           >
-            Confirmação de senha divergente.
+            Confirmação de password divergente.
           </div>
         </div>
       </div>

@@ -4,9 +4,9 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <i class="fa fa-users mb-1"></i>
+      <i class="fa fa-users"></i>
     </div>
-
+    <h3>Entrar com</h3>
     <!-- Login Form -->
     <form #loginForm="ngForm" (ngSubmit)="login()">
       <input
@@ -27,9 +27,8 @@
         placeholder="Senha"
         required
       >
-      <br>
       <button id="entrar" [disabled]="loginForm.invalid" type="submit" class="fadeIn third" value="Entrar">Entrar</button>
-      <p class="mt-4 mb-2 text-muted fadeIn third">
+      <p class="mt-0 mb-2 text-muted fadeIn third">
         Não tem login? Cadastre-se abaixo
       </p>
       <a

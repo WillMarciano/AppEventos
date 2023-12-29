@@ -89,7 +89,7 @@ namespace AppEventos.API.Controllers
                     return BadRequest("Usuário já existe");
 
                 if (await _accountService.CreateAccountAsync(usuario) != null)
-                    return Ok("Usuário Cadastrado");
+                    return Ok(usuario);
 
                 return BadRequest("Usuário não criado, tente novamente mais tarde!");
 
