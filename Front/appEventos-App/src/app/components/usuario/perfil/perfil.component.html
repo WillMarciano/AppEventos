@@ -1,7 +1,7 @@
-<app-titulo [titulo]="'Perfil'"></app-titulo>
-<div class="card rounded shadow mb-3">
-  <form [formGroup]="form" class="p-3">
-    <div class="row">
+<app-titulo [titulo]="'Perfil'" [iconClass]="'fa fa-address-card'"></app-titulo>
+<div class="card rounded shadow-sm">
+  <form [formGroup]="form">
+    <div class="row p-3">
       <div class="col text-center">
         <div class="card">
           <div class="card-header"></div>
@@ -72,7 +72,6 @@
                   'is-invalid': f.nome?.errors && f.nome?.touched
                 }"
                 formControlName="nome"
-                autocomplete="name"
                 placeholder="Insira o nome"
               />
               <div class="invalid-feedback">Campo Nome é obrigatório</div>
@@ -166,35 +165,35 @@
                 type="password"
                 class="form-control"
                 [ngClass]="{
-                  'is-invalid': f.senha?.errors && f.senha?.touched
+                  'is-invalid': f.password?.errors && f.password?.touched
                 }"
-                formControlName="senha"
+                formControlName="password"
                 autocomplete="new-password"
                 placeholder="Digite uma Senha"
               />
               <div
-                *ngIf="f.senha?.hasError('required')"
+                *ngIf="f.password?.hasError('required')"
                 class="invalid-feedback"
               >
                 Campo Senha é obrigatório
               </div>
               <div
-                *ngIf="f.senha?.hasError('minlength')"
+                *ngIf="f.password?.hasError('minlength')"
                 class="invalid-feedback"
               >
-                Campo Senha deve ter no mínimo 6 caracteres.
+                Campo Senha deve ter no mínimo 4 caracteres.
               </div>
             </div>
-            <div class="col">
+            <div class="form-group col">
               <label>Confirmar Senha</label>
               <input
                 type="password"
+                formControlName="confirmarPassword"
                 class="form-control"
                 [ngClass]="{
                   'is-invalid':
-                    f.confirmarSenha?.errors && f.confirmarSenha?.touched
+                    f.confirmarPassword.errors && f.confirmarPassword?.touched
                 }"
-                formControlName="confirmarSenha"
                 autocomplete="new-password"
                 placeholder="Confirme a Senha"
               />
@@ -205,7 +204,7 @@
                 Campo Confirmar Senha é obrigatório
               </div>
               <div
-                *ngIf="f.confirmarSenha?.hasError('MustMatch')"
+                *ngIf="f.confirmarPassword?.hasError('MustMatch')"
                 class="invalid-feedback"
               >
                 Confirmação de senha divergente.
@@ -228,7 +227,7 @@
           </button>
         </div>
         <div class="col text-end">
-          <button class="btn btn-success">
+          <button class="btn btn-success" [disabled]="!form.valid">
             <!-- <span class="spinner-border spinner-border-sm"></span> -->
             Salvar Alteração
           </button>
