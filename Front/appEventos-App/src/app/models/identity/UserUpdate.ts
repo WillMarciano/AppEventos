@@ -4,7 +4,7 @@ export class UserUpdate {
   nome: string;
   sobrenome: string;
   email: string;
-  telefone: string;
+  phoneNumber: string;
   funcao: string;
   descricao: string;
   password: string;

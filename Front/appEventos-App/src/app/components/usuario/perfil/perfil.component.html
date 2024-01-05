@@ -1,42 +1,41 @@
 <app-titulo [titulo]="'Perfil'" [iconClass]="'fa fa-address-card'"></app-titulo>
 <div class="card rounded shadow-sm">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row p-3">
-      <div class="col text-center">
+      <div class="col-lg-3">
         <div class="card">
           <div class="card-header"></div>
           <div class="card-body">
-            <a>
-              <img
-                src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-                name="aboutme"
-                width="120"
-                height="120"
-                class="rounded-circle"
-                id="profile"
-                alt="fotoPerfil"
-              />
-            </a>
-            <h4 class="card-title">UserName</h4>
-            <div class="h7 text-bold pb-1 tex">
-              <b>Nome:</b> Miracles Lee Cross
+            <div class="text-center">
+              <a>
+                <img 
+                  src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                  name="aboutme"
+                  width="120"
+                  height="120"
+                  class="rounded-circle"
+                  id="profile"
+                  alt="fotoPerfil"
+                />
+              </a>
             </div>
-            <p class="card-text">
-              Developer of web applications,
-              <br />JavaScript, PHP, Java, Python, <br />Ruby, Java, Node.js,
-              etc.
-            </p>
+
+            <div class="h6 mb-6 text-center">&#64;{{ f.userName.value}}</div>
+            <div class="h7 text-bold pb-1"><b>Nome:</b> {{f.nome.value + ' ' + f.sobrenome.value}}</div>
+            <div class="h8 ">
+              <b>Descrição:</b> {{f.descricao.value}}
+            </div>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <div class="row text-muted">
                 <div class="col-6 text-center border-right">
-                  <div class="h5">1342</div>
-                  <div class="h6 text-muted">Eventos Ministrados</div>
+                  <div class="h5">0</div>
+                  <div class="h6 text-muted">Meus Eventos Criados</div>
                 </div>
                 <div class="col-6 text-center">
-                  <div class="h5">1342</div>
-                  <div class="h6 text-muted">Eventos Participados</div>
+                  <div class="h5">0</div>
+                  <div class="h6 text-muted">Eventos como Participante</div>
                 </div>
               </div>
             </li>
@@ -52,15 +51,15 @@
           <div class="row">
             <div class="col-sm-3">
               <label>Título</label>
-              <select class="form-select">
-                <option value="0" selected>Não Informado</option>
-                <option value="Senhorita">Tecnólogo(a)</option>
-                <option value="Senhorita">Bacharel</option>
-                <option value="Senhorita">Especialista</option>
-                <option value="Senhorita">Pós Graduado(a)</option>
-                <option value="Senhorita">Mestre</option>
-                <option value="Senhorita">Doutor(a)</option>
-                <option value="Senhorita">Pós Doutorado</option>
+              <select class="form-select" formControlName="titulo">
+                <option value="NaoInformado" selected>Não Informado</option>
+                <option value="Tecnologo">Tecnólogo(a)</option>
+                <option value="Bacharel">Bacharel</option>
+                <option value="Especialista">Especialista</option>
+                <option value="PosGraduado">Pós Graduado(a)</option>
+                <option value="Mestrado">Mestrado</option>
+                <option value="Doutorado">Doutor(a)</option>
+                <option value="PosDoutorado">Pós Doutorado</option>
               </select>
             </div>
             <div class="col-sm">
@@ -120,16 +119,17 @@
                 type="text"
                 class="form-control"
                 [ngClass]="{
-                  'is-invalid': f.telefone?.errors && f.telefone?.touched
+                  'is-invalid': f.phoneNumber?.errors && f.phoneNumber?.touched
                 }"
-                formControlName="telefone"
+                formControlName="phoneNumber"
                 placeholder="Insira o telefone"
               />
               <div class="invalid-feedback">Campo telefone é obrigatório</div>
             </div>
             <div class="col-sm-3">
               <label>Função</label>
-              <select class="form-select">
+              <select class="form-select" formControlName="funcao">
+                <option value="NaoInformado">Não Informado</option>
                 <option value="Participante">Participante</option>
                 <option value="Palestrante">Palestrante</option>
               </select>
@@ -138,7 +138,8 @@
           <div class="row">
             <div class="col-sm">
               <label>Descrição</label>
-              <input
+              <textarea
+              rows="3"
                 type="text"
                 autocomplete="off"
                 class="form-control"
@@ -148,7 +149,7 @@
                 formControlName="descricao"
                 autocomplete="additional-name"
                 placeholder="Insira uma descricao"
-              />
+              ></textarea>
               <div class="invalid-feedback">Campo descricao é obrigatório</div>
             </div>
           </div>
@@ -214,25 +215,25 @@
         </div>
       </div>
     </div>
-  </form>
-  <div class="card-footer">
-    <div class="col-lg-12">
-      <div class="row">
-        <div class="col">
-          <button
-            class="btn btn-outline-secondary border"
-            (click)="resetForm($event)"
-          >
-            Cancelar Alteração
-          </button>
-        </div>
-        <div class="col text-end">
-          <button class="btn btn-success" [disabled]="!form.valid">
-            <!-- <span class="spinner-border spinner-border-sm"></span> -->
-            Salvar Alteração
-          </button>
+    <div class="card-footer">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col">
+            <button
+              class="btn btn-outline-secondary border"
+              (click)="resetForm($event)"
+            >
+              Cancelar Alteração
+            </button>
+          </div>
+          <div class="col text-end">
+            <button class="btn btn-success" type="submit">
+              <!-- <span class="spinner-border spinner-border-sm"></span> -->
+              Salvar Alteração
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>

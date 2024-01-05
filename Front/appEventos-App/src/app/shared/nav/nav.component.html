@@ -3,7 +3,7 @@
   *ngIf="showMenu()"
 >
   <div class="container-sm">
-    <a class="navbar-brand" routerLink="\dashboard">
+    <a class="navbar-brand" routerLink="\home">
       <i class="fa fa-users fa-lg mb-1"></i>
     </a>
     <button
@@ -26,6 +26,11 @@
     >
       <ul class="navbar-nav me-auto">
         <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" aria-current="page" routerLink="dashboard"
+              >Dashboard</a
+            >
+          </li>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" aria-current="page" routerLink="eventos/lista"
               >Eventos</a
@@ -69,7 +74,7 @@
           </a>
           <div
             *dropdownMenu
-            class="dropdown-menu"
+            class="dropdown-menu dropdown-menu-right"
             aria-labelledby="navbarDropdownMenuLink"
           >
             <a class="dropdown-item" routerLink="/usuario/perfil"> Perfil </a>

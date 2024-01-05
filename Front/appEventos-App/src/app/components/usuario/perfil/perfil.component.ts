@@ -18,6 +18,7 @@ import { UserUpdate } from '@app/models/identity/UserUpdate';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
+  [x: string]: any;
   userUpdate = {} as UserUpdate;
   form: FormGroup;
 
@@ -38,6 +39,28 @@ export class PerfilComponent implements OnInit {
     this.CarregarUsuario();
   }
 
+
+
+  private CarregarUsuario(): void {
+    this.spinner.show();
+    this.accountService
+      .getUser()
+      .subscribe({
+        next: (userRetorno: UserUpdate) => {
+          console.log(userRetorno);
+          this.userUpdate = userRetorno;
+          this.form.patchValue(this.userUpdate);
+          // this.toastr.success('Usuário Carregado', 'Sucesso');
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.toastr.error('Erro ao tentar carregar Usuário', 'Erro');
+          this.router.navigate(['/dashboard']);
+        },
+      })
+      .add(() => this.spinner.hide());
+  }
+
   public validation(): void {
     const formOptions: AbstractControlOptions = {
       validators: ValidatorField.MustMatch('password', 'confirmarPassword'),
@@ -50,7 +73,7 @@ export class PerfilComponent implements OnInit {
         nome: ['', Validators.required],
         sobrenome: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        telefone: ['', [Validators.required]],
+        phoneNumber: ['', [Validators.required]],
         descricao: ['', Validators.required],
         funcao: ['NaoInformado', Validators.required],
         password: ['', [Validators.minLength(4), Validators.nullValidator]],
@@ -62,9 +85,26 @@ export class PerfilComponent implements OnInit {
 
   onSubmit(): void {
     // Vai parar aqui se o form estiver inválido
-    if (this.form.invalid) {
-      return;
-    }
+    // if (this.form.invalid) return;
+    this.atualizarUsuario();
+  }
+
+  public atualizarUsuario() {
+    this.userUpdate = { ...this.form.value };
+    this.spinner.show();
+
+    this.accountService
+      .updateUser(this.userUpdate)
+      .subscribe({
+        next: () => {
+          this.toastr.success('Usuário atualizado', 'Sucesso');
+        },
+        error: (error: any) => {
+          this.toastr.error(error.error);
+          console.error(error);
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   resetForm(event: any): void {

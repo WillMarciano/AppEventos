@@ -118,6 +118,8 @@ namespace AppEventos.API.Controllers
         {
             try
             {
+                if (usuario.UserName != User.GetUserName()) return Unauthorized("Usuário inválido");
+
                 var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
                 if (user == null) return Unauthorized("Usuário inválido");
 
@@ -125,7 +127,12 @@ namespace AppEventos.API.Controllers
                 var userReturn = await _accountService.UpdateAccount(usuario);
                 if (userReturn == null) return NoContent();
 
-                return Ok(userReturn);
+                return Ok(new
+                {
+                    username = userReturn.UserName,
+                    Nome = userReturn.Nome,
+                    token = _tokenService.CreateToken(userReturn).Result,
+                });
 
             }
             catch (Exception ex)
