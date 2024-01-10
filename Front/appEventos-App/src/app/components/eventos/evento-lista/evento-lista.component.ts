@@ -7,6 +7,7 @@ import { Evento } from '@app/models/Evento';
 import { Router } from '@angular/router';
 import { Lote } from '@app/models/Lote';
 import { environment } from '@environments/environment';
+import { Pagination } from '@app/models/Pagination';
 
 @Component({
   selector: 'app-evento-lista',
@@ -19,6 +20,7 @@ export class EventoListaComponent {
   public lotes: Lote[] = [];
   public eventosFiltrados: Evento[] = [];
   public eventoId = 0;
+  public pagination = {} as Pagination;
 
   public larguraImagem = 150;
   public margemImagem = 2;
@@ -84,11 +86,13 @@ export class EventoListaComponent {
     };
     this.eventoService.getEvento().subscribe(observer);
   }
+
   openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
     event.stopPropagation();
     this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
+
   confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
@@ -121,5 +125,9 @@ export class EventoListaComponent {
 
   detalheEvento(id: number): void {
     this.router.navigate([`eventos/detalhe/${id}`]);
+  }
+
+  public pageChanged($event):void{
+
   }
 }
