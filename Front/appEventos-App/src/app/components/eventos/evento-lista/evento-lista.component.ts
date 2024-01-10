@@ -7,7 +7,7 @@ import { Evento } from '@app/models/Evento';
 import { Router } from '@angular/router';
 import { Lote } from '@app/models/Lote';
 import { environment } from '@environments/environment';
-import { Pagination } from '@app/models/Pagination';
+import { PaginatedResult, Pagination } from '@app/models/Pagination';
 
 @Component({
   selector: 'app-evento-lista',
@@ -56,12 +56,13 @@ export class EventoListaComponent {
   ) {}
 
   public ngOnInit(): void {
+    this.pagination = {
+      currentPage: 1,
+      itemsPerPage: 3,
+      totalItems: 1,
+    } as Pagination;
     this.spinner.show();
     this.carregarEventos();
-    // setTimeout(() => {
-    //   /** spinner ends after 5 seconds */
-    // this.spinner.hide();
-    // }, 1000);
   }
 
   public alterImage(): void {
@@ -69,14 +70,19 @@ export class EventoListaComponent {
   }
 
   public mostraImagem(imagemUrl: string): string {
-    return (imagemUrl !== '' ) ? `${environment.apiURL}resources/images/${imagemUrl}` : 'assets/img/semImagem.png'
+    return imagemUrl !== ''
+      ? `${environment.apiURL}resources/images/${imagemUrl}`
+      : 'assets/img/semImagem.png';
   }
 
   public carregarEventos(): void {
+    this.spinner.show();
+
     const observer = {
-      next: (_eventos: Evento[]) => {
-        this.eventos = _eventos;
+      next: (paginatedResult: PaginatedResult<Evento[]>) => {
+        this.eventos = paginatedResult.result;
         this.eventosFiltrados = this.eventos;
+        this.pagination = paginatedResult.pagination;
       },
       error: (error: any) => {
         this.spinner.hide();
@@ -84,7 +90,7 @@ export class EventoListaComponent {
       },
       complete: () => this.spinner.hide(),
     };
-    this.eventoService.getEvento().subscribe(observer);
+    this.eventoService.getEvento(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe(observer);
   }
 
   openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
@@ -127,7 +133,5 @@ export class EventoListaComponent {
     this.router.navigate([`eventos/detalhe/${id}`]);
   }
 
-  public pageChanged($event):void{
-
-  }
+  public pageChanged($event): void {}
 }
