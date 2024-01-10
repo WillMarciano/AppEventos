@@ -14,7 +14,8 @@ export class EventoService {
 
   public getEvento(
     page?: number,
-    itemsPerPage?: number
+    itemsPerPage?: number,
+    term?: string
   ): Observable<PaginatedResult<Evento[]>> {
     const paginatedResult: PaginatedResult<Evento[]> = new PaginatedResult<Evento[]>();
     let params = new HttpParams();
@@ -23,6 +24,9 @@ export class EventoService {
       params = params.append('pageNumber', page.toString());
       params = params.append('pageSize', itemsPerPage.toString());
     }
+
+    if(term != null && term != '')
+      params = params.append('term', term);
 
     return this.http
       .get<Evento[]>(this.baseUrl, { observe: 'response', params })

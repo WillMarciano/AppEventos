@@ -18,33 +18,27 @@ export class EventoListaComponent {
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public lotes: Lote[] = [];
-  public eventosFiltrados: Evento[] = [];
   public eventoId = 0;
   public pagination = {} as Pagination;
 
   public larguraImagem = 150;
   public margemImagem = 2;
   public exibirImagem = true;
-  private filtroListado = '';
 
-  public get filtroLista(): string {
-    return this.filtroListado;
-  }
-
-  public set filtroLista(value: string) {
-    this.filtroListado = value;
-    this.eventosFiltrados = this.filtroLista
-      ? this.filtrarEventos(this.filtroLista)
-      : this.eventos;
-  }
-
-  public filtrarEventos(filtrarPor: string): Evento[] {
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.eventos.filter(
-      (evento: { tema: string; local: string }) =>
-        evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    );
+  public filtrarEventos(evt: any): void {
+    this.eventoService
+      .getEvento(this.pagination.currentPage, this.pagination.itemsPerPage, evt.value)
+      .subscribe({
+        next: (paginatedResult: PaginatedResult<Evento[]>) => {
+          this.eventos = paginatedResult.result;
+          this.pagination = paginatedResult.pagination;
+        },
+        error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   constructor(
@@ -83,10 +77,9 @@ export class EventoListaComponent {
       .subscribe({
         next: (paginatedResult: PaginatedResult<Evento[]>) => {
           this.eventos = paginatedResult.result;
-          this.eventosFiltrados = this.eventos;
           this.pagination = paginatedResult.pagination;
         },
-        error: (error: any) => {
+        error: () => {
           this.spinner.hide();
           this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
         },
