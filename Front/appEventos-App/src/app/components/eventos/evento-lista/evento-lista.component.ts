@@ -78,19 +78,20 @@ export class EventoListaComponent {
   public carregarEventos(): void {
     this.spinner.show();
 
-    const observer = {
-      next: (paginatedResult: PaginatedResult<Evento[]>) => {
-        this.eventos = paginatedResult.result;
-        this.eventosFiltrados = this.eventos;
-        this.pagination = paginatedResult.pagination;
-      },
-      error: (error: any) => {
-        this.spinner.hide();
-        this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
-      },
-      complete: () => this.spinner.hide(),
-    };
-    this.eventoService.getEvento(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe(observer);
+    this.eventoService
+      .getEvento(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .subscribe({
+        next: (paginatedResult: PaginatedResult<Evento[]>) => {
+          this.eventos = paginatedResult.result;
+          this.eventosFiltrados = this.eventos;
+          this.pagination = paginatedResult.pagination;
+        },
+        error: (error: any) => {
+          this.spinner.hide();
+          this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 
   openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
@@ -133,5 +134,8 @@ export class EventoListaComponent {
     this.router.navigate([`eventos/detalhe/${id}`]);
   }
 
-  public pageChanged($event): void {}
+  public pageChanged(event): void {
+    this.pagination.currentPage = event.page;
+    this.carregarEventos();
+  }
 }
