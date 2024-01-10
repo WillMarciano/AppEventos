@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Lote } from '@app/models/Lote';
 import { environment } from '@environments/environment';
 import { PaginatedResult, Pagination } from '@app/models/Pagination';
+import { Subject, debounce, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-evento-lista',
@@ -25,20 +26,35 @@ export class EventoListaComponent {
   public margemImagem = 2;
   public exibirImagem = true;
 
+  termoBuscaChanged: Subject<string> = new Subject<string>();
+
   public filtrarEventos(evt: any): void {
-    this.eventoService
-      .getEvento(this.pagination.currentPage, this.pagination.itemsPerPage, evt.value)
-      .subscribe({
-        next: (paginatedResult: PaginatedResult<Evento[]>) => {
-          this.eventos = paginatedResult.result;
-          this.pagination = paginatedResult.pagination;
-        },
-        error: (error: any) => {
-          this.spinner.hide();
-          this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
-        },
-      })
-      .add(() => this.spinner.hide());
+
+    if (this.termoBuscaChanged.observers.length === 0) {
+      this.termoBuscaChanged
+        .pipe(debounceTime(1000))
+        .subscribe((filtrarPor) => {
+          this.spinner.show();
+          this.eventoService
+            .getEvento(
+              this.pagination.currentPage,
+              this.pagination.itemsPerPage,
+              filtrarPor
+            )
+            .subscribe({
+              next: (paginatedResult: PaginatedResult<Evento[]>) => {
+                this.eventos = paginatedResult.result;
+                this.pagination = paginatedResult.pagination;
+              },
+              error: (error: any) => {
+                this.spinner.hide();
+                this.toastr.error('Erro ao carregar os Eventos.', 'Erro');
+              },
+            })
+            .add(() => this.spinner.hide());
+        });
+    }
+    this.termoBuscaChanged.next(evt.value);
   }
 
   constructor(
