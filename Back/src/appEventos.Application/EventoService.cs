@@ -2,6 +2,7 @@
 using AppEventos.Application.Interfaces;
 using AppEventos.Domain.Models;
 using AppEventos.Repository.Interfaces;
+using AppEventos.Repository.Models;
 using AutoMapper;
 
 namespace AppEventos.Application
@@ -77,25 +78,12 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<EventoDto[]?> GetAllEventosAsync(int userId, bool includePalestrantes = false)
+        public async Task<PageList<EventoDto>?> GetAllEventosAsync(int userId, PageParams pageParams, bool includePalestrantes = false)
         {
             try
             {
-                var eventos = await _eventoRepository.GetAllEventosAsync(userId, includePalestrantes);
-                return eventos == null ? null : _mapper.Map<EventoDto[]?>(eventos);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<EventoDto[]?> GetAllEventosByTemaAsync(int userId, string tema, bool includePalestrantes = false)
-        {
-            try
-            {
-                var eventos = await _eventoRepository.GetAllEventosByTemaAsync(userId, tema, includePalestrantes);
-                return eventos == null ? null : _mapper.Map<EventoDto[]?>(eventos);
+                var eventos = await _eventoRepository.GetAllEventosAsync(userId, pageParams, includePalestrantes);
+                return eventos == null ? null : _mapper.Map<PageList<EventoDto>>(eventos);
             }
             catch (Exception ex)
             {
