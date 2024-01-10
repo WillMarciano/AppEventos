@@ -16,6 +16,6 @@
             }
         }
 
-        public  string Term { get; set; }
+        public  string? Term { get; set; } = string.Empty;
     }
 }

@@ -19,9 +19,9 @@ namespace AppEventos.Repository
                              .ThenInclude(pe => pe.Palestrante);
 
             if (!string.IsNullOrEmpty(pageParams.Term))
-                            return query.AsNoTracking()
-                            .Where(e => e.Tema!.ToLower().Contains(pageParams.Term.ToLower()) && e.UserId == userId)
-                            .OrderBy(e => e.Id);
+                return query.AsNoTracking()
+                .Where(e => e.Tema!.ToLower().Contains(pageParams.Term.ToLower()) && e.UserId == userId)
+                .OrderBy(e => e.Id);
 
             return query.AsNoTracking()
                          .Where(x => x.UserId == userId)

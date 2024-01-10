@@ -1,6 +1,7 @@
 using AppEventos.API.Extensions;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
+using AppEventos.Repository.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,11 +33,11 @@ public class EventosController : ControllerBase
     /// <returns></returns>
     [HttpGet]
 
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
     {
         try
         {
-            var eventos = await _eventoService.GetAllEventosAsync(User.GetUserId());
+            var eventos = await _eventoService.GetAllEventosAsync(User.GetUserId(), pageParams);
 
             return eventos == null ? NoContent() : Ok(eventos);
         }
@@ -57,25 +58,6 @@ public class EventosController : ControllerBase
         try
         {
             var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), id);
-            return evento == null ? NoContent() : Ok(evento);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
-        }
-    }
-
-    /// <summary>
-    /// Retorna Evento por Tema
-    /// </summary>
-    /// <param name="tema"></param>
-    /// <returns></returns>
-    [HttpGet("tema/{tema}")]
-    public async Task<IActionResult> GetByTema(string tema)
-    {
-        try
-        {
-            var evento = await _eventoService.GetAllEventosByTemaAsync(User.GetUserId(), tema);
             return evento == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)

@@ -83,7 +83,17 @@ namespace AppEventos.Application
             try
             {
                 var eventos = await _eventoRepository.GetAllEventosAsync(userId, pageParams, includePalestrantes);
-                return eventos == null ? null : _mapper.Map<PageList<EventoDto>>(eventos);
+                if (eventos == null) return null;
+
+                var resultado = new PageList<EventoDto>()
+                {
+                    CurrentPage = eventos.CurrentPage,
+                    TotalPages = eventos.TotalPages,
+                    PageSize = eventos.PageSize,
+                    TotalCount = eventos.TotalCount
+                };
+                resultado.AddRange(_mapper.Map<PageList<EventoDto>>(eventos));
+                return resultado;
             }
             catch (Exception ex)
             {
