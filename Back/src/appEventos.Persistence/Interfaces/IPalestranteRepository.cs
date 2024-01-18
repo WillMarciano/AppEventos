@@ -6,6 +6,6 @@ namespace AppEventos.Repository.Interfaces
     public interface IPalestranteRepository : IGeralRepository
     {
         Task<PageList<Palestrante>?> GetAllPalestrantesAsync(PageParams pageParam, bool includeEventos = false);
-        Task<Palestrante?> GetPalestranteByIdAsync(int userId, bool includeEventos = false);
+        Task<Palestrante?> GetPalestranteByUserIdAsync(int userId, bool includeEventos = false);
     }
 }

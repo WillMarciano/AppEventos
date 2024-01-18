@@ -28,7 +28,8 @@ namespace AppEventos.Repository
                                       p.User.Sobrenome.ToLower().Contains(pageParams.Term!.ToLower())) &&
                                       p.User!.Funcao == Domain.Enum.Funcao.Palestrante)
                 .OrderBy(p => p.Id)
-                .AsQueryable();
+                .AsQueryable()
+                .AsNoTracking();
                 
             return query;
         }
@@ -38,8 +39,8 @@ namespace AppEventos.Repository
             return await PageList<Palestrante>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
-        public async Task<Palestrante?> GetPalestranteByIdAsync(int userId, bool includeEventos = false)
-            => await FilterQueryPalestrante(new PageParams(), includeEventos).Where(e => e.Id == userId).FirstOrDefaultAsync();
+        public async Task<Palestrante?> GetPalestranteByUserIdAsync(int userId, bool includeEventos = false)
+            => await FilterQueryPalestrante(new PageParams(), includeEventos).Where(e => e.UserId == userId).FirstOrDefaultAsync();
 
     }
 }
