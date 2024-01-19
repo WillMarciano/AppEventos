@@ -8,7 +8,7 @@ namespace AppEventos.Repository
 {
     public class EventoRepository : GeralRepository, IEventoRepository
     {
-        public readonly AppEventosContext _context;
+        public new readonly AppEventosContext _context;
         public EventoRepository(AppEventosContext context) : base(context) => _context = context;
         private IQueryable<Evento> FilterQueryEvento(int userId, bool includePalestrantes, PageParams pageParams)
         {
