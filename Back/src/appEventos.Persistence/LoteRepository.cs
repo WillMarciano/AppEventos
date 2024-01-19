@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppEventos.Repository
 {
-    public class LoteRepository : ILoteRepository
+    public class LoteRepository : GeralRepository, ILoteRepository
     {
-        public readonly AppEventosContext _context;
+        public new readonly AppEventosContext _context;
 
-        public LoteRepository(AppEventosContext context) => _context = context;
+        public LoteRepository(AppEventosContext context) : base(context) => _context = context;
         private IQueryable<Lote> FilterQuery(int eventoId)
         {
             IQueryable<Lote> teste = _context.Lotes;

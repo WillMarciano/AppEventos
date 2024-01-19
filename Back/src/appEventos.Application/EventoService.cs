@@ -9,13 +9,11 @@ namespace AppEventos.Application
 {
     public class EventoService : IEventoService
     {
-        private readonly IGeralRepository _geralRepository;
         private readonly IEventoRepository _eventoRepository;
         private readonly IMapper _mapper;
 
-        public EventoService(IGeralRepository geralRepository, IEventoRepository eventoRepository, IMapper mapper)
+        public EventoService(IEventoRepository eventoRepository, IMapper mapper)
         {
-            _geralRepository = geralRepository;
             _eventoRepository = eventoRepository;
             _mapper = mapper;
         }
@@ -27,8 +25,8 @@ namespace AppEventos.Application
                 var evento = _mapper.Map<Evento>(model);
                 evento.UserId = userId;
 
-                _geralRepository.Add<Evento>(evento);
-                if (await _geralRepository.SaveChangesAsync())
+                _eventoRepository.Add<Evento>(evento);
+                if (await _eventoRepository.SaveChangesAsync())
                     return _mapper.Map<EventoDto>(await _eventoRepository.GetEventoByIdAsync(userId, evento.Id, false));
 
                 return null;
@@ -46,8 +44,8 @@ namespace AppEventos.Application
                 var evento = await _eventoRepository.GetEventoByIdAsync(userId, eventoId);
                 if (evento == null) throw new Exception("Não foi possível encontrar evento para remoção.");
 
-                _geralRepository.Delete<Evento>(evento);
-                return await _geralRepository.SaveChangesAsync();
+                _eventoRepository.Delete<Evento>(evento);
+                return await _eventoRepository.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -65,9 +63,9 @@ namespace AppEventos.Application
                 model.Id = evento.Id;
                 model.UserId = userId;
 
-                _geralRepository.Update<Evento>(_mapper.Map(model, evento));
+                _eventoRepository.Update<Evento>(_mapper.Map(model, evento));
 
-                if (await _geralRepository.SaveChangesAsync())
+                if (await _eventoRepository.SaveChangesAsync())
                     return _mapper.Map<EventoDto>(await _eventoRepository.GetEventoByIdAsync(userId, evento.Id, false));
 
                 return null;

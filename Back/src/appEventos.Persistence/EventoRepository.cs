@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppEventos.Repository
 {
-    public class EventoRepository : IEventoRepository
+    public class EventoRepository : GeralRepository, IEventoRepository
     {
         public readonly AppEventosContext _context;
-        public EventoRepository(AppEventosContext context) => _context = context;
+        public EventoRepository(AppEventosContext context) : base(context) => _context = context;
         private IQueryable<Evento> FilterQueryEvento(int userId, bool includePalestrantes, PageParams pageParams)
         {
             IQueryable<Evento> query = _context.Eventos.Include(e => e.Lotes).Include(e => e.RedesSociais);

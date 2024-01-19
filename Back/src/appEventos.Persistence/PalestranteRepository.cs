@@ -38,7 +38,6 @@ namespace AppEventos.Repository
             var query = FilterQueryPalestrante(pageParams, includeEventos);
             return await PageList<Palestrante>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
-
         public async Task<Palestrante?> GetPalestranteByUserIdAsync(int userId, bool includeEventos = false)
             => await FilterQueryPalestrante(new PageParams(), includeEventos).Where(e => e.UserId == userId).FirstOrDefaultAsync();
 
