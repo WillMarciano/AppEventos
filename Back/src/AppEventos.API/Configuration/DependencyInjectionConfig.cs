@@ -15,11 +15,13 @@ namespace AppEventos.API.Configuration
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPalestranteService, PalestranteService>();
+            services.AddScoped<IRedeSocialService, RedeSocialService>();
 
             services.AddScoped<IGeralRepository, GeralRepository>();
             services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<ILoteRepository, LoteRepository>();
             services.AddScoped<IPalestranteRepository, PalestranteRepository>();
+            services.AddScoped<IRedeSocialRepository, RedeSocialRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
     }
