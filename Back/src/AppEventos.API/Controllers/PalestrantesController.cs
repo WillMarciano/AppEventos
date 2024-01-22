@@ -17,8 +17,8 @@ public class PalestrantesController : ControllerBase
     private readonly IPalestranteService _palestranteService;
     private readonly IWebHostEnvironment _hostEnvironment;
     private readonly IAccountService _accountService;
-    public PalestrantesController(IPalestranteService palestranteService, 
-                             IWebHostEnvironment hostEnvironment, 
+    public PalestrantesController(IPalestranteService palestranteService,
+                             IWebHostEnvironment hostEnvironment,
                              IAccountService accountService)
     {
         _palestranteService = palestranteService;
@@ -33,24 +33,24 @@ public class PalestrantesController : ControllerBase
     /// <returns></returns>
     [HttpGet("GetAll")]
 
-    public async Task<IActionResult> GetAll([FromQuery]PageParams pageParams)
+    public async Task<IActionResult> GetAll([FromQuery] PageParams pageParams)
     {
         try
         {
             var palestrantes = await _palestranteService.GetAllPalestrantesAsync(pageParams, true);
 
-            if(palestrantes == null || palestrantes.Count == 0) return NoContent();
+            if (palestrantes == null || palestrantes.Count == 0) return NoContent();
 
-            Response.AddPagination(palestrantes.CurrentPage, 
-                                   palestrantes.PageSize, 
-                                   palestrantes.TotalCount, 
+            Response.AddPagination(palestrantes.CurrentPage,
+                                   palestrantes.PageSize,
+                                   palestrantes.TotalCount,
                                    palestrantes.TotalPages);
 
             return Ok(palestrantes);
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, 
+            return StatusCode(StatusCodes.Status500InternalServerError,
                 $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
         }
     }
@@ -79,12 +79,12 @@ public class PalestrantesController : ControllerBase
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPost("Salvar")]
     public async Task<IActionResult> Post(PalestranteAddDto model)
     {
         try
         {
-            var palestrante = await _palestranteService.GetPalestranteByUserIdAsync(User.GetUserId());
+            var palestrante = await _palestranteService.GetPalestranteByUserIdAsync(User.GetUserId(), false);
             if (palestrante == null)
                 palestrante = await _palestranteService.AddPalestranteAsync(User.GetUserId(), model);
 
@@ -92,7 +92,7 @@ public class PalestrantesController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, 
+            return StatusCode(StatusCodes.Status500InternalServerError,
                 $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
         }
     }
@@ -102,7 +102,7 @@ public class PalestrantesController : ControllerBase
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    [HttpPut("{id}")]
+    [HttpPut("Atualizar/{id}")]
     public async Task<IActionResult> Put(PalestranteUpdateDto model)
     {
         try
@@ -112,7 +112,7 @@ public class PalestrantesController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, 
+            return StatusCode(StatusCodes.Status500InternalServerError,
                 $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
         }
     }

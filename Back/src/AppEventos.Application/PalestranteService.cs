@@ -64,7 +64,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var palestrante = await _palestranteRepository.GetPalestranteByUserIdAsync(userId, false);
+                var palestrante = await _palestranteRepository.GetPalestranteByUserIdAsync(userId, includeEventos);
                 if (palestrante == null) return null;
 
                 return _mapper.Map<PalestranteDto>(palestrante);
@@ -79,7 +79,7 @@ namespace AppEventos.Application
         {
             try
             {
-                var palestrantes = await _palestranteRepository.GetAllPalestrantesAsync(parms);
+                var palestrantes = await _palestranteRepository.GetAllPalestrantesAsync(parms, includeEventos);
                 if (palestrantes == null) return null;
 
                 return _mapper.Map<PageList<PalestranteDto>>(palestrantes);
