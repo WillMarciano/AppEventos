@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wHj81fhtKvPRZ+6TBw+yBwwFp8RpIYeFW06cg9tPlji9sPQzf8ABR17g/3cPVaBrI2uHXstzZ769oQ9sAiZGIg==",
+  "dgSpecHash": "KJS1pTcdPNiSITKHITRCibOrozadecRuWLU1v95ecsHJ1czltcf+DXfn7enYkbF5hfYwuYTYK0CZNdO4+JXmoA==",
   "success": true,
   "projectFilePath": "C:\\Dev\\Udemy\\Fullstack - Angular, Csharp\\AppEventos\\Back\\src\\AppEventos.API\\AppEventos.API.csproj",
   "expectedPackageFiles": [
@@ -131,6 +131,7 @@
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.net.stringtools\\17.7.2\\microsoft.net.stringtools.17.7.2.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\8.0.0\\microsoft.visualstudio.web.codegeneration.8.0.0.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\8.0.0\\microsoft.visualstudio.web.codegeneration.core.8.0.0.nupkg.sha512",
     "C:\\Users\\willi\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.design\\8.0.0\\microsoft.visualstudio.web.codegeneration.design.8.0.0.nupkg.sha512",
