@@ -15,6 +15,7 @@ namespace AppEventos.Repository
         {
             IQueryable<RedeSocial> query = _context.RedesSocials
                                             .Include(p => p.Palestrante)
+                                            .Include(e => e.Evento)
                                             .OrderBy(p => p.Id)
                                             .AsNoTracking();
 

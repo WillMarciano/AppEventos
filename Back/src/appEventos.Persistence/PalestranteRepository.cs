@@ -28,10 +28,10 @@ namespace AppEventos.Repository
                                       p.User.Sobrenome.ToLower().Contains(pageParams.Term!.ToLower())) &&
                                       p.User!.Funcao == Domain.Enum.Funcao.Palestrante)
                 .OrderBy(p => p.Id)
-                .AsQueryable()
-                .AsNoTracking();
+                .AsQueryable();
                 
-            return query;
+                
+            return query.AsNoTracking();
         }
         public async Task<PageList<Palestrante>?> GetAllPalestrantesAsync(PageParams pageParams, bool includeEventos = false)
         {

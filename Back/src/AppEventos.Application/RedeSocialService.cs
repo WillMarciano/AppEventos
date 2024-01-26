@@ -82,7 +82,7 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<bool?> DeleteAsync(int id, int redeSocialId, bool isEvento)
+        public async Task<bool> DeleteAsync(int id, int redeSocialId, bool isEvento)
         {
             try
             {
