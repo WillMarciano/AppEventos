@@ -47,44 +47,20 @@ namespace AppEventos.API.Controllers
         }
 
         /// <summary>
-        /// Salva rede social por Evento
+        /// Salva rede social por Evento ou Palestrante
         /// </summary>
-        /// <param name="eventoId"></param>
+        /// <param name="id"></param>
         /// <param name="models"></param>
+        /// <param name="isEvento"></param>
         /// <returns></returns>
-        [HttpPut("evento/{eventoId}")]
-        public async Task<IActionResult> SaveByEvento(int eventoId, RedeSocialDto[] models)
+        [HttpPut("Salvar/{id}")]
+        public async Task<IActionResult> Salvar(int id, RedeSocialDto[] models, bool isEvento)
         {
             try
             {
-                if (!(await AutorRedeSocial(eventoId, true))) return Unauthorized();
+                if (!(await AutorRedeSocial(id, isEvento))) return Unauthorized();
 
-                var redeSocial = await _redeSocialService.SaveAsync(eventoId, models, true);
-                if (redeSocial == null) return NoContent();
-
-                return Ok(redeSocial);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"{errorResponse.Replace("*", "salvar")}: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Salva rede social por Palestrante
-        /// </summary>
-        /// <param name="models"></param>
-        /// <returns></returns>
-        [HttpPut("palestrante")]
-        public async Task<IActionResult> SaveByPalestrante(RedeSocialDto[] models)
-        {
-            try
-            {
-                var palestrante = await _palestranteService.GetPalestranteByUserIdAsync(User.GetUserId());
-                if (palestrante == null) return Unauthorized();
-
-                var redeSocial = await _redeSocialService.SaveAsync(palestrante.Id, models, false);
+                var redeSocial = await _redeSocialService.SaveAsync(id, models, isEvento);
                 if (redeSocial == null) return NoContent();
 
                 return Ok(redeSocial);
