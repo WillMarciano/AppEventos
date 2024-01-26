@@ -42,7 +42,7 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<RedeSocialDto[]?> GetAllEventosAsync(int id, bool isEvento)
+        public async Task<RedeSocialDto[]?> GetAllRedesSociaisAsync(int id, bool isEvento)
         {
             try
             {
@@ -139,5 +139,7 @@ namespace AppEventos.Application
                 throw new Exception(ex.Message);
             }
         }
+
+
     }
 }

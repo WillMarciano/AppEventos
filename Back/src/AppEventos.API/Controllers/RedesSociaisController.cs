@@ -25,47 +25,23 @@ namespace AppEventos.API.Controllers
             _palestranteService = palestranteService;
         }
         /// <summary>
-        /// Retorna todas redes Sociais por Evento
+        /// Retorna todas redes Sociais por Evento ou Palestrante
         /// </summary>
-        /// <param name="eventoId"></param>
+        /// <param name="id"></param>
+        /// <param name="isEvento"></param>
         /// <returns></returns>
-        [HttpGet("GetAllByEventoId/{eventoId}")]
-        public async Task<IActionResult> GetAllByEventoId(int eventoId)
+        [HttpGet("GetAll/{id}")]
+        public async Task<IActionResult> GetAll(int id, bool isEvento)
         {
             try
             {
-                if (!(await AutorRedeSocial(eventoId, true))) return Unauthorized();
-
-                var redes = await _redeSocialService.GetAllEventosAsync(eventoId, true);
+                if (!(await AutorRedeSocial(id, isEvento))) return Unauthorized();
+                var redes = await _redeSocialService.GetAllRedesSociaisAsync(id, isEvento);
                 return redes == null || redes.Length == 0 ? NoContent() : Ok(redes);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
-                    $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Retorna todas redes Sociais por Palestrante
-        /// </summary>
-        /// <param name="palestranteId"></param>
-        /// <returns></returns>
-        [HttpGet("GetAllByPalestranteId/{palestranteId}")]
-        public async Task<IActionResult> GetAllByPalestranteId(int palestranteId)
-        {
-            try
-            {
-                if (!(await AutorRedeSocial(palestranteId, false))) return Unauthorized();
-
-                var redeSocial = await _redeSocialService.GetAllEventosAsync(palestranteId, false);
-                if (redeSocial == null) return NoContent();
-
-                return Ok(redeSocial);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
             }
         }
@@ -90,7 +66,7 @@ namespace AppEventos.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, 
+                return StatusCode(StatusCodes.Status500InternalServerError,
                     $"{errorResponse.Replace("*", "salvar")}: {ex.Message}");
             }
         }
