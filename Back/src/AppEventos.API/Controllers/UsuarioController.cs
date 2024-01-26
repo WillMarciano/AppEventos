@@ -1,10 +1,9 @@
 ﻿using AppEventos.API.Extensions;
+using AppEventos.API.Helpers;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
-using AppEventos.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace AppEventos.API.Controllers
 {
@@ -16,11 +15,16 @@ namespace AppEventos.API.Controllers
         private const string errorResponse = "Erro ao ao tentar * usuário";
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
+        private readonly IUtil _util;
+        private readonly string _destino = "Images";
 
-        public UsuarioController(IAccountService accountService, ITokenService tokenService)
+        public UsuarioController(IAccountService accountService, 
+                                ITokenService tokenService, 
+                                IUtil util)
         {
             _accountService = accountService;
             _tokenService = tokenService;
+            _util = util;
         }
 
         /// <summary>
@@ -139,6 +143,34 @@ namespace AppEventos.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Salva Imagem do Usuario
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("upload-image")]
+        public async Task<IActionResult> UploadImage()
+        {
+            try
+            {
+                var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
+                if (user == null) return NoContent();
+
+                var file = Request.Form.Files[0];
+                if (file.Length > 0 && user.ImagemUrl != null)
+                {
+                    _util.DeleteImage(user.ImagemUrl, _destino);
+                    user.ImagemUrl = await _util.SaveImage(file, _destino);
+                }
+                var userReturn = await _accountService.UpdateAccount(user);
+                return userReturn == null ? NoContent() : Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"{errorResponse.Replace("*", "Upload de foto do")} {ex.Message}");
             }
         }
     }

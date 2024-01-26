@@ -2,6 +2,7 @@
 using AppEventos.Repository;
 using AppEventos.Application.Interfaces;
 using AppEventos.Application;
+using AppEventos.API.Helpers;
 
 namespace AppEventos.API.Configuration
 {
@@ -16,6 +17,7 @@ namespace AppEventos.API.Configuration
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPalestranteService, PalestranteService>();
             services.AddScoped<IRedeSocialService, RedeSocialService>();
+            services.AddScoped<IUtil, Util>();
 
             services.AddScoped<IGeralRepository, GeralRepository>();
             services.AddScoped<IEventoRepository, EventoRepository>();

@@ -1,4 +1,5 @@
 using AppEventos.API.Extensions;
+using AppEventos.API.Helpers;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
 using AppEventos.Repository.Models;
@@ -13,18 +14,18 @@ namespace AppEventos.API.Controllers;
 public class EventosController : ControllerBase
 {
     private const string errorResponse = "Erro ao ao tentar * evento";
-    private string pathFile = "";
+    private readonly IUtil _util;
     private readonly IEventoService _eventoService;
-    private readonly IWebHostEnvironment _hostEnvironment;
     private readonly IAccountService _accountService;
-    public EventosController(IEventoService eventoService, 
-                             IWebHostEnvironment hostEnvironment, 
-                             IAccountService accountService)
+    private readonly string _destino = "Images";
+
+    public EventosController(IEventoService eventoService,
+                             IAccountService accountService,
+                             IUtil util)
     {
         _eventoService = eventoService;
-        _hostEnvironment = hostEnvironment;
-        pathFile = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images");
         _accountService = accountService;
+        _util = util;
     }
 
     /// <summary>
@@ -33,21 +34,22 @@ public class EventosController : ControllerBase
     /// <returns></returns>
     [HttpGet]
 
-    public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
+    public async Task<IActionResult> Get([FromQuery] PageParams pageParams)
     {
         try
         {
             var eventos = await _eventoService.GetAllEventosAsync(User.GetUserId(), pageParams);
 
             //return eventos == null ? NoContent() : Ok(eventos);
-            if(eventos == null) return NoContent();
+            if (eventos == null) return NoContent();
 
             Response.AddPagination(eventos.CurrentPage, eventos.PageSize, eventos.TotalCount, eventos.TotalPages);
             return Ok(eventos);
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
         }
     }
 
@@ -66,7 +68,8 @@ public class EventosController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "recuperar")}: {ex.Message}");
         }
     }
 
@@ -85,7 +88,8 @@ public class EventosController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
         }
     }
 
@@ -105,44 +109,17 @@ public class EventosController : ControllerBase
             var file = Request.Form.Files[0];
             if (file.Length > 0 && evento.ImagemUrl != null)
             {
-                DeleteImage(evento.ImagemUrl);
-                evento.ImagemUrl = await SaveImage(file);
+                _util.DeleteImage(evento.ImagemUrl, _destino);
+                evento.ImagemUrl = await _util.SaveImage(file, _destino);
             }
             var eventoRetorno = await _eventoService.UpdateEvento(User.GetUserId(), eventoId, evento);
             return eventoRetorno == null ? NoContent() : Ok(evento);
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "adicionar")} {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "Upload de foto do")} {ex.Message}");
         }
-    }
-
-    [NonAction]
-    private void DeleteImage(string imageName)
-    {
-        var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
-        if (System.IO.File.Exists(imagePath))
-            System.IO.File.Delete(imagePath);
-
-    }
-
-    [NonAction]
-    private async Task<string> SaveImage(IFormFile imageFile)
-    {
-        var imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName)
-                                    .Take(10)
-                                    .ToArray())
-                                    .Replace(' ', '-');
-
-        imageName = $"{imageName}{DateTime.UtcNow.ToString("yymssfff")}{Path.GetExtension(imageFile.FileName)}";
-        var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
-
-        using (var fileStream = new FileStream(imagePath, FileMode.Create))
-        {
-            await imageFile.CopyToAsync(fileStream);
-        }
-        return imageName;
-
     }
 
     /// <summary>
@@ -161,7 +138,8 @@ public class EventosController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "atualizar")}: {ex.Message}");
         }
     }
 
@@ -181,7 +159,7 @@ public class EventosController : ControllerBase
             if (await _eventoService.DeleteEvento(User.GetUserId(), id))
             {
                 if (evento.ImagemUrl != null)
-                    DeleteImage(evento.ImagemUrl);
+                    _util.DeleteImage(evento.ImagemUrl, _destino);
                 return Ok(new { message = "Deletado" });
             }
             else
@@ -189,7 +167,8 @@ public class EventosController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, $"{errorResponse.Replace("*", "deletar")} {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, 
+                $"{errorResponse.Replace("*", "deletar")} {ex.Message}");
         }
     }
 }
