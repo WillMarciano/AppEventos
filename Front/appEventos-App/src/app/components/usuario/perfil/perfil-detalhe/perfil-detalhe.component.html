@@ -1,0 +1,192 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="container ">
+    <div class="row mt-3">
+      <h4 class="border-bottom text-muted">Detalhe Perfil</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Título</label>
+        <select class="form-select" formControlName="titulo">
+          <option value="NaoInformado" selected>Não Informado</option>
+          <option value="Tecnologo">Tecnólogo(a)</option>
+          <option value="Bacharel">Bacharel</option>
+          <option value="Especialista">Especialista</option>
+          <option value="PosGraduado">Pós Graduado(a)</option>
+          <option value="Mestrado">Mestrado</option>
+          <option value="Doutorado">Doutor(a)</option>
+          <option value="PosDoutorado">Pós Doutorado</option>
+        </select>
+      </div>
+      <div class="col-sm">
+        <label>Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.nome?.errors && f.nome?.touched
+          }"
+          formControlName="nome"
+          placeholder="Insira o nome"
+        />
+        <div class="invalid-feedback">Campo Nome é obrigatório</div>
+      </div>
+      <div class="col-sm">
+        <label>Sobrenome</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.sobrenome?.errors && f.sobrenome?.touched
+          }"
+          formControlName="sobrenome"
+          autocomplete="additional-name"
+          placeholder="Insira o sobrenome"
+        />
+        <div class="invalid-feedback">Campo Sobrenome é obrigatório</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <label>E-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.email?.errors && f.email?.touched
+          }"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="Insira o email"
+        />
+        <div
+          *ngIf="f.email?.hasError('required')"
+          class="invalid-feedback"
+        >
+          Campo E-mail é obrigatório
+        </div>
+        <div *ngIf="f.email?.hasError('email')" class="invalid-feedback">
+          Informe um E-mail válido.
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <label>Telefone</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.phoneNumber?.errors && f.phoneNumber?.touched
+          }"
+          formControlName="phoneNumber"
+          placeholder="Insira o telefone"
+        />
+        <div class="invalid-feedback">Campo telefone é obrigatório</div>
+      </div>
+      <div class="col-sm-3">
+        <label>Função</label>
+        <select class="form-select" formControlName="funcao">
+          <option value="NaoInformado">Não Informado</option>
+          <option value="Participante">Participante</option>
+          <option value="Palestrante">Palestrante</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <label>Descrição</label>
+        <textarea
+        rows="3"
+          type="text"
+          autocomplete="off"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.descricao?.errors && f.descricao?.touched
+          }"
+          formControlName="descricao"
+          autocomplete="additional-name"
+          placeholder="Insira uma descricao"
+        ></textarea>
+        <div class="invalid-feedback">Campo descricao é obrigatório</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <h3 class="pt-2 border-bottom text-muted">Mudar Senha</h3>
+        <p class="">Caso mude de senha, preencha os campos abaixo:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Senha</label>
+        <input
+          type="password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f.password?.errors && f.password?.touched
+          }"
+          formControlName="password"
+          autocomplete="new-password"
+          placeholder="Digite uma Senha"
+        />
+        <div
+          *ngIf="f.password?.hasError('required')"
+          class="invalid-feedback"
+        >
+          Campo Senha é obrigatório
+        </div>
+        <div
+          *ngIf="f.password?.hasError('minlength')"
+          class="invalid-feedback"
+        >
+          Campo Senha deve ter no mínimo 4 caracteres.
+        </div>
+      </div>
+      <div class="form-group col">
+        <label>Confirmar Senha</label>
+        <input
+          type="password"
+          formControlName="confirmarPassword"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              f.confirmarPassword.errors && f.confirmarPassword?.touched
+          }"
+          autocomplete="new-password"
+          placeholder="Confirme a Senha"
+        />
+        <div
+          *ngIf="f.confirmarSenha?.hasError('required')"
+          class="invalid-feedback"
+        >
+          Campo Confirmar Senha é obrigatório
+        </div>
+        <div
+          *ngIf="f.confirmarPassword?.hasError('MustMatch')"
+          class="invalid-feedback"
+        >
+          Confirmação de senha divergente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="col-lg-12">
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-outline-secondary border"
+            (click)="resetForm($event)"
+          >
+            Cancelar Alteração
+          </button>
+        </div>
+        <div class="col text-end">
+          <button class="btn btn-success" type="submit">
+            <!-- <span class="spinner-border spinner-border-sm"></span> -->
+            Salvar Alteração
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

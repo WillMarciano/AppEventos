@@ -44,6 +44,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
 
 import { JwtModule } from '@auth0/angular-jwt';
+import { PerfilDetalheComponent } from './components/usuario/perfil/perfil-detalhe/perfil-detalhe.component';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -60,6 +61,7 @@ export function tokenGetter() {
     ContatosComponent,
     DashboardComponent,
     PerfilComponent,
+    PerfilDetalheComponent,
     NavComponent,
     TituloComponent,
     DateTimeFormatPipe,
