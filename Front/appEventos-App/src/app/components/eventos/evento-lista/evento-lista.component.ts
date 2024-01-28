@@ -29,7 +29,6 @@ export class EventoListaComponent {
   termoBuscaChanged: Subject<string> = new Subject<string>();
 
   public filtrarEventos(evt: any): void {
-
     if (this.termoBuscaChanged.observers.length === 0) {
       this.termoBuscaChanged
         .pipe(debounceTime(1000))
