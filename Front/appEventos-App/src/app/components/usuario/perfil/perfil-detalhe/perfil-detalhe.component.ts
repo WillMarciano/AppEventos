@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import { UserUpdate } from '@app/models/identity/UserUpdate';
@@ -13,6 +18,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./perfil-detalhe.component.scss'],
 })
 export class PerfilDetalheComponent {
+  @Output() changeFormValue = new EventEmitter();
+
   userUpdate = {} as UserUpdate;
   form: FormGroup;
 
@@ -30,7 +37,8 @@ export class PerfilDetalheComponent {
 
   ngOnInit(): void {
     this.validation();
-    this.CarregarUsuario();
+    this.carregarUsuario();
+    this.verificaForm();
   }
 
   onSubmit(): void {
@@ -39,7 +47,13 @@ export class PerfilDetalheComponent {
     this.atualizarUsuario();
   }
 
-  private CarregarUsuario(): void {
+  private verificaForm(): void {
+    this.form.valueChanges.subscribe((value) => {
+      this.changeFormValue.emit(value);
+    });
+  }
+
+  private carregarUsuario(): void {
     this.spinner.show();
     this.accountService
       .getUser()
