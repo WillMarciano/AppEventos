@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { UserUpdate } from '@app/models/identity/UserUpdate';
+import { AccountService } from '@app/services/account.service';
+import { environment } from '@environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-perfil',
@@ -8,22 +11,58 @@ import { UserUpdate } from '@app/models/identity/UserUpdate';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  usuario = {} as UserUpdate;
-  form: FormGroup;
-
+  public usuario = {} as UserUpdate;
+  public imagemUrl = '';
+  public file: File;
+  
   public get ehPalestrante(): boolean {
     return this.usuario.funcao === 'Palestrante';
   }
 
-  constructor() {}
+  constructor(private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private accountService: AccountService) {}
 
   ngOnInit(): void {}
 
-  public getFormValue(usuario: UserUpdate): void {
+  public setFormValue(usuario: UserUpdate): void {
+    console.log(usuario);
     this.usuario = usuario;
+    console.log(environment.apiURL + 'resources/perfil/' + this.usuario.imagemUrl);
+    console.log(this.usuario.imagemUrl);
+    if (this.usuario.imagemUrl)
+      this.imagemUrl = environment.apiURL + 'resources/perfil/' + this.usuario.imagemUrl;
+      
+    else
+      this.imagemUrl = './assets/img/perfil.png';
+
   }
 
-  get f(): any {
-    return '';
+  public onFileChange(ev: any): void {
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => this.imagemUrl = event.target.result;
+
+    this.file = ev.target.files;
+    reader.readAsDataURL(this.file[0]);
+
+    this.uploadImagem();
+  }
+
+  uploadImagem(): void {
+    this.spinner.show();
+    this.accountService
+      .postUpload(this.file)
+      .subscribe({
+        next: () => {
+          this.toastr.success('Imagem atualizada com sucesso', 'Sucesso');
+        },
+        error: (error: any) => {
+          this.toastr.error('Erro ao fazer Upload de imagem', 'Erro');
+          console.log(error);
+        },
+      })
+      .add(() => this.spinner.hide());
   }
 }
+

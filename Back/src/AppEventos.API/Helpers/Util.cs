@@ -13,9 +13,12 @@ namespace AppEventos.API.Helpers
 
         public void DeleteImage(string imageName, string folderName)
         {
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @$"Resources/{folderName}", imageName);
-            if (System.IO.File.Exists(imagePath))
-                System.IO.File.Delete(imagePath);
+            if(!string.IsNullOrEmpty(imageName))
+            {
+                var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @$"Resources/{folderName}", imageName);
+                if (System.IO.File.Exists(imagePath))
+                    System.IO.File.Delete(imagePath);
+            }
         }
 
         public async Task<string> SaveImage(IFormFile image, string folderName)

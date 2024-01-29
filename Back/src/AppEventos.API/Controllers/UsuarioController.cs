@@ -16,7 +16,7 @@ namespace AppEventos.API.Controllers
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
         private readonly IUtil _util;
-        private readonly string _destino = "Images";
+        private readonly string _destino = "Perfil";
 
         public UsuarioController(IAccountService accountService, 
                                 ITokenService tokenService, 
@@ -159,9 +159,9 @@ namespace AppEventos.API.Controllers
                 if (user == null) return NoContent();
 
                 var file = Request.Form.Files[0];
-                if (file.Length > 0 && user.ImagemUrl != null)
+                if (file.Length > 0)
                 {
-                    _util.DeleteImage(user.ImagemUrl, _destino);
+                    _util.DeleteImage(user.ImagemUrl!, _destino);
                     user.ImagemUrl = await _util.SaveImage(file, _destino);
                 }
                 var userReturn = await _accountService.UpdateAccount(user);

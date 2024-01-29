@@ -49,7 +49,6 @@ import { PerfilDetalheComponent } from './components/usuario/perfil/perfil-detal
 defineLocale('pt-br', ptBrLocale);
 
 export function tokenGetter() {
-  console.log(localStorage.getItem('user'))
   return localStorage.getItem('user');
 }
 

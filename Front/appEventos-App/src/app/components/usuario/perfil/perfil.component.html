@@ -3,19 +3,23 @@
   <div class="row p-3">
     <div class="col-lg-3">
       <div class="card">
-        <div class="card-header"></div>
+        <div class="card-header">
+          <input
+            type="file"
+            #file
+            (change)="onFileChange($event)"
+            style="display: none"
+          />
+        </div>
         <div class="card-body">
           <div class="text-center">
             <a>
               <img
-                src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-                name="aboutme"
-                width="120"
-                height="120"
-                class="rounded-circle"
-                id="profile"
-                alt="fotoPerfil"
-              />
+              [src]="imagemUrl"
+              class="rounded-circle"
+              (click)="file.click()"
+              name="aboutme" width="240" height="240"
+              style="cursor: pointer;">
             </a>
           </div>
 
@@ -47,18 +51,23 @@
         <tab class="border">
           <ng-template tabHeading>
             <i class="fa fa-address-card me-2"></i>
-            <span>Perfil</span></ng-template>
-            <app-perfil-detalhe (changeFormValue)="getFormValue($event)"></app-perfil-detalhe>
+            <span>Perfil</span></ng-template
+          >
+          <app-perfil-detalhe
+            (changeFormValue)="setFormValue($event)"
+          ></app-perfil-detalhe>
         </tab>
         <tab *ngIf="ehPalestrante" class="border border-top-0">
           <ng-template tabHeading>
             <i class="fa fa-user me-2"></i>
-            <span>Palestrante</span></ng-template>
+            <span>Palestrante</span></ng-template
+          >
         </tab>
         <tab *ngIf="ehPalestrante" class="border border-top-0">
           <ng-template tabHeading>
             <i class="fa fa-share-square me-2"></i>
-            <span>Rede Social</span></ng-template>
+            <span>Rede Social</span></ng-template
+          >
         </tab>
       </tabset>
     </div>

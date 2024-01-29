@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {
-  AbstractControlOptions,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import { UserUpdate } from '@app/models/identity/UserUpdate';
@@ -19,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PerfilDetalheComponent {
   @Output() changeFormValue = new EventEmitter();
+
 
   userUpdate = {} as UserUpdate;
   form: FormGroup;
@@ -50,7 +46,8 @@ export class PerfilDetalheComponent {
   private verificaForm(): void {
     this.form.valueChanges.subscribe((value) => {
       this.changeFormValue.emit(value);
-    });
+    }
+    );
   }
 
   private carregarUsuario(): void {
@@ -59,7 +56,6 @@ export class PerfilDetalheComponent {
       .getUser()
       .subscribe({
         next: (userRetorno: UserUpdate) => {
-          console.log(userRetorno);
           this.userUpdate = userRetorno;
           this.form.patchValue(this.userUpdate);
           // this.toastr.success('Usuário Carregado', 'Sucesso');
@@ -81,6 +77,7 @@ export class PerfilDetalheComponent {
     this.form = this.fb.group(
       {
         userName: [''],
+        imagemUrl: [''],
         titulo: ['NaoInformado', Validators.required],
         nome: ['', Validators.required],
         sobrenome: ['', Validators.required],

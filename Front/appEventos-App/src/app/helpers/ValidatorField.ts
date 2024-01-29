@@ -17,7 +17,6 @@ export class ValidatorField {
       } else {
         matchingControl.setErrors(null);
       }
-      console.log(matchingControl.errors)
       return null;
     };
   }
