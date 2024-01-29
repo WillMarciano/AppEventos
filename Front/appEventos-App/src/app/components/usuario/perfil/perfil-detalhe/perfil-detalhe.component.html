@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 <div class="container ">
-    <div class="row mt-3">
+    <div class="row mt-3 mb-3">
       <h4 class="border-bottom text-muted">Detalhe Perfil</h4>
     </div>
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-sm-3">
         <label>Título</label>
         <select class="form-select" formControlName="titulo">
@@ -45,7 +45,7 @@
         <div class="invalid-feedback">Campo Sobrenome é obrigatório</div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-sm">
         <label>E-mail</label>
         <input
@@ -90,7 +90,7 @@
         </select>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-sm">
         <label>Descrição</label>
         <textarea
@@ -108,13 +108,13 @@
         <div class="invalid-feedback">Campo descricao é obrigatório</div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-sm">
-        <h3 class="pt-2 border-bottom text-muted">Mudar Senha</h3>
+        <h4 class="pt-2 border-bottom text-muted">Mudar Senha</h4>
         <p class="">Caso mude de senha, preencha os campos abaixo:</p>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-5">
       <div class="col">
         <label>Senha</label>
         <input

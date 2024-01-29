@@ -1,53 +1,66 @@
 <app-titulo [titulo]="'Perfil'" [iconClass]="'fa fa-address-card'"></app-titulo>
 <div class="card rounded shadow-sm">
-    <div class="row p-3">
-      <div class="col-lg-3">
-        <div class="card">
-          <div class="card-header"></div>
-          <div class="card-body">
-            <div class="text-center">
-              <a>
-                <img 
-                  src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-                  name="aboutme"
-                  width="120"
-                  height="120"
-                  class="rounded-circle"
-                  id="profile"
-                  alt="fotoPerfil"
-                />
-              </a>
-            </div>
-
-            <div class="h6 mb-6 text-center">&#64;{{ f.userName.value}}</div>
-            <div class="h7 text-bold pb-1"><b>Nome:</b> {{f.nome.value + ' ' + f.sobrenome.value}}</div>
-            <div class="h8 ">
-              <b>Descrição:</b> {{f.descricao.value}}
-            </div>
+  <div class="row p-3">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <div class="text-center">
+            <a>
+              <img
+                src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                name="aboutme"
+                width="120"
+                height="120"
+                class="rounded-circle"
+                id="profile"
+                alt="fotoPerfil"
+              />
+            </a>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <div class="row text-muted">
-                <div class="col-6 text-center border-right">
-                  <div class="h5">0</div>
-                  <div class="h6 text-muted">Meus Eventos Criados</div>
-                </div>
-                <div class="col-6 text-center">
-                  <div class="h5">0</div>
-                  <div class="h6 text-muted">Eventos como Participante</div>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="card-footer text-muted"></div>
+
+          <div class="h6 mb-6 text-center">&#64;{{ userUpdate.userName }}</div>
+          <div class="h7 text-bold pb-1">
+            <b>Nome:</b> {{ userUpdate.nome + " " + userUpdate.sobrenome }}
+          </div>
+          <div class="h8"><b>Descrição:</b> {{ userUpdate.descricao }}</div>
         </div>
-      </div>
-      <div class="col-lg-9">
-        <tabset>
-          <tab heading="Basic title" id="tab1"><app-perfil-detalhe></app-perfil-detalhe></tab>
-          <tab heading="Basic Title 1">Basic content 1</tab>
-          <tab heading="Basic Title 2">Basic content 2</tab>
-        </tabset>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row text-muted">
+              <div class="col-6 text-center border-right">
+                <div class="h5">0</div>
+                <div class="h6 text-muted">Meus Eventos Criados</div>
+              </div>
+              <div class="col-6 text-center">
+                <div class="h5">0</div>
+                <div class="h6 text-muted">Eventos como Participante</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="card-footer text-muted"></div>
       </div>
     </div>
+    <div class="col-lg-9">
+      <tabset>
+        <tab class="border">
+          <ng-template tabHeading>
+            <i class="fa fa-address-card me-2"></i>
+            <span>Perfil</span></ng-template>
+            <app-perfil-detalhe></app-perfil-detalhe>
+        </tab>
+        <tab class="border border-top-0">
+          <ng-template tabHeading>
+            <i class="fa fa-user me-2"></i>
+            <span>Palestrante</span></ng-template>
+        </tab>
+        <tab class="border border-top-0">
+          <ng-template tabHeading>
+            <i class="fa fa-share-square me-2"></i>
+            <span>Rede Social</span></ng-template>
+        </tab>
+      </tabset>
+    </div>
+  </div>
 </div>
