@@ -26,10 +26,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {}
 
   public setFormValue(usuario: UserUpdate): void {
-    console.log(usuario);
     this.usuario = usuario;
-    console.log(environment.apiURL + 'resources/perfil/' + this.usuario.imagemUrl);
-    console.log(this.usuario.imagemUrl);
     if (this.usuario.imagemUrl)
       this.imagemUrl = environment.apiURL + 'resources/perfil/' + this.usuario.imagemUrl;
       
