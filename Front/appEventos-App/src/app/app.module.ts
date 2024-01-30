@@ -45,6 +45,8 @@ import { HomeComponent } from './components/home/home.component';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilDetalheComponent } from './components/usuario/perfil/perfil-detalhe/perfil-detalhe.component';
+import { PalestranteListaComponent } from './components/palestrantes/palestrante-lista/palestrante-lista.component';
+
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -57,6 +59,7 @@ export function tokenGetter() {
     AppComponent,
     EventosComponent,
     PalestrantesComponent,
+    PalestranteListaComponent,
     ContatosComponent,
     DashboardComponent,
     PerfilComponent,

@@ -1,9 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControlOptions,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import { UserUpdate } from '@app/models/identity/UserUpdate';
 import { AccountService } from '@app/services/account.service';
+import { PalestranteService } from '@app/services/palestrante.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,7 +21,6 @@ import { ToastrService } from 'ngx-toastr';
 export class PerfilDetalheComponent {
   @Output() changeFormValue = new EventEmitter();
 
-
   userUpdate = {} as UserUpdate;
   form: FormGroup;
 
@@ -26,6 +31,7 @@ export class PerfilDetalheComponent {
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
+    private palestranteService: PalestranteService,
     private router: Router,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
@@ -46,8 +52,7 @@ export class PerfilDetalheComponent {
   private verificaForm(): void {
     this.form.valueChanges.subscribe((value) => {
       this.changeFormValue.emit(value);
-    }
-    );
+    });
   }
 
   private carregarUsuario(): void {
@@ -95,6 +100,21 @@ export class PerfilDetalheComponent {
   public atualizarUsuario() {
     this.userUpdate = { ...this.form.value };
     this.spinner.show();
+
+    if (this.f.funcao.value === 'Palestrante') {
+      this.palestranteService.post().subscribe({
+        next: () => {
+          this.toastr.success('Palestrante criado', 'Sucesso');
+        },
+        error: (error: any) => {
+          this.toastr.error(
+            `Não foi possível criar o Palestrante.${error.error},`,
+            'Erro'
+          );
+          console.error(error);
+        },
+      });
+    }
 
     this.accountService
       .updateUser(this.userUpdate)

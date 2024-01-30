@@ -27,8 +27,7 @@ namespace AppEventos.Repository
                                       p.User!.Nome.ToLower().Contains(pageParams.Term!.ToLower()) ||
                                       p.User.Sobrenome.ToLower().Contains(pageParams.Term!.ToLower())) &&
                                       p.User!.Funcao == Domain.Enum.Funcao.Palestrante)
-                .OrderBy(p => p.Id)
-                .AsQueryable();
+                .OrderBy(p => p.Id);
                 
                 
             return query.AsNoTracking();
