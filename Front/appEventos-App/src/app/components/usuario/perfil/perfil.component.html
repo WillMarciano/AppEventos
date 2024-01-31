@@ -54,13 +54,13 @@
             (changeFormValue)="setFormValue($event)"
           ></app-perfil-detalhe>
         </tab>
-        <tab *ngIf="ehPalestrante" class="border border-top-0">
+        <tab *ngIf="ehPalestrante" class="border">
           <ng-template tabHeading>
             <i class="fa fa-user me-2"></i>
-            <span>Palestrante</span></ng-template
-          >
+            <span>Palestrante</span></ng-template>
+            <app-palestrante-detalhe></app-palestrante-detalhe>
         </tab>
-        <tab *ngIf="ehPalestrante" class="border border-top-0">
+        <tab *ngIf="ehPalestrante" class="border">
           <ng-template tabHeading>
             <i class="fa fa-share-square me-2"></i>
             <span>Rede Social</span></ng-template
