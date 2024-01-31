@@ -82,7 +82,14 @@ namespace AppEventos.Application
                 var palestrantes = await _palestranteRepository.GetAllPalestrantesAsync(parms, includeEventos);
                 if (palestrantes == null) return null;
 
-                return _mapper.Map<PageList<PalestranteDto>>(palestrantes);
+                var resultado = _mapper.Map<PageList<PalestranteDto>>(palestrantes);
+
+                resultado.CurrentPage = palestrantes.CurrentPage;
+                resultado.TotalPages = palestrantes.TotalPages;
+                resultado.PageSize = palestrantes.PageSize;
+                resultado.TotalCount = palestrantes.TotalCount;
+
+                return resultado;
             }
             catch (Exception ex)
             {

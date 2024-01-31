@@ -1,0 +1,123 @@
+.card-container {
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap; // Allow the items to wrap as needed
+}
+
+.flex-item {
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.input-group {
+    margin-bottom: 0.5rem;
+}
+
+.input-group-prepend .input-group-text {
+    background-color: #e9ecef;
+}
+
+.form-control {
+    display: block;
+    width: 82%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.card-item {
+    flex: 0 0 100%; // Full width on mobile devices
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: stretch;
+    margin-right: 0.5rem;
+
+    @media (min-width: 768px) {
+        // On tablets and larger devices
+        flex: 0 0 50%; // Half width on tablets
+    }
+
+    @media (min-width: 992px) {
+        // On desktops and larger devices
+        flex: 0 0 32.3%; // Original width on desktop
+    }
+}
+
+.card {
+    flex: 1;
+}
+
+.img-container {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.rounded-img {
+    border-radius: 50%; // Make the image round
+    width: 50%; // Adjust as needed
+    height: auto; // Keep the aspect ratio
+    margin: 0 auto; // Center the image horizontally
+
+    // If the image is inside a flex container, you can center it vertically as well
+    @media (min-width: 768px) {
+        margin: auto; // Center the image vertically on tablets and larger devices
+    }
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.username {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.name {
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0.25rem;
+}
+
+.mini-curriculo {
+    font-size: 0.875rem;
+}
+
+.list-group .list-group-item {
+    padding: 0.75rem 1.25rem;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    text-align: center;
+}
+
+.border-right {
+    border-right: 1px solid #dee2e6;
+}
+
+.text-muted {
+    color: #6c757d;
+}

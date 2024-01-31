@@ -15,8 +15,9 @@ namespace AppEventos.Repository
         private IQueryable<Palestrante> FilterQueryPalestrante(PageParams pageParams, bool includeEventos)
         {
             IQueryable<Palestrante> query = _context.Palestrantes
+                                            .Include(p => p.User)
                                             .Include(p => p.RedesSociais)
-                                            .Include(p => p.User);
+                                            .Where(p => p.User!.Funcao == Domain.Enum.Funcao.Palestrante);
 
             if (includeEventos)
                 query = query.Include(p => p.PalestrantesEventos!)
@@ -25,11 +26,10 @@ namespace AppEventos.Repository
             if (!string.IsNullOrEmpty(pageParams.Term))
                 query = query.Where(p => (p.MiniCurriculo!.ToLower().Contains(pageParams.Term!.ToLower()) ||
                                       p.User!.Nome.ToLower().Contains(pageParams.Term!.ToLower()) ||
-                                      p.User.Sobrenome.ToLower().Contains(pageParams.Term!.ToLower())) &&
-                                      p.User!.Funcao == Domain.Enum.Funcao.Palestrante)
-                .OrderBy(p => p.Id);
-                
-                
+                                      p.User.Sobrenome.ToLower().Contains(pageParams.Term!.ToLower())))
+                             .OrderBy(p => p.Id);
+
+
             return query.AsNoTracking();
         }
         public async Task<PageList<Palestrante>?> GetAllPalestrantesAsync(PageParams pageParams, bool includeEventos = false)

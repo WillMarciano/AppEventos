@@ -1,7 +1,7 @@
-<div class="card rounded shadow-sm p-3 mb-5">
-  <div class="d-flex">
-    <div class="flex-fill pe-3">
-      <div class="input-group mb-2">
+<div class="card-container">
+  <div class="flex-container">
+    <div class="flex-item">
+      <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text">Filtro:</div>
         </div>
@@ -15,10 +15,41 @@
     </div>
   </div>
   <div *ngIf="palestrantes && palestrantes.length">
-    <div class="col-md-4-mb-4 d-flex align-items-scretch"
-      *ngFor="let palestrante of palestrantes">
-      {{palestrante.user.nome}}
+    <div class="flex-container col-md-12">
+      <div class="col-md-4 card-item" *ngFor="let palestrante of palestrantes">
+        <div class="card">
+          <div class="img-container">
+            <img
+              [src]="getImagemURL(palestrante.user.imagemUrl)"
+              class="rounded-img"
+              alt="Imagem do Palestrante"
+              width="100"
+              height="100"           
+              >
+          </div>
+          <div class="card-body">
+            <div class="username">&#64;{{palestrante.user.userName}}</div>
+            <div class="name"><b>Nome:</b> {{palestrante.user.nome + ' ' + palestrante.user.sobrenome}}</div>
+            <div class="mini-curriculo">
+              {{palestrante.miniCurriculo}}
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col text-center border-right">
+                  <div class="h5">0</div>
+                  <div class="text-muted">Meus Eventos Criados</div>
+                </div>
+                <div class="col text-center">
+                  <div class="h5">0</div>
+                  <div class="text-muted">Eventos como Palestrante</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>

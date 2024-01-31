@@ -39,7 +39,7 @@ public class PalestrantesController : ControllerBase
         {
             var palestrantes = await _palestranteService.GetAllPalestrantesAsync(pageParams, true);
 
-            if (palestrantes == null || palestrantes.Count == 0) return NoContent();
+            if (palestrantes == null) return NoContent();
 
             Response.AddPagination(palestrantes.CurrentPage,
                                    palestrantes.PageSize,

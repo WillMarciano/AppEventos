@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PaginatedResult, Pagination } from '@app/models/Pagination';
 import { Palestrante } from '@app/models/Palestrante';
 import { PalestranteService } from '@app/services/palestrante.service';
+import { environment } from '@environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -39,13 +40,16 @@ export class PalestranteListaComponent {
     this.spinner.show();
   }
 
+
   public filtrarPalestrantes(evt: any): void {
     if (this.termoBuscaChanged.observers.length === 0) {
+      console.log(this.pagination);
       this.termoBuscaChanged
         .pipe(debounceTime(1000))
         .subscribe((filtrarPor) => {
           this.spinner.show();
           this.palestranteService
+
             .getPalestrantes(
               this.pagination.currentPage,
               this.pagination.itemsPerPage,
@@ -70,6 +74,13 @@ export class PalestranteListaComponent {
     this.termoBuscaChanged.next(evt.value);
   }
 
+  public getImagemURL(imagemName: string): string {
+    if (imagemName)
+      return environment.apiURL + `resources/perfil/${imagemName}`;
+    else
+      return './assets/img/perfil.png';
+  }
+
   public carregarPalestrantes(): void {
     this.spinner.show();
 
@@ -80,7 +91,6 @@ export class PalestranteListaComponent {
         next: (paginatedResult: PaginatedResult<Palestrante[]>) => {
           this.palestrantes = paginatedResult.result;
           this.pagination = paginatedResult.pagination;
-          console.log(this.palestrantes);
         },
         error: (error: any) => {
           this.spinner.hide();
