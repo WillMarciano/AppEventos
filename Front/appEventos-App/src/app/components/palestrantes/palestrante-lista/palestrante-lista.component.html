@@ -24,30 +24,31 @@
               class="rounded-img"
               alt="Imagem do Palestrante"
               width="100"
-              height="100"           
-              >
+              height="100"
+            />
           </div>
           <div class="card-body">
-            <div class="username">&#64;{{palestrante.user.userName}}</div>
-            <div class="name"><b>Nome:</b> {{palestrante.user.nome + ' ' + palestrante.user.sobrenome}}</div>
+            <div class="username">&#64;{{ palestrante.user.userName }}</div>
+            <div class="name">
+              <b>Nome:</b>
+              {{ palestrante.user.nome + " " + palestrante.user.sobrenome }}
+            </div>
             <div class="mini-curriculo">
-              {{palestrante.miniCurriculo}}
+              {{ palestrante.miniCurriculo }}
             </div>
           </div>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col text-center border-right">
-                  <div class="h5">0</div>
-                  <div class="text-muted">Meus Eventos Criados</div>
-                </div>
-                <div class="col text-center">
-                  <div class="h5">0</div>
-                  <div class="text-muted">Eventos como Palestrante</div>
-                </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col">
+                <div class="h5">0</div>
+                <div class="text-muted">Meus Eventos Criados</div>
               </div>
-            </li>
-          </ul>
+              <div class="col">
+                <div class="h5">0</div>
+                <div class="text-muted">Eventos como Palestrante</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

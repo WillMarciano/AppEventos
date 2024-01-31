@@ -81,6 +81,20 @@
     padding: 1.5rem;
 }
 
+.card-footer {
+    background-color: #f8f9fa; // Light gray background
+    color: #212529; // Dark text color
+    padding: 1rem; // Add some padding
+  
+    .h5 {
+      color: #007bff; // Blue color for the numbers
+    }
+  
+    .text-muted {
+      color: #6c757d; // Muted text color
+    }
+  }
+
 .username {
     font-size: 1.5rem;
     text-align: center;
