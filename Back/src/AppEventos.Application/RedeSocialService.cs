@@ -30,10 +30,9 @@ namespace AppEventos.Application
                 else
                 {
                     RedeSocial.EventoId = null;
-                    RedeSocial.PalestranteId = Id;
                 }
 
-                _redeSocialRepository.Add<RedeSocial>(RedeSocial);
+                _redeSocialRepository.Add(RedeSocial);
                 await _redeSocialRepository.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -102,15 +101,19 @@ namespace AppEventos.Application
             }
         }
 
-        public async Task<RedeSocialDto[]?> SaveAsync(int id, RedeSocialDto[] models, bool isEvento)
+        public async Task<RedeSocialDto[]?> SaveAsync(int id, int? palestranteId, RedeSocialDto[] models, bool isEvento)
         {
             try
             {
                 var redes = isEvento
                     ? await _redeSocialRepository.GetAllByEventoIdAsync(id)
-                    : await _redeSocialRepository.GetAllByPalestranteIdAsync(id);
+                    : await _redeSocialRepository.GetAllByPalestranteIdAsync((int)palestranteId!);
 
                 if (redes == null) return null;
+
+                if (!isEvento)
+                    foreach (var model in models)
+                        model.PalestranteId = palestranteId;
 
                 foreach (var model in models)
                 {
@@ -120,7 +123,9 @@ namespace AppEventos.Application
                     else
                     {
                         var RedeSocial = redes.FirstOrDefault(RedeSocial => RedeSocial.Id == model.Id);
-                        model.EventoId = id;
+                        
+                        if (isEvento)
+                            model.EventoId = id;
 
                         _mapper.Map(model, RedeSocial);
                         _redeSocialRepository.Update<RedeSocial>(RedeSocial!);

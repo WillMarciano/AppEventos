@@ -1,6 +1,7 @@
 ﻿using AppEventos.API.Extensions;
 using AppEventos.Application.Dtos;
 using AppEventos.Application.Interfaces;
+using AppEventos.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,8 @@ namespace AppEventos.API.Controllers
             try
             {
                 if (!(await AutorRedeSocial(id, isEvento))) return Unauthorized();
+                id = !isEvento ? (int)_palestranteService.GetPalestranteByUserIdAsync(User.GetUserId()).Result?.Id! : 0;
+
                 var redes = await _redeSocialService.GetAllRedesSociaisAsync(id, isEvento);
                 return redes == null || redes.Length == 0 ? NoContent() : Ok(redes);
             }
@@ -60,7 +63,10 @@ namespace AppEventos.API.Controllers
             {
                 if (!(await AutorRedeSocial(id, isEvento))) return Unauthorized();
 
-                var redeSocial = await _redeSocialService.SaveAsync(id, models, isEvento);
+                var palestranteId = !isEvento ? _palestranteService.GetPalestranteByUserIdAsync(User.GetUserId()).Result?.Id : null;
+                    
+
+                var redeSocial = await _redeSocialService.SaveAsync(id, palestranteId, models, isEvento);
                 if (redeSocial == null) return NoContent();
 
                 return Ok(redeSocial);

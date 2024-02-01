@@ -47,6 +47,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { PerfilDetalheComponent } from './components/usuario/perfil/perfil-detalhe/perfil-detalhe.component';
 import { PalestranteListaComponent } from './components/palestrantes/palestrante-lista/palestrante-lista.component';
 import { PalestranteDetalheComponent } from './components/palestrantes/palestrante-detalhe/palestrante-detalhe.component';
+import { RedesSociaisComponent } from './components/redes-sociais/redes-sociais.component';
 
 
 
@@ -76,6 +77,7 @@ export function tokenGetter() {
     UsuarioComponent,
     LoginComponent,
     RegistrarComponent,
+    RedesSociaisComponent
   ],
   imports: [
     BrowserModule,
