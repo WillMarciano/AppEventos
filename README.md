@@ -1,27 +1,12 @@
-const generateReadme = (answers) => 
-`# ${answers.title}
-  
-## Description
-${answers.description}
-## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [Credits](#credits)
-* [Tests](#tests)
-* [Contributing](#contributing)
-* [License](#license)
-* [Questions](#questions)
-## Installation
-${answers.installation}
-## Usage
-${answers.usage}
-## Credits
-${answers.credits}
-## Tests
-${answers.tests}
-## Contributing
-${answers.contributing}
-## License
-This application is covered under the ${answers.license} license.
-## Questions
-GitHub: [${answers.github}](
+# AppEventos
+
+## Technologies Used
+
+This project uses the following technologies:
+
+- **Programming Languages**: C#, JavaScript.
+- **Frameworks/Libraries**: .NET Core, ASP.NET, Entity Framework.
+- **Database**: MSQL.
+- **Frontend**: Angular,.
+- **Version Control**: Git
+- **Containerization**: Docker
