@@ -37,7 +37,7 @@ namespace AppEventos.API.Controllers
             try
             {
                 if (!(await AutorRedeSocial(id, isEvento))) return Unauthorized();
-                id = !isEvento ? (int)_palestranteService.GetPalestranteByUserIdAsync(User.GetUserId()).Result?.Id! : 0;
+                id = !isEvento ? (int)_palestranteService.GetPalestranteByUserIdAsync(User.GetUserId()).Result?.Id! : id;
 
                 var redes = await _redeSocialService.GetAllRedesSociaisAsync(id, isEvento);
                 return redes == null || redes.Length == 0 ? NoContent() : Ok(redes);

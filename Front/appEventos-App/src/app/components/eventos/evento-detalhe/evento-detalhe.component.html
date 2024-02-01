@@ -3,6 +3,12 @@
     <div class="card rounded shadow mb-3">
       <form [formGroup]="form" class="p-3">
         <div class="row">
+          <div class="d-flex border-bottom">
+            <h4 class="me-auto">Detalhes do Evento</h4>
+            <h4>
+              <i class="fas fa-calendar-alt"></i>
+            </h4>
+          </div>
           <div class="col">
             <!-- {{ form.value | json }} -->
             <label>Tema</label>
@@ -130,13 +136,13 @@
       <!-- <p>Form value: {{form.controls['lotes'].value| json}}</p>
         <p>Form valid: {{form.controls['lotes'].status | json}}</p> -->
       <div class="p-3">
-        <div class="d-flex border-bottom">
-          <h3 class="me-auto">Lotes do Evento</h3>
-          <h3>
+        <div class="d-flex border-bottom mb-3">
+          <h4 class="me-auto">Lotes do Evento</h4>
+          <h4>
             <i class="fas fa-money-bill-wave"></i>
-          </h3>
+          </h4>
         </div>
-        <p>Clique em Lote para adicionar e preencher novos Lotes</p>
+        <p class="text-secondary">Clique em Lote para adicionar e preencher novos Lotes</p>
         <div class="form-row p-1">
           <div [formGroup]="form" class="col">
             <div
@@ -288,7 +294,19 @@
         </div>
       </div>
     </div>
+    <div class="card rounded shadow-sm mt-3 mb-3" *ngIf="modoEditar">
+      <div class="">
+          <div class="d-flex border-bottom">
+            <span>
+              <h4 class="m-3">Redes Sociais do Evento</h4>
+            </span>
+
+        </div>
+        <app-redes-sociais [eventoId]="eventoId"></app-redes-sociais>
+      </div>
+    </div>
   </div>
+
   <div class="col-md-4" *ngIf="modoEditar">
     <div [formGroup]="form" class="card-evento-view shadow-sm">
       <div class="form-row">
@@ -336,13 +354,17 @@
               >Telefone: {{ form.controls["telefone"].value }}</small
             >
             <br />
-            <small class="text-muted">e-mail: {{ form.controls["email"].value }}</small>
+            <small class="text-muted"
+              >e-mail: {{ form.controls["email"].value }}</small
+            >
           </p>
 
           <p class="card-text">
             Capacidade:
 
-            <small class="text-muted">{{ form.controls["qtdPessoas"].value }}</small>
+            <small class="text-muted">{{
+              form.controls["qtdPessoas"].value
+            }}</small>
           </p>
 
           <div class="row">
@@ -362,25 +384,25 @@
       </div>
     </div>
   </div>
-</div>
 
-<ng-template #template>
-  <div class="modal-body text-center">
-    <p>Tem certeza que quer deletar o Lote {{ this.loteAtual.nome }}</p>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="confirmDeleteLote()"
-    >
-      Sim
-    </button>
-    &nbsp;
-    <button
-      type="button"
-      class="btn btn-outline-primary"
-      (click)="declineDeleteLote()"
-    >
-      Não
-    </button>
-  </div>
-</ng-template>
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Tem certeza que quer deletar o Lote {{ this.loteAtual.nome }}</p>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="confirmDeleteLote()"
+      >
+        Sim
+      </button>
+      &nbsp;
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="declineDeleteLote()"
+      >
+        Não
+      </button>
+    </div>
+  </ng-template>
+</div>

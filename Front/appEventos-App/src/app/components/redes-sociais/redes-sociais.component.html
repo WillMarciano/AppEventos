@@ -1,5 +1,5 @@
 <div class="container rounded mt-1 mb-3 p-4 bg-light shadow">
-  <h4 class="border-bottom pb-2 text-dark">Detalhes Redes Sociais</h4>
+  <h5 class="border-bottom pb-2 text-dark">Detalhes Redes Sociais</h5>
   <p class="text-secondary">Clique em Rede Social para adicionar e preencher novas Redes Sociais</p>
   <div [formGroup]="formRS">
     <div
@@ -75,7 +75,8 @@
       class="d-flex btn btn-outline-primary mt-2 mb-3"
     >
       <i class="fa fa-plus-circle my-1"></i>
-      <b class="ml-1">Rede Social</b>
+      <b class="ms-1">Rede Social</b>
+      
     </button>
   </div>
 </div>
@@ -116,7 +117,7 @@
         class="btn btn-success"
         [disabled]="!formRS.valid"
       >
-        Salvar Alteração
+        Salvar Redes
       </button>
     </div>
   </div>

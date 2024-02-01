@@ -1,5 +1,5 @@
 <div class="card rounded shadow-sm p-3 mb-5">
-  <div class="d-flex">
+  <div class="d-flex align-items-center">
     <div class="flex-fill pe-3">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
@@ -15,11 +15,12 @@
     </div>
     <div>
       <a
-        class="d-flex btn btn-outline-primary btn-sm"
+        class="d-flex align-items-center btn btn-primary btn-sm"
         routerLink="/eventos/detalhe"
-        ><i class="fa fa-plus-circle my-2"></i
-        ><b class="m-1 d-none d-sm-block">Novo</b></a
       >
+        <i class="fa fa-plus-circle"></i>
+        <span class="ms-2 custom-height d-none d-sm-block text-light fw-bold">Novo</span>
+      </a>
     </div>
   </div>
 
@@ -89,7 +90,7 @@
         </tr>
       </tfoot>
     </table>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-4">
       <pagination
         [boundaryLinks]="true"
         [totalItems]="pagination.totalItems"
