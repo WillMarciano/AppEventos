@@ -10,10 +10,11 @@
         <legend class="d-flex justify-content-between capitalize">
           <i [class]="retornaTitulo(redesSociais.get(i + '.nome').value)"></i>
           <button
-            class="btn btn-sm btn-warning mb-1"
+            class="btn btn-sm btn-danger mb-1"
             (click)="removerRedeSocial(template, i)"
           >
-            Remover
+          <i class="fa fa-trash"></i>
+          Remover
           </button>
         </legend>
         <div class="row">
@@ -37,7 +38,14 @@
               <option value="fab fa-skype">Skype</option>
               <option value="fab fa-vimeo">Vimeo</option>
             </select>
+            <div
+              *ngIf="redesSociais.get(i + '.nome').hasError('required')"
+              class="invalid-feedback"
+            >
+              Campo Nome é obrigatório
+            </div>
           </div>
+
           <div class="form-group col-md-8 mb-3">
             <label>Link</label>
             <input
@@ -49,6 +57,12 @@
               class="form-control"
               placeholder="URL"
             />
+            <div
+              *ngIf="redesSociais.get(i + '.url').hasError('required')"
+              class="invalid-feedback"
+            >
+              Campo Url é obrigatório
+            </div>
           </div>
         </div>
       </fieldset>
@@ -65,10 +79,13 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Tem certeza que quer deletar {{ this.redeSocialAtual.nome }}?</p>
+    <p>
+      Tem certeza que quer deletar
+      {{ this.redeSocialAtual.nome.replace("fab fa-", "") }}?
+    </p>
     <button
       type="button"
-      class="btn btn-default"
+      class="btn btn-danger m-2"
       (click)="confirmDeleteRedeSocial()"
     >
       Sim
@@ -91,8 +108,12 @@
       </button>
     </div>
     <div class="col text-end">
-      <button (click)="salvarRedesSociais()" class="btn btn-success" [disabled]="!formRS.valid">
-        Salvar Redes Sociais
+      <button
+        (click)="salvarRedesSociais()"
+        class="btn btn-success"
+        [disabled]="!formRS.valid"
+      >
+        Salvar Alteração
       </button>
     </div>
   </div>

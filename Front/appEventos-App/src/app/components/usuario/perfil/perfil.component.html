@@ -1,8 +1,8 @@
-<app-titulo [titulo]="'Perfil'" [iconClass]="'fa fa-address-card'"></app-titulo>
+<app-titulo [titulo]="'Perfil' + (ehPalestrante ? ' Palestrante' : '')" [iconClass]="'fa fa-address-card'"></app-titulo>
 <div class="card rounded shadow-sm mb-5">
   <div class="row p-3">
     <div class="col-lg-3">
-      <div class="card">
+      <div class="card" style="position: sticky; top: 0;">
         <div class="card-header">
           <input
             type="file"

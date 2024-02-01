@@ -35,7 +35,7 @@ export class RedesSociaisComponent {
     private spinner: NgxSpinnerService,
     private redeSocialService: RedeSocialService,
     private modalService: BsModalService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -47,20 +47,19 @@ export class RedesSociaisComponent {
     let isEvento = this.eventoId !== 0 ? true : false;
 
     this.spinner.show();
-    console.log('isEvento', isEvento);
     this.redeSocialService
       .getRedesSociais(id, isEvento)
-      .subscribe(
-        (redeSocialRetorno: RedeSocial[]) => {
+      .subscribe({
+        next: (redeSocialRetorno: RedeSocial[]) => {
           redeSocialRetorno.forEach((redeSocial) => {
             this.redesSociais.push(this.criarRedeSocial(redeSocial));
           });
         },
-        (error: any) => {
+        error: (error: any) => {
           this.toastr.error('Erro ao tentar carregar Rede Social', 'Erro');
           console.error(error);
-        }
-      )
+        },
+      })
       .add(() => this.spinner.hide());
   }
 
@@ -98,36 +97,40 @@ export class RedesSociaisComponent {
       isEvento = false;
     }
 
-    // if (this.formRS.controls.RedeSocial.valid) {
-    this.spinner.show();
-    this.redeSocialService
-      .saveRedesSociais(this.eventoId, isEvento, this.formRS.value.redesSociais)
-      .subscribe(
-        () => {
-          this.toastr.success(
-            'Redes Sociais foram salvas com Sucesso!',
-            'Sucesso!'
-          );
-          this.formRS.reset();
+    if (this.formRS.valid) {
+      this.spinner.show();
+      this.redeSocialService
+        .saveRedesSociais(
+          this.eventoId,
+          isEvento,
+          this.formRS.value.redesSociais
+        )
+        .subscribe({
+          next: () => {
+            this.toastr.success(
+              'Redes Sociais foram salvas com Sucesso!',
+              'Sucesso!'
+            );
+            this.formRS.reset();
 
-          // Then remove the old form controls
-          while (this.redesSociais.length !== 0) {
-            this.redesSociais.removeAt(0);
-          }
-        
-          // Then load redes sociais again
-          this.carregarRedesSociais();
-        },
-        (error: any) => {
-          this.toastr.error(
-            `Erro ao tentar salvar Redes Sociais. ${error.error}`,
-            'Erro'
-          );
-          console.error(error);
-        }
-      )
-      .add(() => this.spinner.hide());
-    // }
+            // Then remove the old form controls
+            while (this.redesSociais.length !== 0) {
+              this.redesSociais.removeAt(0);
+            }
+
+            // Then load redes sociais again
+            this.carregarRedesSociais(this.eventoId);
+          },
+          error: (error: any) => {
+            this.toastr.error(
+              `Erro ao tentar salvar Redes Sociais. ${error.error}`,
+              'Erro'
+            );
+            console.error(error);
+          },
+        })
+        .add(() => this.spinner.hide());
+    }
   }
 
   public removerRedeSocial(template: TemplateRef<any>, indice: number): void {
