@@ -1,14 +1,17 @@
-<div class="container rounded mt-3 mb-3">
-  <h4 class="border-bottom pb-2 text-muted">Detalhes Redes Sociais</h4>
-  <p>Clique em Rede Social para adicionar e preencher novas Redes Sociais</p>
+<div class="container rounded mt-1 mb-3 p-4 bg-light shadow">
+  <h4 class="border-bottom pb-2 text-dark">Detalhes Redes Sociais</h4>
+  <p class="text-secondary">Clique em Rede Social para adicionar e preencher novas Redes Sociais</p>
   <div [formGroup]="formRS">
     <div
       formArrayName="redesSociais"
       *ngFor="let redeSocial of redesSociais.controls; let i = index"
     >
-      <fieldset [formGroupName]="i" class="form-group">
+      <fieldset [formGroupName]="i" class="form-group bg-white p-3 rounded shadow-sm mb-3">
         <legend class="d-flex justify-content-between capitalize">
-          <i [class]="retornaTitulo(redesSociais.get(i + '.nome').value)"></i>
+          <span class="text-primary">
+            {{capitalizeFirstLetter(retornaTitulo(redesSociais.get(i + '.nome').value))|| "Rede Social"}}
+            <i [class]="retornaTitulo(redesSociais.get(i + '.nome').value)"></i>
+          </span>
           <button
             class="btn btn-sm btn-danger mb-1"
             (click)="removerRedeSocial(template, i)"

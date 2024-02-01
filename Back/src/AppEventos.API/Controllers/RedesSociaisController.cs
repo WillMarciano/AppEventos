@@ -100,8 +100,7 @@ namespace AppEventos.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"{errorResponse.Replace("*", "deletar")}: {ex.Message}");
+                return HandleException(ex, "deletar");
             }
         }
 
@@ -128,8 +127,7 @@ namespace AppEventos.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"{errorResponse.Replace("*", "deletar")}: {ex.Message}");
+                return HandleException(ex, "deletar");
             }
         }
 
@@ -151,6 +149,13 @@ namespace AppEventos.API.Controllers
             }
 
             return true;
+        }
+
+        [NonAction]
+        private IActionResult HandleException(Exception ex, string action)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                $"{errorResponse.Replace("*", action)}: {ex.Message}");
         }
 
     }

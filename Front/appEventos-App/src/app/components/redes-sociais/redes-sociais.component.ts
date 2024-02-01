@@ -7,7 +7,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RedeSocial } from '@app/models/RedeSocial';
 import { RedeSocialService } from '@app/services/rede-social.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -34,8 +33,7 @@ export class RedesSociaisComponent {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private redeSocialService: RedeSocialService,
-    private modalService: BsModalService,
-    private router: Router
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -69,6 +67,10 @@ export class RedesSociaisComponent {
     });
   }
 
+  capitalizeFirstLetter(string) {
+    string = string.replace('fab fa-', '');
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   adicionarRedeSocial(): void {
     this.redesSociais.push(this.criarRedeSocial({ id: 0 } as RedeSocial));
   }
@@ -150,19 +152,19 @@ export class RedesSociaisComponent {
 
     this.redeSocialService
       .deleteRedeSocial(origem, this.eventoId, this.redeSocialAtual.id)
-      .subscribe(
-        () => {
+      .subscribe({
+        next: () => {
           this.toastr.success('Rede Social deletado com sucesso', 'Sucesso');
           this.redesSociais.removeAt(this.redeSocialAtual.indice);
         },
-        (error: any) => {
+        error: (error: any) => {
           this.toastr.error(
             `Erro ao tentar deletar o Rede Social ${this.redeSocialAtual.id}`,
             'Erro'
           );
           console.error(error);
-        }
-      )
+        },
+      })
       .add(() => this.spinner.hide());
   }
 
